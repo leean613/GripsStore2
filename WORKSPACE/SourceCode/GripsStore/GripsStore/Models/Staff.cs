@@ -32,7 +32,7 @@ namespace GripsStore.Models
 
         public class StaffJSON
         {
-            public bool success;
+            public bool success = false;
             public Staff staff;
         }
     }

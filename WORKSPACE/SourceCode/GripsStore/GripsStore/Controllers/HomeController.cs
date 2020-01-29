@@ -11,9 +11,8 @@ namespace GripsStore.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-            String rs = new TestDao().getDemo();
-            ViewBag.Title = rs;
+            //ViewBag.Title = "Home Page";
+            //String rs = new TestDao().getDemo();
             return View();
         }
     }

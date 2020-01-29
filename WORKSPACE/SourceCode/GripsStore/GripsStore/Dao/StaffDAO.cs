@@ -12,10 +12,7 @@ namespace GripsStore.Dao
     {
         public StaffJSON CheckLogin(string staffCode, string password)
         {
-            StaffJSON result = new StaffJSON
-            {
-                success = false
-            };
+            StaffJSON result = new StaffJSON();
             StringBuilder sbSQL = new StringBuilder();
             try
             {
