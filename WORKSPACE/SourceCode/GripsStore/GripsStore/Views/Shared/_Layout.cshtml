@@ -6,15 +6,16 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("css", required: false)
 </head>
 <body>
-    <div class="container navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <form class="" action="" style="margin:auto;height:40px;margin:5px;">
             <input id="inputSearch" class="form-control" type="text" placeholder="検索..">
             <button id="btnSearch" class="btn btn-primary" type="submit"><img src="../../Images/search_white.png" /></button>
         </form>
     </div>
-    <div class="container body-content">
+    <div class="body-content">
         @RenderBody()
         <hr />
     </div>

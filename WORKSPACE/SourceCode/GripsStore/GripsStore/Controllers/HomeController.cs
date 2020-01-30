@@ -1,4 +1,5 @@
 ﻿using GripsStore.Dao;
+using GripsStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,12 @@ namespace GripsStore.Controllers
     {
         public ActionResult Index()
         {
-            //ViewBag.Title = "Home Page";
-            //String rs = new TestDao().getDemo();
-            return View();
+            //TODO check login
+            AppDao appDao = new AppDao();
+            List<App> apps = appDao.GetApps();
+            ViewData["AppList"] = apps;
+            ViewBag.Title = "Gripsストア";
+            return View(apps);
         }
     }
 }

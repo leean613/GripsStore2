@@ -11,12 +11,9 @@ namespace GripsStore.Dao
 {
     public class AppDao
     {
-        public AppJSON GetApps()
+        public List<App> GetApps()
         {
-            AppJSON result = new AppJSON
-            {
-                apps = new List<App>()
-            };
+            List<App> apps = new List<App>();
             StringBuilder sbSQL = new StringBuilder();
             try
             {
@@ -35,12 +32,8 @@ namespace GripsStore.Dao
                         while (rec.Read())
                         {
                             App app = new App(rec);
-                            result.apps.Add(app);
+                            apps.Add(app);
                         }
-                    }
-                    if(result.apps.Count > 0)
-                    {
-                        result.success = true; 
                     }
                 }
             }
@@ -48,7 +41,7 @@ namespace GripsStore.Dao
             {
 
             }
-            return result;
+            return apps;
         }
     }
 }

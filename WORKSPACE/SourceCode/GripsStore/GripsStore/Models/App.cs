@@ -33,7 +33,7 @@ namespace GripsStore.Models
             this.name = NpgDB.getString(rec, "name");
             this.description = NpgDB.getString(rec, "description");
             this.icon = NpgDB.getString(rec, "icon");
-            this.verCd = NpgDB.getString(rec, "vercd");
+            this.verCd = NpgDB.getLongString(rec, "vercd");
             this.verNm = NpgDB.getString(rec, "vernm");
             this.fileNm = NpgDB.getString(rec, "filenm");
         }
