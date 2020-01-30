@@ -6,8 +6,7 @@
     float: left;
     width: calc(50% - 10px);
     margin: 5px;
-    padding: 2px;
-    height: 180px; /* Should be removed. Only for demonstration */
+    height: 190px; /* Should be removed. Only for demonstration */
     background: #ffffff;
 }
 

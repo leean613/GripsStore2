@@ -15,9 +15,9 @@ namespace GripsStore.Controllers
             //TODO check login
             AppDao appDao = new AppDao();
             List<App> apps = appDao.GetApps();
-            ViewData["AppList"] = apps;
+            ViewData["Apps"] = apps;
             ViewBag.Title = "Gripsストア";
-            return View(apps);
+            return View();
         }
     }
 }

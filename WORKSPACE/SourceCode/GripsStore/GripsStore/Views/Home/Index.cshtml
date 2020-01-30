@@ -3,10 +3,10 @@
 }
 <div class="home-content">
     <div class="app-list">
-        @if (ViewData["AppList"] != null)
+        @if (ViewData["Apps"] != null)
         {
             int i = 0;
-            foreach (var app in ViewData["AppList"] as List<GripsStore.Models.App>)
+            foreach (var app in ViewData["Apps"] as List<GripsStore.Models.App>)
             {
 
                 if (i % 2 == 0)
@@ -18,7 +18,7 @@
                     @Html.Raw("<div class=\"row\">");
                 }
                 <div id="@app.appId" class="column app-item">
-                    <img class="app-icon" src="/../Files/Icon/@app.icon" />
+                    <img class="app-icon" src="../Files/Icon/@app.icon" />
                     <div class="label app-name">@app.name</div>
                     <div class="label app-description">@app.description</div>
                 </div>
@@ -28,3 +28,6 @@
         }
     </div>
 </div>
+@section scripts {
+    <script src="../Scripts/App/Home/index.js"></script>
+}
