@@ -1,0 +1,78 @@
+﻿.app-detail {
+    margin-top: 10px;
+    margin-left: -5px;
+    margin-right: -5px;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 5px grey;
+    background-color: white;
+}
+
+.column-icon {
+    float: left;
+    width: 160px
+}
+
+.column-info {
+    float: left;
+    width: calc(100% - 160px);
+}
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.row {
+    margin: 0px;
+}
+
+.app-icon {
+    margin: 5px;
+    display: block;
+    width: auto;
+    max-width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.app-name {
+    width: auto;
+    text-align: left;
+    display: inline-block;
+    color: black;
+    font-size: larger;
+    margin-top: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.app-description {
+    display: inline-block;
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: gray;
+    font-size: medium;
+}
+
+.version-label {
+    display: block;
+    float: left;
+    font-size: medium;
+    color: black;
+}
+
+.app-version {
+    display: inline-block;
+    font-size: medium;
+    color: black;
+}
+
+.btn-download {
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 5px;
+    vertical-align:bottom;
+}

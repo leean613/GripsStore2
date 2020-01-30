@@ -1,15 +1,29 @@
 ﻿@section css{
     <link href="~/Content/App/detail.css" rel="stylesheet" />
+    <link href="~/Content/App/Site.css" rel="stylesheet" />
 }
-<div class="home-content">
+@if (ViewData["App"] != null)
+{
+    var app = ViewData["App"] as GripsStore.Models.App;
     <div class="app-detail">
-        @if (ViewData["App"] != null)
-        {
-
-        }
+        <div class="row">
+            <div class="column-icon">
+                <img class="app-icon" src="../../Files/Icon/@app.icon" />
+            </div>
+            <div class="column-info">
+                <div class="row">
+                    <div class="label app-name">@app.name</div>
+                    <div>
+                        <div class="label version-label">バージョン：</div>
+                        <div class="label app-version">@app.verNm</div>
+                    </div>
+                    <button class="btn btn-success btn-lg btn-download">ダウンロード</button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+}
 @section scripts {
-    <script src="../Scripts/App/Home/detail.js"></script>
-    <script src="../Scripts/site.js"></script>
+    <script src="../../Scripts/App/detail.js"></script>
+    <script src="../../Scripts/App/site.js"></script>
 }
