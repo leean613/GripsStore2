@@ -18,13 +18,13 @@ textarea {
     max-width: 280px;
 }
 
-#inputSearch {
+#input-search {
     width: calc(100% - 60px - 5px);
     height: 100%;
     display: inline;
 }
 
-#btnSearch {
+#btn-search {
     width: 60px;
     height: 100%;
     background: #4585F1;

@@ -10,11 +10,11 @@ namespace GripsStore.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string key)
         {
             //TODO check login
             AppDao appDao = new AppDao();
-            List<App> apps = appDao.GetApps();
+            List<App> apps = appDao.GetApps(key);
             ViewData["Apps"] = apps;
             ViewBag.Title = "Gripsストア";
             return View();

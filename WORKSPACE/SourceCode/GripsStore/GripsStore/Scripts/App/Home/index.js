@@ -2,14 +2,14 @@
 function onStartUp() {
     try {
         //$('.site-title').hide();
-        $('.app-item').on('click', changePage);
+        $('.app-item').on('click', viewDetail);
     }
     catch (ex) {
         ttDebug.Exception(SCRIPT_FILE, 'onStartUp', ex);
     }
 }
 
-function changePage() {
+function viewDetail() {
     sURL = "/App/Detail/?id=" + $(this)[0].id;
     //ttGuard.showWait();
     // ﾍﾟｰｼﾞ遷移
