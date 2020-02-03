@@ -9,7 +9,7 @@
 
 .column-icon {
     float: left;
-    width: 130px
+    width: 160px
 }
 
 .column-info {
@@ -31,7 +31,7 @@
     margin: 5px;
     display: block;
     width: auto;
-    max-width: 120px;
+    max-width: 150px;
     margin-left: auto;
     margin-right: auto;
 }
