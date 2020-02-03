@@ -9,7 +9,7 @@
 
 .column-icon {
     float: left;
-    width: 160px
+    width: 130px
 }
 
 .column-info {
@@ -31,7 +31,7 @@
     margin: 5px;
     display: block;
     width: auto;
-    max-width: 150px;
+    max-width: 120px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -49,14 +49,15 @@
 
 .app-description {
     display: inline-block;
-    text-align: left;
+    text-align: justify;
+    text-align: match-parent;
     white-space: pre-wrap;
     word-wrap: break-word;
     color: gray;
     font-size: medium;
 }
 
-.version-label {
+.detail-label {
     display: block;
     float: left;
     font-size: medium;
@@ -74,5 +75,5 @@
     padding-left: 20px;
     padding-right: 20px;
     margin: 5px;
-    vertical-align:bottom;
+    vertical-align: bottom;
 }

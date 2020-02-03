@@ -13,6 +13,7 @@ namespace GripsStore.Models
         public string verCd;
         public string verNm;
         public string fileNm;
+        public string upstmp;
 
         //////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
@@ -27,15 +28,18 @@ namespace GripsStore.Models
         /// ｺﾝｽﾄﾗｸﾀ
         /// </summary>
         /// <param name="rec"></param>
-        public App(NpgsqlDataReader rec)
+        public App(NpgsqlDataReader rec, bool isGetFileInfo = false)
         {
             this.appId = NpgDB.getString(rec, "appid");
             this.name = NpgDB.getString(rec, "name");
             this.description = NpgDB.getString(rec, "description");
             this.icon = NpgDB.getString(rec, "icon");
-            this.verCd = NpgDB.getLongString(rec, "vercd");
-            this.verNm = NpgDB.getString(rec, "vernm");
-            this.fileNm = NpgDB.getString(rec, "filenm");
+            if (isGetFileInfo)
+            {
+                this.verCd = NpgDB.getLongString(rec, "vercd");
+                this.verNm = NpgDB.getString(rec, "vernm");
+                this.fileNm = NpgDB.getString(rec, "filenm");
+            }
         }
 
         public class AppJSON
