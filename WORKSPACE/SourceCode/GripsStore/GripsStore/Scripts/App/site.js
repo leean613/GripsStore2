@@ -16,7 +16,10 @@ function onStartUp() {
 
 function searchApp() {
     var key = $('#input-search').val().trim();
-    sURL = "/?key=" + key;
+    var sURL = "/";
+    if (key != "") {
+        sURL += "?key = " + key;
+    }
     //ttGuard.showWait();
     // ﾍﾟｰｼﾞ遷移
     location.href = sURL;

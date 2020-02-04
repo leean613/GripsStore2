@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" manifest="setia.appcache">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="../../Content/App/login.css?UpDate=202002041751" rel="stylesheet" />
+    <link rel="icon" href="../img/icon.png" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <title>Gripsストア　ー　ログイン</title>
+</head>
+<body>
+    <div class="parent">
+        <div class="content">
+            <div class="row login-tittle">ログイン</div>
+            <input id="usename" class="row form-control input-lg" type="text" placeholder="ユーザー名" />
+            <input id="password" class="row form-control input-lg" type="password" placeholder="パスワード" />
+            <label id="warring" class="row warring invisible"></label>
+            <button id="btn-login" class="row btn btn-primary btn-lg">ログイン</button>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="../../Scripts/App/login.js?UpDate=202002041751"></script>
+    <script src="../../Scripts/ttCookie_1.0.0.js"></script>
+</body>
+</html>

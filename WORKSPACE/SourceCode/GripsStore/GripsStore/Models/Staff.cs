@@ -5,9 +5,10 @@ namespace GripsStore.Models
     public class Staff
     {
         public string staffCode;
-        public string staffName;
-        public string staffDeptCode;
-        public string staffDeptName;
+        public string kanjiName;
+        public string kanaName;
+        public string staffWardCode;
+        public string staffWardName;
 
         //////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
@@ -24,10 +25,11 @@ namespace GripsStore.Models
         /// <param name="rec"></param>
         public Staff(NpgsqlDataReader rec)
         {
-            this.staffCode = NpgDB.getString(rec, "staffcd");
-            this.staffName = NpgDB.getString(rec, "staffnm");
-            this.staffDeptCode = NpgDB.getString(rec, "deptcd");
-            this.staffDeptName = NpgDB.getString(rec, "deptnm");
+            this.staffCode = NpgDB.getString(rec, "staffcode");
+            this.kanjiName = NpgDB.getString(rec, "kanjiname");
+            this.kanaName = NpgDB.getString(rec, "kananame");
+            this.staffWardCode = NpgDB.getString(rec, "wardcode");
+            this.staffWardName = NpgDB.getString(rec, "wardname");
         }
 
         public class StaffJSON

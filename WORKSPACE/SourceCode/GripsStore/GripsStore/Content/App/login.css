@@ -1,0 +1,50 @@
+﻿.content {
+    top: calc(50% - 150px);
+    position: absolute;
+    width: 350px;
+}
+
+.parent {
+    left: calc(50% - 150px);
+    position: absolute;
+    height: 100%;
+}
+
+.row {
+    width: 100%;
+    margin: 0px 0px 5px 0px !important;
+}
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+.login-tittle {
+    width: 100%;
+    text-align: center;
+    font-size: x-large;
+    font-weight: 600;
+    color: black;
+}
+
+input {
+    width: 100%;
+    font-size: large;
+}
+
+.warring {
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: medium;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}

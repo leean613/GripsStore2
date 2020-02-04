@@ -18,12 +18,13 @@ namespace GripsStore.Dao
             {
                 using (NpgDB npgDB = Connection.DBConnect())
                 {
-                    sbSQL.AppendLine("SELECT staff.staffcd, staff.staffnm, dept.deptcd, dept.deptnm FROM m_staff staff");
-                    sbSQL.AppendLine("LEFT JOIN m_dept dept ON dept.deptcd = staff.staffdeptcd");
-                    sbSQL.AppendLine("WHERE staff.staffcd = :p_staffCode");
+                    sbSQL.AppendLine("SELECT staff.staffcode, staff.kanjiname, staff.kananame, ward.wardcode, ward.wardname");
+                    sbSQL.AppendLine("FROM mstaff staff");
+                    sbSQL.AppendLine("LEFT JOIN mward ward ON ward.wardcode = ward.wardname");
+                    sbSQL.AppendLine("WHERE staff.staffcode = :p_staffCode");
                     sbSQL.AppendLine("AND staff.password = :p_password");
-                    sbSQL.AppendLine("AND staff.strdte <= CURRENT_DATE");
-                    sbSQL.AppendLine("AND staff.enddte >= CURRENT_DATE");
+                    sbSQL.AppendLine("AND staff.validstartdate <= CURRENT_DATE");
+                    sbSQL.AppendLine("AND staff.validenddate >= CURRENT_DATE");
 
                     npgDB.Command = sbSQL.ToString();
                     npgDB.SetParams("p_staffCode", staffCode);
