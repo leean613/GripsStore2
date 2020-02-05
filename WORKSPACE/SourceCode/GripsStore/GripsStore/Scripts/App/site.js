@@ -34,7 +34,7 @@ function searchApp() {
 
 function loginLogout() {
     if (staffCode == "") {
-        location.href = "/Login/";
+        location.href = "/login/";
     } else {
         setCookie(COOKIE_STAFF_CODE, "");
         location.reload();
