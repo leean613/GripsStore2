@@ -29,9 +29,17 @@
     color: black;
 }
 
-input {
-    width: 100%;
+#username, #password {
+    width: calc(100% - 50px) !important;
     font-size: large;
+    margin-left: 25px !important;
+    margin-right: 25px !important;
+}
+
+#btn-login {
+    width: calc(100% - 50px);
+    margin-left: 25px !important;
+    margin-right: 25px !important;
 }
 
 .warring {

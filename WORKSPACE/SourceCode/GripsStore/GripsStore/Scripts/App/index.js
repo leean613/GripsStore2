@@ -10,7 +10,7 @@ function onStartUp() {
 }
 
 function viewDetail() {
-    sURL = "/App/Detail/?id=" + $(this)[0].id;
+    sURL = "/app/detail/?id=" + $(this)[0].id;
     //ttGuard.showWait();
     // ﾍﾟｰｼﾞ遷移
     location.href = sURL;

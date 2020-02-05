@@ -24,7 +24,7 @@ namespace GripsStore.Controllers
             return View(app);
         }
 
-        public JsonResult DeleteApp(string staffCode, string appId)
+        public JsonResult Delete(string staffCode, string appId)
         {
             AppDao appDao = new AppDao();
             return Json(appDao.DeleteApp(staffCode, appId));

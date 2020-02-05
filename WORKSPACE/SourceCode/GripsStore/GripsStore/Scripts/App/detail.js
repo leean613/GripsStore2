@@ -3,6 +3,9 @@ function onStartUp() {
     $('#btn-delete').click(function () {
         deleteApp();
     });
+    $('#btn-edit').click(function () {
+        editApp();
+    });
 }
 
 function deleteApp() {
@@ -11,7 +14,7 @@ function deleteApp() {
         var staffCode = getCookie("STAFFCODE");
         var appId = $('#app-id').text();
         $.ajax({
-            url: '/App/DeleteApp/',
+            url: '/app/delete/',
             type: 'POST',
             contentType: 'application/json;',
             data: JSON.stringify({ staffCode: staffCode, appId: appId }),
@@ -23,4 +26,9 @@ function deleteApp() {
             }
         });
     }
+}
+
+function editApp() {
+    var appId = $('#app-id').text();
+    location.href = "/app/edit/?id=" + appId;
 }

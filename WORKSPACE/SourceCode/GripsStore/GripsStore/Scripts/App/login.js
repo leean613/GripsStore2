@@ -2,7 +2,7 @@
 var COOKIE_STAFF_NAME = "STAFFNAME"
 $(document).ready(onStartUp);
 function onStartUp() {
-    $('#usename').keypress(function (e) {
+    $('#username').keypress(function (e) {
         if (e.which == 13) {
             $('#password').focus();
         }
@@ -20,7 +20,7 @@ function onStartUp() {
 }
 
 function login() {
-    var staffCode = $('#usename').val();
+    var staffCode = $('#username').val();
     var password = $('#password').val();
     $('#warring').addClass("invisible").removeClass("visible");
     if (staffCode == "") {
@@ -34,7 +34,7 @@ function login() {
         return;
     }
     $.ajax({
-        url: '/Login/CheckLogin/',
+        url: '/login/checkLogin/',
         type: 'POST',
         contentType: 'application/json;',
         data: JSON.stringify({ staffCode: staffCode, password: password }),
