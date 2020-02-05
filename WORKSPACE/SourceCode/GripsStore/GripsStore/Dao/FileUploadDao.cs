@@ -5,7 +5,7 @@ using System.Web.Configuration;
 
 namespace GripsStore.Dao
 {
-    public class FileUploadDao 
+    public class FileUploadDao
     {
         public const string UPLOAD_FILE_TAG = "file";
 
@@ -20,7 +20,7 @@ namespace GripsStore.Dao
         public const string FILE_INFOR_SEPERATOR = ";";
         public const string FILE_PATH_SEPERATOR = "\\";
         public const string DEFALUT_CONTENT_TYPE = "default";
-        
+
         //mine type
         public const string MINE_TYPE_IMAGE = "image";
 
@@ -31,7 +31,7 @@ namespace GripsStore.Dao
 
         public static bool IsInstallFile(string fileType)
         {
-              return fileType != null && !(fileType.IndexOf(MINE_TYPE_IMAGE) > -1);
+            return fileType != null && !(fileType.IndexOf(MINE_TYPE_IMAGE) > -1);
         }
 
         public static bool SaveFile(HttpPostedFile httpPostedFile, string path, string fileName)
@@ -61,12 +61,14 @@ namespace GripsStore.Dao
 
         public static string GetAppIconFilePath(string appId)
         {
-            return appId + "\\" + UPLOAD_FILE_PATH_APP_ICON;
+            //return appId + "\\" + UPLOAD_FILE_PATH_APP_ICON;
+            return "\\" + UPLOAD_FILE_PATH_APP_ICON;
         }
 
         public static string GetAppInstallFilePath(string appId)
         {
-            return appId + "\\" + UPLOAD_FILE_PATH_INSTALL_FILE;
+            //return appId + "\\" + UPLOAD_FILE_PATH_INSTALL_FILE;
+            return "\\" + UPLOAD_FILE_PATH_INSTALL_FILE;
         }
 
         public static string getContentTypeFromFileNameWithHeader(string fileNameWithHeader)

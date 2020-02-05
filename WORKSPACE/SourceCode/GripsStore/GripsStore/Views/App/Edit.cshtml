@@ -14,7 +14,11 @@
         <div class="row">
             <div id="app-id" hidden>@app.appId</div>
             <div class="column-icon">
-                <img class="app-icon" src="../../Files/Icon/@app.icon" />
+                <div class="row app-icon">
+                    <img id="app-icon" src="../../Files/Icon/@app.icon" />
+                </div>
+                <button id="btn-edit-icon" class="btn btn-primary">画像編集</button>
+                <input id="select-image" accept="image/*" style="display: none;" onchange="OnJspSelectImage(this);" type="file">
             </div>
             <div class="column-info">
                 <div class="row">

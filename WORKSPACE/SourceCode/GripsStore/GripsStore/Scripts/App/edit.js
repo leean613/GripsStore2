@@ -11,6 +11,9 @@ function onStartUp() {
         $('#btn-update').click(function () {
             updateApp();
         });
+        $('#btn-edit-icon').click(function () {
+            selectFile();
+        });
     } else {
         location.href = "/app/detail/?id=" + appId;
     }
@@ -35,4 +38,20 @@ function updateApp() {
             }
         }
     });
+}
+
+function selectFile() {
+    $("input[type='file']").click();
+}
+
+function OnJspSelectImage(input) {
+    if (input.files != undefined && input.files.length > 0) {
+        var selectFile = input.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#app-icon').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(selectFile);
+    }
 }

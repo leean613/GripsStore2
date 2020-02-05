@@ -27,11 +27,17 @@
     margin: 10px 5px 0px 5px;
 }
 
+
 .app-icon {
-    margin: 5px;
+    width: 140px;
+    height: 140px;
+}
+
+#app-icon {
     display: block;
     width: auto;
-    max-width: 150px;
+    max-width: 140px;
+    max-height: 140px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -92,4 +98,9 @@
 
 #btn-update {
     margin: 5px 0px 5px 5px;
+}
+
+#btn-edit-icon {
+    width: auto;
+    margin: 5px 0px 5px 0px !important;
 }
