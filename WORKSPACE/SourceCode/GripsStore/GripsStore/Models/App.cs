@@ -45,7 +45,7 @@ namespace GripsStore.Models
         public class AppJSON
         {
             public bool success = false;
-            public List<App> apps;
+            public App app;
         }
     }
 }

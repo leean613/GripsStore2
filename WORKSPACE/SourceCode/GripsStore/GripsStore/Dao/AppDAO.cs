@@ -5,6 +5,7 @@ using GripsStore.Common;
 using GripsStore.Models;
 using MyLiblay;
 using Npgsql;
+using static GripsStore.Models.App;
 
 namespace GripsStore.Dao
 {
@@ -101,6 +102,40 @@ namespace GripsStore.Dao
 
             }
             return app;
+        }
+
+        public AppJSON DeleteApp(string staffCode, string appId)
+        {
+            AppJSON result = new AppJSON();
+            StringBuilder sbSQL = new StringBuilder();
+            try
+            {
+                using (NpgDB npgDB = Connection.DBConnect())
+                {
+                    sbSQL.AppendLine("UPDATE mapp");
+                    sbSQL.AppendLine("SET endstmp = CURRENT_TIMESTAMP,");
+                    sbSQL.AppendLine("upopr = :p_staff_code,");
+                    sbSQL.AppendLine("upstmp = CURRENT_TIMESTAMP");
+                    sbSQL.AppendLine("WHERE appid = :p_appid");
+                    sbSQL.AppendLine("RETURNING appid");
+
+                    npgDB.Command = sbSQL.ToString();
+                    npgDB.SetParams(":p_staff_code", staffCode);
+                    npgDB.SetParams(":p_appid", appId);
+                    using (NpgsqlDataReader rec = npgDB.Query())
+                    {
+                        if (rec.Read())
+                        {
+                            string deletedAppId = NpgDB.getString(rec, "appid");
+                            result.app = new App();
+                            result.app.appId = deletedAppId;
+                            result.success = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { }
+            return result;
         }
     }
 }

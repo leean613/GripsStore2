@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static GripsStore.Models.App;
 
 namespace GripsStore.Controllers
 {
@@ -21,6 +22,12 @@ namespace GripsStore.Controllers
             }
             ViewBag.PageId = id;
             return View(app);
+        }
+
+        public JsonResult DeleteApp(string staffCode, string appId)
+        {
+            AppDao appDao = new AppDao();
+            return Json(appDao.DeleteApp(staffCode, appId));
         }
     }
 }

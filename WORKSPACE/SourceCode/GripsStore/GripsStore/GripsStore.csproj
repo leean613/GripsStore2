@@ -224,6 +224,7 @@
     <Content Include="Images\login.png" />
     <Content Include="Images\sms.png" />
     <Content Include="Images\search_white.png" />
+    <Content Include="Scripts\App\detail.js" />
     <Content Include="Scripts\App\index.js" />
     <Content Include="Scripts\App\login.js" />
     <Content Include="Scripts\bootstrap.js" />
