@@ -208,6 +208,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\App\edit.css" />
     <Content Include="Content\App\detail.css" />
     <Content Include="Content\App\index.css" />
     <Content Include="Content\App\login.css" />
@@ -225,6 +226,7 @@
     <Content Include="Images\sms.png" />
     <Content Include="Images\search_white.png" />
     <Content Include="Images\user.png" />
+    <Content Include="Scripts\App\edit.js" />
     <Content Include="Scripts\App\detail.js" />
     <Content Include="Scripts\App\index.js" />
     <Content Include="Scripts\App\login.js" />

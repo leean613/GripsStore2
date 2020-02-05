@@ -29,5 +29,18 @@ namespace GripsStore.Controllers
             AppDao appDao = new AppDao();
             return Json(appDao.DeleteApp(staffCode, appId));
         }
+
+        public ActionResult Edit(string id)
+        {
+            AppDao appDao = new AppDao();
+            App app = appDao.GetApp(id);
+            ViewData["App"] = app;
+            if (app != null)
+            {
+                ViewBag.Title = app.name + "　－　編集";
+            }
+            ViewBag.PageId = id;
+            return View(app);
+        }
     }
 }

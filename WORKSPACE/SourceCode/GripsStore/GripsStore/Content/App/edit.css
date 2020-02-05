@@ -24,7 +24,7 @@
 }
 
 .row {
-    margin: 0px;
+    margin: 10px 5px 0px 5px;
 }
 
 .app-icon {
@@ -36,24 +36,28 @@
     margin-right: auto;
 }
 
-.app-name {
-    width: auto;
+.app-name-label {
+    font-size: large;
+    color: black;
+    padding: 0px;
+}
+
+#app-name {
+    max-width: calc(100% - 10px);
     text-align: left;
     display: inline-block;
     color: black;
     font-size: larger;
-    margin-top: 10px;
     white-space: pre-wrap;
     word-wrap: break-word;
 }
 
-.app-description {
+#app-description {
     display: inline-block;
     text-align: justify;
-    white-space: pre-wrap;
-    word-wrap: break-word;
     color: black;
     font-size: medium;
+    max-width: calc(100% - 10px);
 }
 
 .detail-label {
@@ -61,10 +65,10 @@
     float: left;
     font-size: medium;
     color: black;
+    padding: 0px;
 }
 
 .app-version {
-    display: inline-block;
     font-size: medium;
     color: black;
 }
@@ -73,7 +77,6 @@
     width: auto;
     padding-left: 20px;
     padding-right: 20px;
-    margin: 5px;
     vertical-align: bottom;
 }
 
@@ -83,10 +86,10 @@
     text-align: center;
 }
 
-#btn-delete {
+#btn-cancel {
     margin: 5px;
 }
 
-#btn-edit {
+#btn-update {
     margin: 5px 0px 5px 5px;
 }

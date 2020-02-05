@@ -1,0 +1,47 @@
+﻿@section css{
+    <link href="~/Content/App/edit.css?UpDate=202002051317" rel="stylesheet" />
+    <link href="~/Content/App/site.css?UpDate=202002051317" rel="stylesheet" />
+}
+@if (ViewData["App"] != null)
+{
+    var app = ViewData["App"] as GripsStore.Models.App;
+    var staffCode = "";
+    if (Request.Cookies["GRIPS_STORE_STAFFCODE"] != null)
+    {
+        staffCode = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
+    }
+    <div class="app-detail">
+        <div class="row">
+            <div id="app-id" hidden>@app.appId</div>
+            <div class="column-icon">
+                <img class="app-icon" src="../../Files/Icon/@app.icon" />
+            </div>
+            <div class="column-info">
+                <div class="row">
+                    <div class="label app-name-label">アプリ名</div>
+                    <input id="app-name" class="form-control" type="text" value="@app.name" maxlength="32" />
+                </div>
+                <div class="row">
+                    <div class="label detail-label">バージョン：</div>
+                    <div class="label app-version">@app.verNm</div>
+                </div>
+                <button class="row btn btn-success btn-lg btn-download" onclick="window.location.href = '/Files/InstallFile/@app.fileNm';">ダウンロード</button>
+            </div>
+        </div>
+        <div class="row">
+            <textarea id="app-description" class="form-control" type="text" rows="5">@app.description</textarea>
+        </div>
+        @if (staffCode != "")
+        {
+            <div id="admin" class="row">
+                <button id="btn-cancel" class="btn btn-danger">キャンセル</button>
+                <button id="btn-update" class="btn btn-primary">更新</button>
+            </div>
+        }
+    </div>
+}
+@section scripts {
+    <script src="../../Scripts/App/edit.js?UpDate=202002051317"></script>
+    <script src="../../Scripts/App/site.js?UpDate=202002051317"></script>
+    <script src="../../Scripts/ttCookie_1.0.0.js"></script>
+}
