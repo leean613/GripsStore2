@@ -219,7 +219,6 @@
     <Content Include="Files\Icon\aicon.png" />
     <Content Include="Files\Icon\chat.png" />
     <Content Include="Files\Icon\sms.png" />
-    <Content Include="Files\Icon\user.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\login.png" />

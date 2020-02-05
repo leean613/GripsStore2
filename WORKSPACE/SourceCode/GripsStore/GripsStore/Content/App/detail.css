@@ -77,3 +77,17 @@
     margin: 5px;
     vertical-align: bottom;
 }
+
+#admin button {
+    float: right;
+    width: 60px;
+    text-align: center;
+}
+
+#btn-delete {
+    margin: 5px;
+}
+
+#btn-edit {
+    margin: 5px 0px 5px 5px;
+}

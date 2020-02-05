@@ -8,7 +8,7 @@
 //      argment     ... key		[ 保存ｷｰ		]
 //					... val		[ 値 ]
 //
-var JSC_APP_NAME = 'SETIA';
+var JSC_APP_NAME = 'GRIPS_STORE';
 //
 var JSC_COOKIE_ARRAY_PARAM_SEP = "\v";
 //

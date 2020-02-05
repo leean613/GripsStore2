@@ -5,6 +5,11 @@
 @if (ViewData["App"] != null)
 {
     var app = ViewData["App"] as GripsStore.Models.App;
+    var staffCode = "";
+    if (Request.Cookies["GRIPS_STORE_STAFFCODE"] != null)
+    {
+        staffCode = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
+    }
     <div class="app-detail">
         <div class="row">
             <div class="column-icon">
@@ -20,6 +25,13 @@
             </div>
         </div>
         <div class="row label app-description">@app.description</div>
+        @if (staffCode != "")
+        {
+            <div id="admin" class="row">
+                <button id="btn-delete" class="btn btn-danger">削除</button>
+                <button id="btn-edit" class="btn btn-primary">編集</button>
+            </div>
+        }
     </div>
 }
 @section scripts {
