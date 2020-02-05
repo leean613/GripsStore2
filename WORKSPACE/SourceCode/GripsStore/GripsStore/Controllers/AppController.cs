@@ -24,12 +24,6 @@ namespace GripsStore.Controllers
             return View(app);
         }
 
-        public JsonResult Delete(string staffCode, string appId)
-        {
-            AppDao appDao = new AppDao();
-            return Json(appDao.DeleteApp(staffCode, appId));
-        }
-
         public ActionResult Edit(string id)
         {
             AppDao appDao = new AppDao();
@@ -41,6 +35,24 @@ namespace GripsStore.Controllers
             }
             ViewBag.PageId = id;
             return View(app);
+        }
+
+        public JsonResult Delete(string staffCode, string appId)
+        {
+            AppDao appDao = new AppDao();
+            return Json(appDao.Delete(staffCode, appId));
+        }
+
+        public JsonResult Update(string staffCode, string appId, string appName, string appDescription)
+        {
+            AppDao appDao = new AppDao();
+            App app = new App
+            {
+                appId = appId,
+                name = appName,
+                description = appDescription
+            };
+            return Json(appDao.Update(staffCode, app));
         }
     }
 }

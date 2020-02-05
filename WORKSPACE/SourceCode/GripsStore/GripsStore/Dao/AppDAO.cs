@@ -104,7 +104,7 @@ namespace GripsStore.Dao
             return app;
         }
 
-        public AppJSON DeleteApp(string staffCode, string appId)
+        public AppJSON Delete(string staffCode, string appId)
         {
             AppJSON result = new AppJSON();
             StringBuilder sbSQL = new StringBuilder();
@@ -135,6 +135,47 @@ namespace GripsStore.Dao
                 }
             }
             catch (Exception ex) { }
+            return result;
+        }
+
+        public AppJSON Update(string staffCode, App app)
+        {
+            AppJSON result = new AppJSON();
+            if (app != null)
+            {
+                StringBuilder sbSQL = new StringBuilder();
+                try
+                {
+                    using (NpgDB npgDB = Connection.DBConnect())
+                    {
+                        sbSQL.AppendLine("UPDATE mapp");
+                        sbSQL.AppendLine("SET");
+                        sbSQL.AppendLine("name = :p_name,");
+                        sbSQL.AppendLine("description = :p_description,");
+                        sbSQL.AppendLine("upopr = :p_staff_code,");
+                        sbSQL.AppendLine("upstmp = CURRENT_TIMESTAMP");
+                        sbSQL.AppendLine("WHERE appid = :p_appid");
+                        sbSQL.AppendLine("RETURNING appid");
+
+                        npgDB.Command = sbSQL.ToString();
+                        npgDB.SetParams(":p_name", app.name);
+                        npgDB.SetParams(":p_description", app.description);
+                        npgDB.SetParams(":p_staff_code", staffCode);
+                        npgDB.SetParams(":p_appid", app.appId);
+                        using (NpgsqlDataReader rec = npgDB.Query())
+                        {
+                            if (rec.Read())
+                            {
+                                string deletedAppId = NpgDB.getString(rec, "appid");
+                                result.app = new App();
+                                result.app.appId = deletedAppId;
+                                result.success = true;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex) { }
+            }
             return result;
         }
     }
