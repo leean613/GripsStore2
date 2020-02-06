@@ -31,6 +31,7 @@
 .app-icon {
     width: 140px;
     height: 140px;
+    margin-left: 10px;
 }
 
 #app-icon {
@@ -38,8 +39,8 @@
     width: auto;
     max-width: 140px;
     max-height: 140px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 10px;
 }
 

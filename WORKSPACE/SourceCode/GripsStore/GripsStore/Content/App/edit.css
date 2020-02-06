@@ -38,7 +38,8 @@
     width: auto;
     max-width: 140px;
     max-height: 140px;
-    margin-right: 10px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .app-name-label {
