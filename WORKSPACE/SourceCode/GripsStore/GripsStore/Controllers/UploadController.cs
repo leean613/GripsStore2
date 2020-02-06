@@ -40,10 +40,11 @@ namespace GripsStore.Controllers
                         if (FileUploadDao.SaveFile(httpPostedFile, path, fileName))
                         {
                             fileUploadJson.success = true;
-                            fileUploadJson.fileUpload = new FileUpload
+                            fileUploadJson.fileContent = new FileUpload
                             {
-                                fileName = fileName,
+                                appId = appId,
                                 action = action,
+                                fileName = fileName,
                                 contentType = httpPostedFile.ContentType
                             };
                         }

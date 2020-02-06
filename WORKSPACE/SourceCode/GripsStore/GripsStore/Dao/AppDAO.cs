@@ -140,6 +140,7 @@ namespace GripsStore.Dao
 
         public AppJSON Update(string staffCode, App app)
         {
+            //TODO update icon
             AppJSON result = new AppJSON();
             if (app != null)
             {
@@ -152,6 +153,10 @@ namespace GripsStore.Dao
                         sbSQL.AppendLine("SET");
                         sbSQL.AppendLine("name = :p_name,");
                         sbSQL.AppendLine("description = :p_description,");
+                        if (app.icon != "")
+                        {
+                            sbSQL.AppendLine("icon = :p_icon,");
+                        }
                         sbSQL.AppendLine("upopr = :p_staff_code,");
                         sbSQL.AppendLine("upstmp = CURRENT_TIMESTAMP");
                         sbSQL.AppendLine("WHERE appid = :p_appid");
@@ -160,15 +165,21 @@ namespace GripsStore.Dao
                         npgDB.Command = sbSQL.ToString();
                         npgDB.SetParams(":p_name", app.name);
                         npgDB.SetParams(":p_description", app.description);
+                        if (app.icon != "")
+                        {
+                            npgDB.SetParams(":p_icon", app.icon);
+                        }
                         npgDB.SetParams(":p_staff_code", staffCode);
                         npgDB.SetParams(":p_appid", app.appId);
                         using (NpgsqlDataReader rec = npgDB.Query())
                         {
                             if (rec.Read())
                             {
-                                string deletedAppId = NpgDB.getString(rec, "appid");
-                                result.app = new App();
-                                result.app.appId = deletedAppId;
+                                string updatedAppId = NpgDB.getString(rec, "appid");
+                                result.app = new App
+                                {
+                                    appId = updatedAppId
+                                };
                                 result.success = true;
                             }
                         }

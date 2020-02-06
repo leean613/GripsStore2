@@ -43,14 +43,15 @@ namespace GripsStore.Controllers
             return Json(appDao.Delete(staffCode, appId));
         }
 
-        public JsonResult Update(string staffCode, string appId, string appName, string appDescription)
+        public JsonResult Update(string staffCode, string appId, string appName, string appDescription, string appIcon)
         {
             AppDao appDao = new AppDao();
             App app = new App
             {
                 appId = appId,
                 name = appName,
-                description = appDescription
+                description = appDescription,
+                icon = appIcon
             };
             return Json(appDao.Update(staffCode, app));
         }
