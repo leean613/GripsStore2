@@ -9,7 +9,8 @@
 
 .column-icon {
     float: left;
-    width: 160px
+    width: 160px;
+    height: 160px;
 }
 
 .column-info {
@@ -37,8 +38,8 @@
     width: auto;
     max-width: 140px;
     max-height: 140px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 10px;
+    margin-right: 10px;
     margin-top: 10px;
 }
 
@@ -60,6 +61,7 @@
     word-wrap: break-word;
     color: black;
     font-size: medium;
+    margin-top: 15px;
 }
 
 .detail-label {
