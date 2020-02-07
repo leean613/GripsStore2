@@ -14,19 +14,19 @@
 
 .column-info {
     float: left;
-    width: calc(100% - 160px);
-}
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
+    width: calc(100% - 150px);
 }
 
 .row {
     margin: 10px 5px 0px 5px;
 }
 
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
 
 .app-icon {
     width: 140px;
@@ -42,20 +42,22 @@
     margin-left: auto;
 }
 
-.app-name-label {
+.label {
     font-size: large;
     color: black;
     padding: 0px;
+    width: 150px !important;
+    text-align: left;
+    display: inline-block
 }
 
 #app-name {
-    max-width: calc(100% - 10px);
+    max-width: 600px;
     text-align: left;
     display: inline-block;
     color: black;
     font-size: larger;
     white-space: pre-wrap;
-    word-wrap: break-word;
 }
 
 #app-description {
@@ -63,19 +65,11 @@
     text-align: justify;
     color: black;
     font-size: medium;
-    max-width: calc(100% - 10px);
+    max-width: calc(100% - 5px);
 }
 
-.detail-label {
-    display: block;
-    float: left;
-    font-size: medium;
-    color: black;
-    padding: 0px;
-}
-
-.app-version {
-    font-size: medium;
+#app-version {
+    font-size: large;
     color: black;
 }
 
@@ -100,7 +94,38 @@
     margin: 5px 0px 5px 5px;
 }
 
-#btn-edit-icon {
+#btn-select-icon {
     width: auto;
     margin: 5px 0px 5px 0px !important;
+}
+
+.gone {
+    display: none;
+}
+
+.input-version {
+    width: 80px;
+    text-align: right;
+    display: inline-block;
+    color: black;
+    font-size: larger;
+    white-space: pre-wrap;
+}
+
+.update-version {
+    border: 2px solid
+}
+
+#input-file-name {
+    max-width: 600px;
+    text-align: right;
+    display: inline-block;
+    color: black;
+    font-size: larger;
+    white-space: pre-wrap;
+}
+
+#btn-update-file {
+    padding-left: 10px;
+    padding-right: 10px;
 }

@@ -1,5 +1,5 @@
 ﻿@section css{
-    <link href="~/Content/App/detail.css?UpDate=202002051317" rel="stylesheet" />
+    <link href="~/Content/App/detail.css?UpDate=202002061553" rel="stylesheet" />
     <link href="~/Content/App/site.css?UpDate=202002051317" rel="stylesheet" />
 }
 @if (ViewData["App"] != null)
@@ -10,21 +10,23 @@
     {
         staffCode = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
     }
+    var iconPath = "/Files/" + app.appId + "/Icon/" + @app.icon;
+    var installFilePath = "/Files/" + app.appId + "/InstallFile/" + @app.fileNm;
     <div class="app-detail">
         <div class="row">
             <div id="app-id" hidden>@app.appId</div>
             <div class="column-icon">
                 <div class="row app-icon">
-                    <img id="app-icon" src="../../Files/Icon/@app.icon" />
+                    <img id="app-icon" src="@iconPath" />
                 </div>
             </div>
             <div class="column-info">
                 <div class="row label app-name">@app.name</div>
                 <div class="row">
                     <div class="label detail-label">バージョン：</div>
-                    <div class="label app-version">@app.verNm</div>
+                    <div id ="app-version" class="label">@app.verNm</div>
                 </div>
-                <button class="row btn btn-success btn-lg btn-download" onclick="window.location.href = '/Files/InstallFile/@app.fileNm';">ダウンロード</button>
+                <button class="row btn btn-success btn-lg btn-download" onclick="window.location.href = '@installFilePath';">ダウンロード</button>
             </div>
         </div>
         <div class="row label app-description">@app.description</div>

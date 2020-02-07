@@ -127,8 +127,10 @@ namespace GripsStore.Dao
                         if (rec.Read())
                         {
                             string deletedAppId = NpgDB.getString(rec, "appid");
-                            result.app = new App();
-                            result.app.appId = deletedAppId;
+                            result.app = new App
+                            {
+                                appId = deletedAppId
+                            };
                             result.success = true;
                         }
                     }
@@ -140,7 +142,6 @@ namespace GripsStore.Dao
 
         public AppJSON Update(string staffCode, App app)
         {
-            //TODO update icon
             AppJSON result = new AppJSON();
             if (app != null)
             {

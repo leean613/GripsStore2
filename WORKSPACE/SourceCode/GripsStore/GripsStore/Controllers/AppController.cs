@@ -55,5 +55,24 @@ namespace GripsStore.Controllers
             };
             return Json(appDao.Update(staffCode, app));
         }
+
+        public JsonResult UpdateFile(string staffCode, string appId, string verCdStr, string verNm, string fileNm)
+        {
+            InstallFileDAO installFileDAO = new InstallFileDAO();
+            InstallFile installFile = null;
+            try
+            {
+                int verCd = int.Parse(verCdStr);
+                installFile = new InstallFile
+                {
+                    appId = appId,
+                    verCd = verCd,
+                    verNm = verNm,
+                    fileNm = fileNm
+                };
+            }
+            catch (Exception ex) { }
+            return Json(installFileDAO.UpdateFile(staffCode, installFile));
+        }
     }
 }

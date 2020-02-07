@@ -1,12 +1,15 @@
-﻿var UPLOAD_FILE_TAG = "file";
+﻿//do not modify START
+var UPLOAD_FILE_TAG = "file";
 var UPLOAD_ACTION_TAG = "action";
 var UPLOAD_ACTION_INSTALL_FILE = "install file";
 var UPLOAD_ACTION_APP_ICON = "app icon image";
 var UPLOAD_APP_ID_TAG = "appId";
+//do not modify END
 
 var staffCode;
 var appId;
 var selectImage;
+var selectFile;
 var newIconFileName = "";
 
 $(document).ready(onStartUp);
@@ -20,8 +23,23 @@ function onStartUp() {
         $('#btn-update').click(function () {
             updateApp();
         });
-        $('#btn-edit-icon').click(function () {
-            selectFile();
+        $('#btn-select-icon').click(function () {
+            $('#select-image').click();
+        });
+        $('#btn-update-version').click(function () {
+            showUpdateVersionForm();
+        });
+        $('#btn-select-file').click(function () {
+            $('#select-file').click();
+        });
+        $('#btn-clear-file').click(function () {
+            clearFileInput();
+        });
+        $('#btn-close-update-version').click(function () {
+            closeUpdateVersionForm();
+        });
+        $('#btn-update-file').click(function () {
+            updateFile();
         });
     } else {
         location.href = "/app/detail/?id=" + appId;
@@ -34,7 +52,10 @@ function cancel() {
 
 function updateApp() {
     //TODO sho progress dialog to wait completed
-    if (selectImage != null) {
+    var appName = $('#app-name').val();
+    if (appName == "") {
+        alert("アプリ名を入力してください。");
+    } else if (selectImage != null) {
         uploadFile(selectImage, UPLOAD_ACTION_APP_ICON);
     } else {
         updateAppInfor();
@@ -57,14 +78,13 @@ function updateAppInfor() {
                     selectImage = null;
                     newIconFileName = "";
                     location.href = "/app/detail/?id=" + appId;
+                } else {
+                    //TODO alert error message
                 }
-            }
+            },
+
         });
     }
-}
-
-function selectFile() {
-    $("input[type='file']").click();
 }
 
 function OnJspSelectImage(input) {
@@ -76,6 +96,14 @@ function OnJspSelectImage(input) {
             $('#app-icon').attr('src', e.target.result);
         }
         reader.readAsDataURL(selectImage);
+    }
+}
+
+function OnJspSelectFile(input) {
+    if (input.files != undefined && input.files.length > 0) {
+        selectFile = input.files[0];
+        var fileName = selectFile.name;
+        $('#input-file-name').val(fileName);
     }
 }
 
@@ -104,6 +132,67 @@ function onSendFileComplete(response) {
         if (action == UPLOAD_ACTION_APP_ICON && id == appId) {
             newIconFileName = response.fileContent.fileName;
             updateAppInfor();
+        } else if (action == UPLOAD_ACTION_INSTALL_FILE && id == appId) {
+            updateVersionInfor();
         }
+    } else {
+        //TODO alert error message
     }
+}
+
+function showUpdateVersionForm() {
+    $('#btn-update-version').addClass("gone");
+    $('#version').addClass("gone");
+    $('#update-version').removeClass("gone");
+    $('#btn-update').addClass("gone");
+}
+
+function closeUpdateVersionForm() {
+    $('#input-version-name').val("");
+    $('#input-file-name').val("");
+    $('#btn-update-version').removeClass("gone");
+    $('#version').removeClass("gone");
+    $('#update-version').addClass("gone");
+    $('#btn-update').removeClass("gone");
+    selectFile = null;
+}
+
+function updateFile() {
+    var verNm = $('#input-version-name').val();
+    if (verNm == "") {
+        alert("バージョン名を入力してください。");
+    } else if (selectFile != null) {
+        uploadFile(selectFile, UPLOAD_ACTION_INSTALL_FILE);
+    } else {
+        alert("インストールファイルを選択してください。");
+    }
+}
+
+function updateVersionInfor() {
+    var verCd = $('#input-version-code').val();
+    var verNm = $('#input-version-name').val();
+    var fileNm = selectFile.name;
+    $.ajax({
+        url: '/app/updatefile/',
+        type: 'POST',
+        contentType: 'application/json;',
+        data: JSON.stringify({ staffCode: staffCode, appId: appId, verCdStr: verCd, verNm: verNm, fileNm: fileNm }),
+        success: function (data) {
+            if (data.success && data.fileContent != null && data.fileContent.appId == appId) {
+                closeUpdateVersionForm();
+                $('#app-version').val(data.fileContent.verNm);
+                var newVerCd = data.fileContent.verCd + 1;
+                $('#app-version').val(data.fileContent.verNm);
+                $('#input-version-code').val(newVerCd);
+            } else {
+                //TODO alert error message
+            }
+        }
+    });
+}
+
+function clearFileInput() {
+    $('#input-version-name').val("");
+    $('#input-file-name').val("");
+    selectFile = null;
 }

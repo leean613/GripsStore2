@@ -14,8 +14,8 @@ namespace GripsStore.Dao
         public const string UPLOAD_ACTION_INSTALL_FILE = "install file";
         public const string UPLOAD_ACTION_APP_ICON = "app icon image";
 
-        public const string UPLOAD_FILE_PATH_APP_ICON = "Icon/";
-        public const string UPLOAD_FILE_PATH_INSTALL_FILE = "InstallFile/";
+        public const string UPLOAD_FILE_PATH_APP_ICON = "/Icon/";
+        public const string UPLOAD_FILE_PATH_INSTALL_FILE = "/InstallFile/";
 
         public const string FILE_INFOR_SEPERATOR = ";";
         public const string DEFALUT_CONTENT_TYPE = "default";
@@ -60,14 +60,12 @@ namespace GripsStore.Dao
 
         public static string GetAppIconFilePath(string appId)
         {
-            //return appId + UPLOAD_FILE_PATH_APP_ICON;
-            return UPLOAD_FILE_PATH_APP_ICON;
+            return appId + UPLOAD_FILE_PATH_APP_ICON;
         }
 
         public static string GetAppInstallFilePath(string appId)
         {
-            //return appId + UPLOAD_FILE_PATH_INSTALL_FILE;
-            return UPLOAD_FILE_PATH_INSTALL_FILE;
+            return appId + UPLOAD_FILE_PATH_INSTALL_FILE;
         }
 
         public static string getContentTypeFromFileNameWithHeader(string fileNameWithHeader)

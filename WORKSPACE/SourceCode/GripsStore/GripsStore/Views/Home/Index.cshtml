@@ -1,5 +1,5 @@
 ﻿@section css{
-    <link href="~/Content/App/index.css?UpDate=202002051317" rel="stylesheet" />
+    <link href="~/Content/App/index.css?UpDate=202002061553" rel="stylesheet" />
     <link href="~/Content/App/site.css?UpDate=202002051317" rel="stylesheet" />
 }
 <div class="home-content">
@@ -18,8 +18,9 @@
                     }
                     @Html.Raw("<div class=\"row\">");
                 }
+                var iconPath = "/Files/" + app.appId + "/Icon/" + @app.icon;
                 <div id="@app.appId" class="column app-item">
-                    <img class="app-icon" src="../../Files/Icon/@app.icon" />
+                    <img class="app-icon" src="@iconPath" />
                     <div class="label app-name">@app.name</div>
                     <div class="label app-description">@app.description</div>
                 </div>

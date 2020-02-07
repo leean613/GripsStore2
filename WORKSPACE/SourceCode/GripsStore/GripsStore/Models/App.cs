@@ -1,6 +1,6 @@
 ﻿using Npgsql;
 using MyLiblay;
-using System.Collections.Generic;
+using System;
 
 namespace GripsStore.Models
 {
@@ -10,7 +10,7 @@ namespace GripsStore.Models
         public string name;
         public string description;
         public string icon;
-        public string verCd;
+        public int verCd;
         public string verNm;
         public string fileNm;
         public string upstmp;
@@ -22,7 +22,7 @@ namespace GripsStore.Models
         public App()
         {
         }
-    
+
         //////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// ｺﾝｽﾄﾗｸﾀ
@@ -36,7 +36,15 @@ namespace GripsStore.Models
             this.icon = NpgDB.getString(rec, "icon");
             if (isGetFileInfo)
             {
-                this.verCd = NpgDB.getLongString(rec, "vercd");
+                string verCdStr = NpgDB.getLongString(rec, "vercd");
+                try
+                {
+                    this.verCd = int.Parse(verCdStr);
+                }
+                catch (Exception ex)
+                {
+
+                }
                 this.verNm = NpgDB.getString(rec, "vernm");
                 this.fileNm = NpgDB.getString(rec, "filenm");
             }

@@ -1,5 +1,5 @@
 ﻿@section css{
-    <link href="~/Content/App/edit.css?UpDate=202002051317" rel="stylesheet" />
+    <link href="~/Content/App/edit.css?UpDate=202002061720" rel="stylesheet" />
     <link href="~/Content/App/site.css?UpDate=202002051317" rel="stylesheet" />
 }
 @if (ViewData["App"] != null)
@@ -10,6 +10,9 @@
     {
         staffCode = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
     }
+    var iconPath = "/Files/" + app.appId + "/Icon/" + @app.icon;
+    var installFilePath = "/Files/" + app.appId + "/InstallFile/" + @app.fileNm;
+    int newVerCdMin = @app.verCd + 1;
     <div class="app-detail">
         <div class="row">
             <div id="app-id" hidden>@app.appId</div>
@@ -17,21 +20,42 @@
             <div id="app-description-origin" hidden>@app.description</div>
             <div class="column-icon">
                 <div class="row app-icon">
-                    <img id="app-icon" src="../../Files/Icon/@app.icon" />
+                    <img id="app-icon" src="@iconPath" />
                 </div>
-                <button id="btn-edit-icon" class="btn btn-primary">画像編集</button>
+                <button id="btn-select-icon" class="btn btn-primary">画像選択</button>
                 <input id="select-image" accept="image/*" style="display: none;" onchange="OnJspSelectImage(this);" type="file">
             </div>
             <div class="column-info">
                 <div class="row">
-                    <div class="label app-name-label">アプリ名</div>
+                    <div class="label">アプリ名</div>
                     <input id="app-name" class="form-control" type="text" value="@app.name" maxlength="32" />
                 </div>
-                <div class="row">
-                    <div class="label detail-label">バージョン：</div>
-                    <div class="label app-version">@app.verNm</div>
+                <div id="version" class="row">
+                    <div class="label">バージョン</div>
+                    <div id="app-version" class="label">@app.verNm</div>
                 </div>
-                <button class="row btn btn-success btn-lg btn-download" onclick="window.location.href = '/Files/InstallFile/@app.fileNm';">ダウンロード</button>
+                <button id="btn-update-version" class="row btn btn-success">バージョン更新</button>
+                <div id="update-version" class="gone">
+                    <div class="row">
+                        <div class="label">バージョンコード</div>
+                        <input id="input-version-code" class="form-control input-version" type="number" value="@newVerCdMin" disabled />
+                    </div>
+                    <div class="row">
+                        <div class="label">バージョン名</div>
+                        <input id="input-version-name" class="form-control input-version" type="text" maxlength="20" />
+                    </div>
+                    <div class="row">
+                        <div class="label">ファイル</div>
+                        <input id="input-file-name" class="form-control" type="text" disabled />
+                        <button id="btn-select-file" class="btn btn-success">選択</button>
+                        <button id="btn-clear-file" class="btn btn-warning">クリア</button>
+                    </div>
+                    <div id="update-file" class="row">
+                        <input id="select-file" accept="*/*" style="display: none;" onchange="OnJspSelectFile(this);" type="file">
+                        <button id="btn-update-file" class="btn btn-success">登録</button>
+                        <button id="btn-close-update-version" class="btn btn-danger">閉じる</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -47,7 +71,7 @@
     </div>
 }
 @section scripts {
-    <script src="../../Scripts/App/edit.js?UpDate=202002051317"></script>
+    <script src="../../Scripts/App/edit.js?UpDate=202002061712"></script>
     <script src="../../Scripts/App/site.js?UpDate=202002051317"></script>
     <script src="../../Scripts/ttCookie_1.0.0.js"></script>
 }

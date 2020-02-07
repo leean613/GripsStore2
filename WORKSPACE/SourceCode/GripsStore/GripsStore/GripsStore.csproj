@@ -197,6 +197,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Dao\InstallFileDAO.cs" />
     <Compile Include="Dao\AppDAO.cs" />
     <Compile Include="Dao\FileUploadDao.cs" />
     <Compile Include="Dao\StaffDAO.cs" />
@@ -204,6 +205,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\InstallFile.cs" />
     <Compile Include="Models\App.cs" />
     <Compile Include="Models\FileUpload.cs" />
     <Compile Include="Models\Staff.cs" />
