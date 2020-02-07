@@ -8,6 +8,7 @@ $(document).ready(onStartUp);
 function onStartUp() {
     try {
         checkLogin();
+        $('#home').on('click', goHome);
         $('#btn-search').on('click', searchApp);
         $('#btn-login').on('click', loginLogout);
         $('#input-search').keyup(function (e) {
@@ -20,7 +21,9 @@ function onStartUp() {
         ttDebug.Exception(SCRIPT_FILE, 'onStartUp', ex);
     }
 }
-
+function goHome() {
+    location.href = "/";
+}
 function searchApp() {
     var key = $('#input-search').val().trim();
     var sURL = "/";
