@@ -26,6 +26,7 @@ namespace GripsStore.Controllers
                 if (httpPostedFile != null && action != null && appId != null)
                 {
                     string fileName = httpPostedFile.FileName;
+                    fileName = fileName.Substring(fileName.LastIndexOf("\\") + 1);
                     string path = "";
                     if (action.Equals(FileUploadDao.UPLOAD_ACTION_APP_ICON))
                     {

@@ -45,7 +45,7 @@ namespace GripsStore.Dao
                         DirectoryInfo di = Directory.CreateDirectory(fileFolder);
                     }
                     // Get the complete file path
-                    var fileSavePath = Path.Combine(fileFolder + fileName);
+                    var fileSavePath = fileFolder + fileName;
                     //TODO check file is exist
                     // Save the uploaded file to "UploadedFiles" folder
                     httpPostedFile.SaveAs(fileSavePath);

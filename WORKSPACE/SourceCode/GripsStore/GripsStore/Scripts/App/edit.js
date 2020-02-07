@@ -79,11 +79,15 @@ function updateAppInfor() {
                     newIconFileName = "";
                     location.href = "/app/detail/?id=" + appId;
                 } else {
-                    //TODO alert error message
+                    alertError();
                 }
             },
-
+            error: function (xhr, ajaxOptions, thrownError) {
+                alertError();
+            }
         });
+    } else {
+        location.href = "/app/detail/?id=" + appId;
     }
 }
 
@@ -136,7 +140,7 @@ function onSendFileComplete(response) {
             updateVersionInfor();
         }
     } else {
-        //TODO alert error message
+        alertError();
     }
 }
 
@@ -180,13 +184,16 @@ function updateVersionInfor() {
         success: function (data) {
             if (data.success && data.fileContent != null && data.fileContent.appId == appId) {
                 closeUpdateVersionForm();
-                $('#app-version').val(data.fileContent.verNm);
+                $('#app-version').text(data.fileContent.verNm);
                 var newVerCd = data.fileContent.verCd + 1;
                 $('#app-version').val(data.fileContent.verNm);
                 $('#input-version-code').val(newVerCd);
             } else {
-                //TODO alert error message
+                alertError();
             }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alertError();
         }
     });
 }
@@ -195,4 +202,8 @@ function clearFileInput() {
     $('#input-version-name').val("");
     $('#input-file-name').val("");
     selectFile = null;
+}
+
+function alertError() {
+    alert("エラーが発生されました。");
 }
