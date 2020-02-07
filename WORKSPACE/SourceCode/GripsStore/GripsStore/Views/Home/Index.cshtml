@@ -6,6 +6,11 @@
     <div class="app-list">
         @if (ViewData["Apps"] != null)
         {
+            var staffCode = "";
+            if (Request.Cookies["GRIPS_STORE_STAFFCODE"] != null)
+            {
+                staffCode = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
+            }
             int i = 0;
             foreach (var app in ViewData["Apps"] as List<GripsStore.Models.App>)
             {
@@ -26,17 +31,20 @@
                 </div>
                 i += 1;
             }
-            if ((ViewData["Apps"] as List<GripsStore.Models.App>).Count % 2 == 0)
+            if (staffCode != "")
             {
-                @Html.Raw("</div>");
-                @Html.Raw("<div class=\"row\">");
+                if ((ViewData["Apps"] as List<GripsStore.Models.App>).Count % 2 == 0)
+                {
+                    @Html.Raw("</div>");
+                    @Html.Raw("<div class=\"row\">");
 
-            }
-            <div class="add-item">
-                <div id="div-btn">
-                    <button id="btn-add-item" class="btn btn-success">アプリ新規作成</button>
+                }
+                <div class="add-item">
+                    <div id="div-btn">
+                        <button id="btn-add-item" class="btn btn-success">アプリ新規作成</button>
+                    </div>
                 </div>
-            </div>
+            }
             @Html.Raw("</div>");
         }
     </div>
