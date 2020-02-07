@@ -5,11 +5,6 @@
 @if (ViewData["App"] != null)
 {
     var app = ViewData["App"] as GripsStore.Models.App;
-    var staffCode = "";
-    if (Request.Cookies["GRIPS_STORE_STAFFCODE"] != null)
-    {
-        staffCode = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
-    }
     var iconPath = "/Files/" + app.appId + "/Icon/" + @app.icon;
     var installFilePath = "/Files/" + app.appId + "/InstallFile/" + @app.fileNm;
     int newVerCdMin = @app.verCd + 1;
@@ -61,13 +56,10 @@
         <div class="row">
             <textarea id="app-description" class="form-control" type="text" rows="5">@app.description</textarea>
         </div>
-        @if (staffCode != "")
-        {
-            <div id="admin" class="row">
-                <button id="btn-cancel" class="btn btn-danger">閉じる</button>
-                <button id="btn-update" class="btn btn-primary">更新</button>
-            </div>
-        }
+        <div id="admin" class="row">
+            <button id="btn-cancel" class="btn btn-danger">閉じる</button>
+            <button id="btn-update" class="btn btn-primary">更新</button>
+        </div>
     </div>
 }
 @section scripts {
