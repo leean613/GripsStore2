@@ -13,7 +13,6 @@ namespace GripsStore.Models
         public int verCd;
         public string verNm;
         public string fileNm;
-        public string upstmp;
 
         //////////////////////////////////////////////////////////////////////////////////////
         /// <summary>

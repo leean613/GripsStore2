@@ -21,6 +21,15 @@
     box-shadow: 2px 2px 5px grey;
 }
 
+.add-item {
+    box-shadow: 2px 2px 5px grey;
+    float: left;
+    width: calc(50% - 10px);
+    margin: 5px;
+    height: 190px; /* Should be removed. Only for demonstration */
+    background: #ffffff;
+}
+
 .app-icon {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -50,4 +59,18 @@
     display: inline-block;
     color: gray;
     font-size: medium;
+}
+
+#div-btn {
+    position: relative;
+    left: calc(50% - 60px);
+    width: 120px;
+    height: 100%;
+}
+
+#btn-add-item {
+    width: 120px;
+    height: 50px;
+    position: relative;
+    top: calc(50% - 25px);
 }

@@ -213,7 +213,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="Content\App\create.css" />
+    <Content Include="Content\App\register.css" />
     <Content Include="Content\App\edit.css" />
     <Content Include="Content\App\detail.css" />
     <Content Include="Content\App\index.css" />
@@ -230,7 +230,7 @@
     <Content Include="Images\sms.png" />
     <Content Include="Images\search_white.png" />
     <Content Include="Images\user.png" />
-    <Content Include="Scripts\App\create.js" />
+    <Content Include="Scripts\App\register.js" />
     <Content Include="Scripts\App\edit.js" />
     <Content Include="Scripts\App\detail.js" />
     <Content Include="Scripts\App\index.js" />
@@ -285,7 +285,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\App\Detail.cshtml" />
     <Content Include="Views\App\Edit.cshtml" />
-    <Content Include="Views\App\Create.cshtml" />
+    <Content Include="Views\App\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

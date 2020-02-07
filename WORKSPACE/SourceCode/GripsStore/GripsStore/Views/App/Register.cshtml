@@ -1,0 +1,38 @@
+﻿@section css{
+    <link href="~/Content/App/register.css?UpDate=202002061712" rel="stylesheet" />
+    <link href="~/Content/App/site.css?UpDate=202002071636" rel="stylesheet" />
+}
+<div class="app-detail">
+    <div class="row">
+        <div class="column-icon">
+            <div class="row app-icon">
+                <img id="app-icon" />
+            </div>
+            <button id="btn-select-icon" class="btn btn-primary">画像選択</button>
+            <input id="select-image" accept="image/*" style="display: none;" onchange="OnJspSelectImage(this);" type="file">
+        </div>
+        <div class="column-info">
+            <div class="row">
+                <div class="label">アプリＩＤ</div>
+                <input id="app-id" class="form-control" type="text" maxlength="32" />
+            </div>
+            <div class="row">
+                <div class="label">アプリ名</div>
+                <input id="app-name" class="form-control" type="text" maxlength="32" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <textarea id="app-description" class="form-control" type="text" rows="5"></textarea>
+    </div>
+    <div id="admin" class="row">
+        <button id="btn-cancel" class="btn btn-danger">キャンセル</button>
+        <button id="btn-register" class="btn btn-primary">登録</button>
+    </div>
+</div>
+
+@section scripts {
+    <script src="../../Scripts/App/register.js?UpDate=202002061712"></script>
+    <script src="../../Scripts/App/site.js?UpDate=202002071636"></script>
+    <script src="../../Scripts/ttCookie_1.0.0.js"></script>
+}

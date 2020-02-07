@@ -190,5 +190,47 @@ namespace GripsStore.Dao
             }
             return result;
         }
+
+        public AppJSON Create(string staffCode, App app)
+        {
+            AppJSON result = new AppJSON();
+            if (app != null)
+            {
+                StringBuilder sbSQL = new StringBuilder();
+                try
+                {
+                    using (NpgDB npgDB = Connection.DBConnect())
+                    {
+                        sbSQL.AppendLine("INSERT INTO mapp");
+                        sbSQL.AppendLine("(");
+                        sbSQL.AppendLine("appid, name, description, icon, upopr");
+                        sbSQL.AppendLine(")");
+                        sbSQL.AppendLine("VALUES");
+                        sbSQL.AppendLine("(");
+                        sbSQL.AppendLine(":p_appid, :p_name, :p_description, :p_icon, :p_upopr");
+                        sbSQL.AppendLine(")");
+                        sbSQL.AppendLine("RETURNING appid, name, description, icon, upopr");
+
+                        npgDB.Command = sbSQL.ToString();
+                        npgDB.SetParams(":p_appid", app.appId);
+                        npgDB.SetParams(":p_name", app.name);
+                        npgDB.SetParams(":p_description", app.description);
+                        npgDB.SetParams(":p_icon", app.icon);
+                        npgDB.SetParams(":p_upopr", staffCode);
+                        using (NpgsqlDataReader rec = npgDB.Query())
+                        {
+                            if (rec.Read())
+                            {
+
+                                result.app = new App(rec);
+                                result.success = true;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex) { }
+            }
+            return result;
+        }
     }
 }
