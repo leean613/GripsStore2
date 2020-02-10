@@ -49,11 +49,10 @@ function registerApp() {
 
 function uploadFile(file, action) {
     var req = new XMLHttpRequest();
-
     req.onreadystatechange = function () {
         if (req.readyState == XMLHttpRequest.DONE) {
             onSendFileComplete(req.response);
-        }
+        } 
     }
     var appId = $('#app-id').val();
     var formData = new FormData();
@@ -77,9 +76,8 @@ function registerAppInfor() {
         success: function (data) {
             if (data.success && data.app != null && data.app.appId == appId) {
                 uploadFile(selectImage, UPLOAD_ACTION_APP_ICON);
-                
             } else {
-                alertFailed();
+                alertFailed("アプリが作成できませんでした。");
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -92,7 +90,6 @@ function OnJspSelectImage(input) {
     if (input.files != undefined && input.files.length > 0) {
         selectImage = input.files[0];
         var reader = new FileReader();
-
         reader.onload = function (e) {
             $('#app-icon').attr('src', e.target.result);
         }
@@ -110,12 +107,12 @@ function onSendFileComplete(response) {
             location.href = "/app/edit/?id=" + appId;
         }
     } else {
-        alertFailed();
+        alertFailed("アプリが作成されました。画像が登録できませんでした。");
     }
 }
 
-function alertFailed() {
-    alert("失敗されました。");
+function alertFailed(message) {
+    alert(message);
 }
 
 function alertError() {

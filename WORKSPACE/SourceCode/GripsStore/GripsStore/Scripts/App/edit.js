@@ -95,7 +95,6 @@ function OnJspSelectImage(input) {
     if (input.files != undefined && input.files.length > 0) {
         selectImage = input.files[0];
         var reader = new FileReader();
-
         reader.onload = function (e) {
             $('#app-icon').attr('src', e.target.result);
         }
@@ -112,11 +111,14 @@ function OnJspSelectFile(input) {
 }
 
 function uploadFile(file, action) {
+    ttGuard.showWait();
     var req = new XMLHttpRequest();
-
     req.onreadystatechange = function () {
         if (req.readyState == XMLHttpRequest.DONE) {
             onSendFileComplete(req.response);
+        }
+        else {
+            ttGuard.destory();
         }
     }
     var formData = new FormData();
@@ -129,6 +131,7 @@ function uploadFile(file, action) {
 }
 
 function onSendFileComplete(response) {
+    ttGuard.destory();
     response = eval("(" + response + ")");
     if (response.success) {
         var action = response.fileContent.action;
@@ -173,6 +176,7 @@ function updateFile() {
 }
 
 function updateVersionInfor() {
+    ttGuard.showWait();
     var verCd = $('#input-version-code').val();
     var verNm = $('#input-version-name').val();
     var fileNm = selectFile.name;
@@ -182,6 +186,7 @@ function updateVersionInfor() {
         contentType: 'application/json;',
         data: JSON.stringify({ staffCode: staffCode, appId: appId, verCdStr: verCd, verNm: verNm, fileNm: fileNm }),
         success: function (data) {
+            ttGuard.destory();
             if (data.success && data.fileContent != null && data.fileContent.appId == appId) {
                 closeUpdateVersionForm();
                 $('#app-version').text(data.fileContent.verNm);
@@ -193,6 +198,7 @@ function updateVersionInfor() {
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
+            ttGuard.destory();
             alertError();
         }
     });
