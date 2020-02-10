@@ -1,0 +1,32 @@
+﻿/*  ----------------------------------------------------------
+    - ｶﾞｰﾄ自身
+    ----------------------------------------------------------  */
+#ttm_guard
+{
+    position    : fixed;
+    top         : 0px;
+    left        : 0px;
+    background  :  #000000;
+    z-index     :  100;
+}
+.ttm_guard_opacity50
+{
+    opacity     :  0.5;
+	filter		: alpha(opacity=50);
+}
+.ttm_guard_opacity0
+{
+    opacity     :  0;
+	filter		: alpha(opacity=0);
+}
+/*  ----------------------------------------------------------
+    - ｳｪｲﾄ画像
+    ----------------------------------------------------------  */
+#ttm_guard_wait
+{
+    position    : absolute;
+    width       : 66px;
+    height      : 66px;
+    background-image:URL('../Images/ajax-loader.gif');
+    z-index     : 50;
+}

@@ -43,11 +43,11 @@ function login() {
         contentType: 'application/json;',
         data: JSON.stringify({ staffCode: staffCode, password: password }),
         success: function (data) {
+            ttGuard.destory();
             if (data.success) {
                 setCookie(COOKIE_STAFF_CODE, data.staff.staffCode);
                 setCookie(COOKIE_STAFF_NAME, data.staff.kanjiName);
-               
-               // location.href = "/";
+                location.href = "/";
             } else {
                 $('#warring').text("ユーザー名／パスワードをご確認してください");
                 $('#warring').removeClass("invisible").addClass("visible");
@@ -55,6 +55,7 @@ function login() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alertError();
+            ttGuard.destory();
         }
     });
 }
