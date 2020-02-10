@@ -39,8 +39,11 @@ function loginLogout() {
     if (staffCode == "") {
         location.href = "/login/";
     } else {
-        setCookie(COOKIE_STAFF_CODE, "");
-        location.reload();
+        var result = confirm("ログアウトします。よろしいでしょうか？");
+        if (result) {
+            setCookie(COOKIE_STAFF_CODE, "");
+            location.reload();
+        }
     }
 }
 
