@@ -228,9 +228,7 @@
     <Content Include="Global.asax" />
     <Content Include="Images\icon.ico" />
     <Content Include="Images\ajax-loader.gif" />
-    <Content Include="Images\home.png" />
     <Content Include="Images\login.png" />
-    <Content Include="Images\sms.png" />
     <Content Include="Images\search_white.png" />
     <Content Include="Images\user.png" />
     <Content Include="Scripts\App\register.js" />
