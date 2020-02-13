@@ -226,6 +226,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\icon.ico" />
     <Content Include="Images\ajax-loader.gif" />
     <Content Include="Images\home.png" />
     <Content Include="Images\login.png" />
