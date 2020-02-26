@@ -28,7 +28,7 @@ function searchApp() {
     var key = $('#input-search').val().trim();
     var sURL = "/";
     if (key != "") {
-        sURL += "?key = " + key;
+        sURL += "?key=" + key;
     }
     //ttGuard.showWait();
     // ﾍﾟｰｼﾞ遷移
