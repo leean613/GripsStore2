@@ -35,7 +35,9 @@
             </div>
         </div>
         <div class="row label app-description">@app.description</div>
-        <img class="row app-img-qr" src="@qrPath" />
+        <div class="row">
+            <img class="app-img-qr" src="@qrPath" />
+        </div>
         @if (staffCode != "")
         {
             <div id="admin" class="row admin-button">
