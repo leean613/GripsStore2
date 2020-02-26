@@ -9,6 +9,7 @@ var UPLOAD_APP_ID_TAG = "appId";
 var staffCode;
 var appId;
 var selectImage;
+var selectQR;
 var selectFile;
 var newIconFileName = "";
 
@@ -34,6 +35,9 @@ function onStartUp() {
         });
         $('#btn-clear-file').click(function () {
             clearFileInput();
+        });
+        $('#btn-select-qr').click(function () {
+            $('#select-qr').click();
         });
         $('#btn-close-update-version').click(function () {
             closeUpdateVersionForm();
@@ -99,6 +103,17 @@ function OnJspSelectImage(input) {
             $('#app-icon').attr('src', e.target.result);
         }
         reader.readAsDataURL(selectImage);
+    }
+}
+
+function OnJspSelectQR(input) {
+    if (input.files != undefined && input.files.length > 0) {
+        selectQR = input.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#app-img-qr').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(selectQR);
     }
 }
 

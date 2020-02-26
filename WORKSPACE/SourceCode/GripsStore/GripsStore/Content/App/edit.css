@@ -68,6 +68,11 @@
     max-width: calc(100% - 5px);
 }
 
+.app-img-qr {
+    width: 200px;
+    height: 200px;
+}
+
 #app-version {
     font-size: large;
     color: black;

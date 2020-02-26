@@ -6,9 +6,10 @@
 @if (ViewData["App"] != null)
 {
     var app = ViewData["App"] as GripsStore.Models.App;
-    var iconPath = "/Files/" + app.appId + "/Icon/" + @app.icon;
-    var installFilePath = "/Files/" + app.appId + "/InstallFile/" + @app.fileNm;
-    int newVerCdMin = @app.verCd + 1;
+    var iconPath = "/Files/" + app.appId + "/Icon/" + app.icon;
+    var installFilePath = "/Files/" + app.appId + "/InstallFile/" + app.fileNm;
+    var qrPath = "/Files/" + app.appId + "/" + app.appId + ".png";
+    int newVerCdMin = app.verCd + 1;
     <div class="app-detail">
         <div class="row">
             <div id="app-id" hidden>@app.appId</div>
@@ -57,6 +58,9 @@
         <div class="row">
             <textarea id="app-description" class="form-control" type="text" rows="5">@app.description</textarea>
         </div>
+        <img id="app-img-qr" class="row app-img-qr" src="@qrPath" />
+        <button id="btn-select-qr" class="btn btn-primary">QRコード画像選択</button>
+        <input id="select-qr" accept="image/*" style="display: none;" onchange="OnJspSelectQR(this);" type="file">
         <div id="admin" class="row">
             <button id="btn-cancel" class="btn btn-danger">閉じる</button>
             <button id="btn-update" class="btn btn-primary">更新</button>
