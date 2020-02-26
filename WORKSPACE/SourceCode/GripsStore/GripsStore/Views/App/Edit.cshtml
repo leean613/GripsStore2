@@ -35,7 +35,7 @@
                 <div id="update-version" class="gone">
                     <div class="row">
                         <div class="label">バージョンコード</div>
-                        <input id="input-version-code" class="form-control input-version" type="number" value="@newVerCdMin" disabled />
+                        <input id="input-version-code" class="form-control input-version" type="number" value="@newVerCdMin" min="@newVerCdMin" />
                     </div>
                     <div class="row">
                         <div class="label">バージョン名</div>
@@ -58,9 +58,11 @@
         <div class="row">
             <textarea id="app-description" class="form-control" type="text" rows="5">@app.description</textarea>
         </div>
-        <img id="app-img-qr" class="row app-img-qr" src="@qrPath" />
-        <button id="btn-select-qr" class="btn btn-primary">QRコード画像選択</button>
-        <input id="select-qr" accept="image/*" style="display: none;" onchange="OnJspSelectQR(this);" type="file">
+        <div class="row">
+            <img id="app-img-qr" class="app-img-qr" src="@qrPath" />
+            <button id="btn-select-qr" class="btn btn-primary">QRコード画像選択</button>
+            <input id="select-qr" accept="image/*" style="display: none;" onchange="OnJspSelectQR(this);" type="file">
+        </div>
         <div id="admin" class="row">
             <button id="btn-cancel" class="btn btn-danger">閉じる</button>
             <button id="btn-update" class="btn btn-primary">更新</button>

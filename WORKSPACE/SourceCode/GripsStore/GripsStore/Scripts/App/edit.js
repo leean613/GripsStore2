@@ -56,7 +56,7 @@ function cancel() {
 }
 
 function updateApp() {
-    //TODO sho progress dialog to wait completed
+    ttGuard.showWait();
     var appName = $('#app-name').val();
     if (appName == "") {
         alert("アプリ名を入力してください。");
@@ -192,8 +192,12 @@ function closeUpdateVersionForm() {
 }
 
 function updateFile() {
+    var verCd = $('#input-version-code').val();
     var verNm = $('#input-version-name').val();
-    if (verNm == "") {
+    if (verCd == "") {
+        alert("バージョンコードを入力してください。");
+    }
+    else if (verNm == "") {
         alert("バージョン名を入力してください。");
     } else if (selectFile != null) {
         uploadFile(selectFile, UPLOAD_ACTION_INSTALL_FILE);
