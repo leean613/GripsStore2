@@ -1,5 +1,5 @@
 ﻿@section css{
-    <link href="~/Content/App/index.css?UpDate=202002061553" rel="stylesheet" />
+    <link href="~/Content/App/index.css?UpDate=202002261004" rel="stylesheet" />
     <link href="~/Content/App/site.css?UpDate=202002071636" rel="stylesheet" />
     <link href="../../Content/ttGuard_1.0.0.css?UpDate=202002051338" rel="stylesheet" />
 }
@@ -25,10 +25,14 @@
                     @Html.Raw("<div class=\"row\">");
                 }
                 var iconPath = "/Files/" + app.appId + "/Icon/" + @app.icon;
+                var qrPath = "/Files/" + app.appId + "/" + app.appId + ".png";
                 <div id="@app.appId" class="column app-item">
-                    <img class="app-icon" src="@iconPath" />
-                    <div class="label app-name">@app.name</div>
-                    <div class="label app-description">@app.description</div>
+                    <div class="app-img-root">
+                        <img class="app-icon" src="@iconPath" />
+                    </div>
+                    <div class="app-name">@app.name</div>
+                    <div class="app-description">@app.description</div>
+                    <img class="app-img-root" src="@qrPath" />
                 </div>
                 i += 1;
             }

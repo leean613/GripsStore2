@@ -6,7 +6,7 @@
     float: left;
     width: calc(50% - 10px);
     margin: 5px;
-    height: 190px; /* Should be removed. Only for demonstration */
+    height: 280px;
     background: #ffffff;
 }
 
@@ -19,6 +19,7 @@
 
 .app-item {
     box-shadow: 2px 2px 5px grey;
+    padding: 10px;
 }
 
 .add-item {
@@ -26,17 +27,23 @@
     float: left;
     width: calc(50% - 10px);
     margin: 5px;
-    height: 190px; /* Should be removed. Only for demonstration */
+    height: 280px;
     background: #ffffff;
 }
 
 .app-icon {
-    margin-top: 5px;
-    margin-bottom: 5px;
     display: block;
     width: auto;
-    max-width: 100px;
     max-height: 100px;
+    max-width: 100px;
+    margin: auto;
+}
+
+.app-img-root {
+    margin-bottom: 5px;
+    display: block;
+    width: 100px;
+    height: 100px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -49,6 +56,7 @@
     display: inline-block;
     color: black;
     font-size: large;
+    font-weight: bold;
 }
 
 .app-description {
@@ -59,6 +67,7 @@
     display: inline-block;
     color: gray;
     font-size: medium;
+    height: 20px;
 }
 
 #div-btn {
@@ -73,4 +82,25 @@
     height: 50px;
     position: relative;
     top: calc(50% - 25px);
+}
+
+@media print {
+    @page {
+        margin: 20mm;
+    }
+
+    .navbar-fixed-top {
+        visibility: collapse;
+    }
+
+    .add-item {
+        visibility: collapse;
+    }
+
+    .app-item {
+        border: solid;
+    }
+
+    /*.app-name {
+    }*/
 }
