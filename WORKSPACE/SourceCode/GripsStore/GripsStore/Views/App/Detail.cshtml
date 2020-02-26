@@ -1,5 +1,5 @@
 ﻿@section css{
-    <link href="~/Content/App/detail.css?UpDate=202002061553" rel="stylesheet" />
+    <link href="~/Content/App/detail.css?UpDate=202002261140" rel="stylesheet" />
     <link href="~/Content/App/site.css?UpDate=202002071636" rel="stylesheet" />
     <link href="../../Content/ttGuard_1.0.0.css?UpDate=202002051338" rel="stylesheet" />
 }
@@ -11,8 +11,9 @@
     {
         staffCode = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
     }
-    var iconPath = "/Files/" + app.appId + "/Icon/" + @app.icon;
-    var installFilePath = "/Files/" + app.appId + "/InstallFile/" + @app.fileNm;
+    var iconPath = "/Files/" + app.appId + "/Icon/" + app.icon;
+    var installFilePath = "/Files/" + app.appId + "/InstallFile/" + app.fileNm;
+    var qrPath = "/Files/" + app.appId + "/" + app.appId + ".png";
     <div class="app-detail">
         <div class="row">
             <div id="app-id" hidden>@app.appId</div>
@@ -34,9 +35,10 @@
             </div>
         </div>
         <div class="row label app-description">@app.description</div>
+        <img class="row app-img-qr" src="@qrPath" />
         @if (staffCode != "")
         {
-            <div id="admin" class="row">
+            <div id="admin" class="row admin-button">
                 <button id="btn-delete" class="btn btn-danger">削除</button>
                 <button id="btn-edit" class="btn btn-primary">編集</button>
             </div>
