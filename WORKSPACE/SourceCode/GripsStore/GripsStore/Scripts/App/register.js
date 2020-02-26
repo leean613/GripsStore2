@@ -3,11 +3,13 @@ var UPLOAD_FILE_TAG = "file";
 var UPLOAD_ACTION_TAG = "action";
 var UPLOAD_ACTION_INSTALL_FILE = "install file";
 var UPLOAD_ACTION_APP_ICON = "app icon image";
+var UPLOAD_ACTION_APP_QR = "app QR image";
 var UPLOAD_APP_ID_TAG = "appId";
 //do not modify END
 
 var staffCode;
 var selectImage;
+var selectQR;
 var newIconFileName = "";
 
 $(document).ready(onStartUp);
@@ -22,6 +24,9 @@ function onStartUp() {
         });
         $('#btn-select-icon').click(function () {
             $('#select-image').click();
+        });
+        $('#btn-select-qr').click(function () {
+            $('#select-qr').click();
         });
     } else {
         location.href = "/";
@@ -41,7 +46,9 @@ function registerApp() {
     } else if (appName == "") {
         alert("アプリ名を入力してください。");
     } else if (selectImage == null) {
-        alert("アプリアイコンを選択してください。");
+        alert("アプリアイコン画像を選択してください。");
+    } else if (selectQR == null) {
+        alert("アプリＱＲコード画像を選択してください。");
     } else {
         registerAppInfor();
     }
@@ -52,7 +59,7 @@ function uploadFile(file, action) {
     req.onreadystatechange = function () {
         if (req.readyState == XMLHttpRequest.DONE) {
             onSendFileComplete(req.response);
-        } 
+        }
     }
     var appId = $('#app-id').val();
     var formData = new FormData();
@@ -92,8 +99,20 @@ function OnJspSelectImage(input) {
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#app-icon').attr('src', e.target.result);
+            $('#icon-root').removeClass("app-icon-root-border");
         }
         reader.readAsDataURL(selectImage);
+    }
+}
+
+function OnJspSelectQR(input) {
+    if (input.files != undefined && input.files.length > 0) {
+        selectQR = input.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#app-img-qr').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(selectQR);
     }
 }
 
@@ -104,6 +123,8 @@ function onSendFileComplete(response) {
         var action = response.fileContent.action;
         var id = response.fileContent.appId;
         if (action == UPLOAD_ACTION_APP_ICON && id == appId) {
+            uploadFile(selectQR, UPLOAD_ACTION_APP_QR);
+        } else if (action == UPLOAD_ACTION_APP_QR && id == appId) {
             location.href = "/app/edit/?id=" + appId;
         }
     } else {
