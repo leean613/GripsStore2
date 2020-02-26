@@ -32,6 +32,11 @@ namespace GripsStore.Controllers
                     {
                         path = FileUploadDao.GetAppIconFilePath(appId);
                     }
+                    else if (action.Equals(FileUploadDao.UPLOAD_ACTION_APP_QR))
+                    {
+                        path = FileUploadDao.GetAppQRFilePath(appId);
+                        fileName = appId + ".png";
+                    }
                     else
                     {
                         path = FileUploadDao.GetAppInstallFilePath(appId);

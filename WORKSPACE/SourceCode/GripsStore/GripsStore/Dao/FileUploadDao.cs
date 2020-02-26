@@ -13,6 +13,7 @@ namespace GripsStore.Dao
         public const string UPLOAD_APP_ID_TAG = "appId";
         public const string UPLOAD_ACTION_INSTALL_FILE = "install file";
         public const string UPLOAD_ACTION_APP_ICON = "app icon image";
+        public const string UPLOAD_ACTION_APP_QR = "app QR image";
 
         public const string UPLOAD_FILE_PATH_APP_ICON = "/Icon/";
         public const string UPLOAD_FILE_PATH_INSTALL_FILE = "/InstallFile/";
@@ -61,6 +62,11 @@ namespace GripsStore.Dao
         public static string GetAppIconFilePath(string appId)
         {
             return appId + UPLOAD_FILE_PATH_APP_ICON;
+        }
+
+        public static string GetAppQRFilePath(string appId)
+        {
+            return appId + "/";
         }
 
         public static string GetAppInstallFilePath(string appId)

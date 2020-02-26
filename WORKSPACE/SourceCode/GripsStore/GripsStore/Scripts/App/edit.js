@@ -3,6 +3,7 @@ var UPLOAD_FILE_TAG = "file";
 var UPLOAD_ACTION_TAG = "action";
 var UPLOAD_ACTION_INSTALL_FILE = "install file";
 var UPLOAD_ACTION_APP_ICON = "app icon image";
+var UPLOAD_ACTION_APP_QR = "app QR image";
 var UPLOAD_APP_ID_TAG = "appId";
 //do not modify END
 
@@ -61,7 +62,10 @@ function updateApp() {
         alert("アプリ名を入力してください。");
     } else if (selectImage != null) {
         uploadFile(selectImage, UPLOAD_ACTION_APP_ICON);
-    } else {
+    } else if (selectQR != null) {
+        uploadFile(selectQR, UPLOAD_ACTION_APP_QR);
+    }
+    else {
         updateAppInfor();
     }
 }
@@ -153,8 +157,16 @@ function onSendFileComplete(response) {
         var id = response.fileContent.appId;
         if (action == UPLOAD_ACTION_APP_ICON && id == appId) {
             newIconFileName = response.fileContent.fileName;
+            if (selectQR != null) {
+                uploadFile(selectQR, UPLOAD_ACTION_APP_QR);
+            } else {
+                updateAppInfor();
+            }
+        }
+        else if (action == UPLOAD_ACTION_APP_QR && id == appId) {
             updateAppInfor();
-        } else if (action == UPLOAD_ACTION_INSTALL_FILE && id == appId) {
+        }
+        else if (action == UPLOAD_ACTION_INSTALL_FILE && id == appId) {
             updateVersionInfor();
         }
     } else {
