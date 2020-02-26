@@ -85,16 +85,8 @@
 }
 
 @media print {
-    @page {
-        margin: 20mm;
-    }
-
-    .navbar-fixed-top {
-        visibility: collapse;
-    }
-
     .add-item {
-        visibility: collapse;
+        display: none;
     }
 
     .app-item {

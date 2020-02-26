@@ -44,3 +44,26 @@ textarea {
     height: 100%;
     padding: 2px;
 }
+
+.page-break {
+    display: none;
+}
+
+@media print {
+    @page {
+        size: A4;
+        margin-top: 0mm;
+        margin-right: 20mm;
+        margin-left: 20mm;
+        margin-bottom: 0mm;
+    }
+
+    .page-break {
+        display: block;
+        page-break-before: always;
+    }
+
+    .navbar-fixed-top {
+        display: none !important;
+    }
+}

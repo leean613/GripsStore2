@@ -1,6 +1,6 @@
 ﻿@section css{
-    <link href="~/Content/App/index.css?UpDate=202002261004" rel="stylesheet" />
-    <link href="~/Content/App/site.css?UpDate=202002071636" rel="stylesheet" />
+    <link href="~/Content/App/index.css?UpDate=202002261534" rel="stylesheet" />
+    <link href="~/Content/App/site.css?UpDate=202002261534" rel="stylesheet" />
     <link href="../../Content/ttGuard_1.0.0.css?UpDate=202002051338" rel="stylesheet" />
 }
 <div class="home-content">
@@ -35,6 +35,10 @@
                     <img class="app-img-root" src="@qrPath" />
                 </div>
                 i += 1;
+                if(i % 6 == 0)
+                {
+                    <div class="page-break"></div>
+                }
             }
             if (staffCode != "")
             {
@@ -55,7 +59,7 @@
     </div>
 </div>
 @section scripts {
-    <script src="../Scripts/App/index.js?UpDate=202002071713"></script>
+    <script src="../Scripts/App/index.js?UpDate=202002261452"></script>
     <script src="../Scripts/App/site.js?UpDate=202002071636"></script>
     <script src="../../Scripts/ttCookie_1.0.0.js"></script>
     <script src="../../Scripts/ttGuard_1.0.0.js?UpDate=202002101014"></script>
