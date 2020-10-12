@@ -5,6 +5,7 @@
 }
 @if (ViewData["App"] != null)
 {
+    var an = "lytruongan";
     var app = ViewData["App"] as GripsStore.Models.App;
     var staffCode = "";
     if (Request.Cookies["GRIPS_STORE_STAFFCODE"] != null)
