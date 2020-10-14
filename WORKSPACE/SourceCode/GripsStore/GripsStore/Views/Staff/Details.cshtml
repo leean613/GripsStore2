@@ -1,0 +1,50 @@
+﻿@section css{
+    <link href="~/Content/App/detail.css?UpDate=202002261452" rel="stylesheet" />
+    <link href="~/Content/App/site.css?UpDate=202002071636" rel="stylesheet" />
+    <link href="../../Content/ttGuard_1.0.0.css?UpDate=202002051338" rel="stylesheet" />
+    <link href="~/Content/staffView/staff.css" rel="stylesheet" />
+}
+@if (ViewData["Staffs"] != null)
+{
+    // var an = "lytruongan";
+    var staffCode = "";
+    if (Request.Cookies["GRIPS_STORE_STAFFCODE"] != null)
+    {
+        staffCode = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
+    }
+
+    <table style="width:100%">
+        <tr>
+            <th>Staff Code</th>
+            <th>Kana Name</th>
+            <th>Kanji Name</th>
+        </tr>
+        @foreach (var staff in ViewData["Staffs"] as List<GripsStore.Models.Staff>)
+        {
+            <tr>
+                <td id="staffCode">@staff.staffCode</td>
+                <td>@staff.kanaName</td>
+                <td>@staff.kanjiName</td>
+                <td>
+                    <div id="admin" class="row admin-button">
+                        <button id="btn-delete" class="btn btn-danger">Delete</button>
+                        <button id="btn-edit" class="btn btn-primary">Edit</button>
+                    </div>
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
+
+
+
+
+}
+@section scripts {
+    <script src="../../Scripts/App/detail.js?UpDate=202002261452"></script>
+    <script src="../../Scripts/App/site.js?UpDate=202002261631"></script>
+    <script src="../../Scripts/ttCookie_1.0.0.js"></script>
+    <script src="../../Scripts/ttGuard_1.0.0.js?UpDate=202002101014"></script>
+}

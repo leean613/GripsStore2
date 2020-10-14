@@ -1,0 +1,34 @@
+﻿@section css{
+    <link href="~/Content/App/edit.css?UpDate=202002261452" rel="stylesheet" />
+    <link href="~/Content/App/site.css?UpDate=202002071636" rel="stylesheet" />
+    <link href="../../Content/ttGuard_1.0.0.css?UpDate=202002051338" rel="stylesheet" />
+}
+@if (ViewData["Edit"] != null)
+{
+    var app = ViewData["Edit"] as GripsStore.Models.Staff;
+
+
+    <form action="/action_page.php">
+        <div class="form-group">
+            <label for="staffcode"></label>
+            <input type="text" class="form-control" id="staffcode">
+        </div>
+        <div class="form-group">
+            <label for="kanjiName"></label>
+            <input type="text" class="form-control" id="kanjiName">
+        </div>
+        <div class="form-group">
+            <label for="kanaName"></label>
+            <input type="text" class="form-control" id="kanjiName">
+        </div>
+
+        <button type="submit" class="btn btn-default"></button>
+    </form>
+
+
+}
+@section scripts {
+    <script src="~/Scripts/Staff/edit.js"></script>
+    <script src="../../Scripts/ttCookie_1.0.0.js"></script>
+    <script src="../../Scripts/ttGuard_1.0.0.js?UpDate=202002101014"></script>
+}
