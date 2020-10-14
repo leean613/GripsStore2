@@ -195,6 +195,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Dao\InstallFileDAO.cs" />
@@ -222,8 +223,24 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\staffView\staff.css" />
     <Content Include="Content\ttGuard_1.0.0.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\123\123.png" />
+    <Content Include="Files\123\Icon\OIP.jpg" />
+    <Content Include="Files\13312625\13312625.png" />
+    <Content Include="Files\13312625\Icon\okay.jpg" />
+    <Content Include="Files\19216801\19216801.png" />
+    <Content Include="Files\19216801\Icon\download.jpg" />
+    <Content Include="Files\an\an.png" />
+    <Content Include="Files\an\Icon\google.png" />
+    <Content Include="Files\Icon\OIP.jpg" />
+    <Content Include="Files\id1\Icon\OIP.jpg" />
+    <Content Include="Files\id1\id1.png" />
+    <Content Include="Files\idCodeEqual1\Icon\OIP.jpg" />
+    <Content Include="Files\idCodeEqual1\idCodeEqual1.png" />
+    <Content Include="Files\Main website\Icon\logo.png" />
+    <Content Include="Files\Main website\Main website.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\icon.ico" />
@@ -260,6 +277,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Files\idCodeEqual1\InstallFile\OIP.rar" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -268,8 +286,20 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\App\site.js" />
+    <Content Include="Scripts\Staff\detail.js" />
+    <Content Include="Scripts\Staff\edit.js" />
     <Content Include="Scripts\ttCookie_1.0.0.js" />
     <Content Include="Scripts\ttGuard_1.0.0.js" />
+    <Content Include="upload\.png" />
+    <Content Include="upload\123\123.png" />
+    <Content Include="upload\123\Icon\OIP.jpg" />
+    <Content Include="upload\an\an.png" />
+    <Content Include="upload\an\Icon\google.png" />
+    <Content Include="upload\Icon\OIP.jpg" />
+    <Content Include="upload\id1\Icon\OIP.jpg" />
+    <Content Include="upload\id1\id1.png" />
+    <Content Include="upload\idCodeEqual1\Icon\OIP.jpg" />
+    <Content Include="upload\idCodeEqual1\idCodeEqual1.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -288,6 +318,10 @@
     <Content Include="Views\App\Detail.cshtml" />
     <Content Include="Views\App\Edit.cshtml" />
     <Content Include="Views\App\Register.cshtml" />
+    <Content Include="upload\idCodeEqual1\InstallFile\OIP.rar" />
+    <Content Include="Views\Staff\Index.cshtml" />
+    <Content Include="Views\Staff\Details.cshtml" />
+    <Content Include="Views\Staff\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

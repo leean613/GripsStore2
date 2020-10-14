@@ -17,7 +17,7 @@ namespace GripsStore.Models
         public Staff()
         {
         }
-    
+
         //////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// ｺﾝｽﾄﾗｸﾀ
@@ -28,8 +28,8 @@ namespace GripsStore.Models
             this.staffCode = NpgDB.getString(rec, "staffcode");
             this.kanjiName = NpgDB.getString(rec, "kanjiname");
             this.kanaName = NpgDB.getString(rec, "kananame");
-            this.staffWardCode = NpgDB.getString(rec, "wardcode");
-            this.staffWardName = NpgDB.getString(rec, "wardname");
+            //        this.staffWardCode = NpgDB.getString(rec, "wardcode");
+            //       this.staffWardName = NpgDB.getString(rec, "wardname");
         }
 
         public class StaffJSON

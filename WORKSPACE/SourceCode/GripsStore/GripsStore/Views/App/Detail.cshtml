@@ -5,16 +5,26 @@
 }
 @if (ViewData["App"] != null)
 {
-    var an = "lytruongan";
+    // var an = "lytruongan";
     var app = ViewData["App"] as GripsStore.Models.App;
     var staffCode = "";
     if (Request.Cookies["GRIPS_STORE_STAFFCODE"] != null)
     {
         staffCode = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
     }
+    //var iconPath = "/upload/123/Icon/OIP.jpg";
+
+
+
     var iconPath = "/Files/" + app.appId + "/Icon/" + app.icon;
+
     var installFilePath = "/Files/" + app.appId + "/InstallFile/" + app.fileNm;
+    System.Diagnostics.Debug.Write(iconPath);
+
+
     var qrPath = "/Files/" + app.appId + "/" + app.appId + ".png";
+    //var qrPath = "/upload/123/123.png";
+
     <div class="app-detail">
         <div class="row">
             <div id="app-id" hidden>@app.appId</div>
@@ -30,6 +40,10 @@
                     <div class="row">
                         <div class="label detail-label">バージョン：</div>
                         <div id="app-version" class="label">@app.verNm</div>
+                        <div id="Antag">
+                            <div>App version code @app.verCd </div>
+                            <div>App version name @app.verNm </div>
+                        </div>
                     </div>
                     <button class="row btn btn-success btn-lg btn-download" onclick="window.location.href = '@installFilePath';">ダウンロード</button>
                 }
