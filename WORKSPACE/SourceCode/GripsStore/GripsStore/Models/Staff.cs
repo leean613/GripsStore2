@@ -7,8 +7,8 @@ namespace GripsStore.Models
         public string staffCode;
         public string kanjiName;
         public string kanaName;
-        public string staffWardCode;
-        public string staffWardName;
+        //public string staffWardCode;
+        //public string staffWardName;
 
         //////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
@@ -23,7 +23,7 @@ namespace GripsStore.Models
         /// ｺﾝｽﾄﾗｸﾀ
         /// </summary>
         /// <param name="rec"></param>
-        public Staff(NpgsqlDataReader rec)
+        public Staff(NpgsqlDataReader rec, bool isGetStaffInfo = false)
         {
             this.staffCode = NpgDB.getString(rec, "staffcode");
             this.kanjiName = NpgDB.getString(rec, "kanjiname");

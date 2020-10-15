@@ -29,60 +29,35 @@ namespace GripsStore.Controllers
             return View();
         }
 
-        // GET: Staff/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
 
-        // POST: Staff/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: Staff/Edit/5
-        public JsonResult Update(string staffCode, string appId, string appName)
+        public ActionResult Edit(string code)
         {
             StaffDao staffDao = new StaffDao();
-            Staff staff = new Staff();
-            {
+            Staff staff = staffDao.Getstaff(code);
+            ViewData["Staff"] = staff;
 
+
+            return View(staff);
+
+        }
+        public JsonResult Update(string staffCode, string kanjiName, string kanaName)
+        {
+            StaffDao staffDao = new StaffDao();
+            Staff staff = new Staff
+            {
+                staffCode = staffCode,
+                kanjiName = kanjiName,
+                kanaName = kanaName
             };
             return Json(staffDao.Update(staffCode, staff));
         }
 
-        // POST: Staff/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
-        // GET: Staff/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+
+
 
         // POST: Staff/Delete/5
         [HttpPost]
