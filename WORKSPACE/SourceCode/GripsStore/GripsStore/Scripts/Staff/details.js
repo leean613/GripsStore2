@@ -13,6 +13,6 @@ function deleteApp() {
 }
 
 function editApp() {
-    var appId = $('#staffCode').text();
-    location.href = "/Staff/edit/?code=" + appId;
+    var staffCode = $('#staffCode').text();
+    location.href = "/Staff/Edit/?code=" + staffCode;
 }

@@ -121,6 +121,47 @@ namespace GripsStore.Dao
 
         }
 
+        public Staff Getstaff(string code)
+        {
+            Staff staff = new Staff();
+            try
+            {
+                StringBuilder sbSQL = new StringBuilder();
+                using (NpgDB npgDB = Connection.DBConnect())
+                {
+                    sbSQL.AppendLine("SELECT * FROM mstaff");
+
+                    sbSQL.AppendLine("WhERE mstaff.staffcode= :p_staffcode");
+                    sbSQL.AppendLine("ORDER BY mstaff.staffcode");
+
+                    //sbSQL.AppendLine("LEFT join m_deptgroup ");
+                    //sbSQL.AppendLine("ON m_department.deptgrpcd=m_deptgroup.deptgrpcd");
+                    //sbSQL.AppendLine("ORDER by mstaff.staffcode");
+
+
+                    npgDB.Command = sbSQL.ToString();
+                    npgDB.SetParams("p_staffcode", code);
+                    Debug.Write(sbSQL.ToString());
+                    using (NpgsqlDataReader rec = npgDB.Query())
+                    {
+                        while (rec.Read())
+                        {
+                            staff = new Staff(rec, true);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+            return staff;
+
+        }
+
+
         public StaffJSON Update(string staffCode, Staff staff)
         {
             StaffJSON result = new StaffJSON();
