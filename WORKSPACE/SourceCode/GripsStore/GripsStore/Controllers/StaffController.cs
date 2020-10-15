@@ -19,7 +19,7 @@ namespace GripsStore.Controllers
             return View();
         }
 
-        /
+
         public ActionResult Details(string code)
         {
             StaffDao staffDao = new StaffDao();
