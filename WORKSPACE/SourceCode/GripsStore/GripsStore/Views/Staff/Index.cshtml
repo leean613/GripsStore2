@@ -1,5 +1,5 @@
 ﻿@section css{
-    <link href="~/Content/App/detail.css?UpDate=202002261452" rel="stylesheet" />
+    <link href="~/content/app/detail.css?update=202002261452" rel="stylesheet" />
     <link href="~/Content/App/site.css?UpDate=202002071636" rel="stylesheet" />
     <link href="../../Content/ttGuard_1.0.0.css?UpDate=202002051338" rel="stylesheet" />
     <link href="~/Content/staffView/staff.css" rel="stylesheet" />
@@ -12,8 +12,8 @@
     {
         staffCode = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
     }
-
-    <table style="width:100%">
+    @*<div></div>*@
+    @*<table style="width:100%">
         <tr>
             <th>Staff Code</th>
             <th>Kana Name</th>
@@ -25,16 +25,46 @@
                 @*<td>@staff.staffCode</td>*@
                 @*<td><a href="/"> @staff.staffCode</a></td>*@
 
-                <td><a href="/Staff/Details?code=@staff.staffCode"> @staff.staffCode</a></td>
+                //<td><a href="/Staff/Details?code=@staff.staffCode"> @staff.staffCode</a></td>
 
-                <td>@staff.kanaName</td>
-                <td>@staff.kanjiName</td>
-                <td>
-                </td>
+                //<td>@staff.kanaName</td>
+                //<td>@staff.kanjiName</td>
+                //<td></td>
+            //</tr>
+
+        //}
+
+    //</table>
+
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Staff Code</th>
+                <th>Kana Name</th>
+                <th>Kanji Name</th>
+
             </tr>
+        </thead>
+        <tbody>
+            @foreach (var staff in ViewData["Staffs"] as List<GripsStore.Models.Staff>)
+            {
+                <tr>
 
-        }
+                    <td><a href="/Staff/Details?code=@staff.staffCode"> @staff.staffCode</a></td>
+                    <td>@staff.kanaName</td>
+                    <td>@staff.kanjiName</td>
+                    <td>
+                        <div id="admin" class="row admin-button">
+                            <button id="btn-delete" class="btn btn-danger">Delete</button>
+                            <button id="btn-edit" class="btn btn-primary">Edit</button>
+                        </div>
+                    </td>
+                </tr>
+            }
 
+
+        </tbody>
     </table>
 
 
