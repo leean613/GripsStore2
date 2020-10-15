@@ -4,7 +4,7 @@
     <link href="../../Content/ttGuard_1.0.0.css?UpDate=202002051338" rel="stylesheet" />
     <link href="~/Content/staffView/staff.css" rel="stylesheet" />
 }
-@if (ViewData["Staffs"] != null)
+@if (ViewData["Staff"] != null)
 {
     // var an = "lytruongan";
     var staffCode = "";
@@ -13,35 +13,54 @@
         staffCode = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
     }
 
-    <table style="width:100%">
-        <tr>
-            <th>Staff Code</th>
-            <th>Kana Name</th>
-            <th>Kanji Name</th>
-        </tr>
-        @foreach (var staff in ViewData["Staffs"] as List<GripsStore.Models.Staff>)
-        {
-            <tr>
-                <td id="staffCode">@staff.staffCode</td>
-                <td>@staff.kanaName</td>
-                <td>@staff.kanjiName</td>
-                <td>
-                    <div id="admin" class="row admin-button">
-                        <button id="btn-delete" class="btn btn-danger">Delete</button>
-                        <button id="btn-edit" class="btn btn-primary">Edit</button>
-                    </div>
-                </td>
-
-            </tr>
-        }
-
-    </table>
 
 
+    foreach (var staff in ViewData["Staff"] as List<GripsStore.Models.Staff>)
+    {
+
+
+        <form>
+            <form>
+                <div class="form-group">
+                    <label for="staffcode">staffCode</label>
+                    <input type="text" class="form-control" id="staffCode" value="@staff.staffCode">
+                </div>
+                <div class="form-group">
+                    <label for="kanjiName">kanjiName</label>
+                    <input type="text" class="form-control" id="kanjiName" value="@staff.kanjiName">
+                </div>
+                <div class="form-group">
+                    <label for="kanaName">kanaName</label>
+                    <input type="text" class="form-control" id="kanaName" value="@staff.kanaName">
+                </div>
+                <div class="form-group">
+                    <label for="kanaName">staffWardCode</label>
+                    <input type="text" class="form-control" id="staffWardCode" value="@staff.staffWardCode">
+                </div>
+                <div class="form-group">
+                    <label for="kanaName">staffWardName</label>
+                    <input type="text" class="form-control" id="staffWardName" value="@staff.staffWardName">
+                </div>
+                @*<div>
+                        <button type="submit" class="btn btn-default">Update</button>
+                    </div>*@
+                <div id="admin" class="row">
+                    <button id="btn-cancel" class="btn btn-danger">Cancel</button>
+                    <button id="btn-update" class="btn btn-primary">Update</button>
+                </div>
+            </form>
+        </form>
 
 
 
+    }
 }
+
+
+
+
+
+
 @section scripts {
     <script src="~/Scripts/Staff/details.js"></script>
     <script src="../../Scripts/ttCookie_1.0.0.js"></script>

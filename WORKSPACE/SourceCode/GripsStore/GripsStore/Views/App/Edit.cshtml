@@ -12,9 +12,9 @@
     int newVerCdMin = app.verCd + 1;
     <div class="app-detail">
         <div class="row">
-            <div id="app-id" hidden>@app.appId</div>
-            <div id="app-name-origin" hidden>@app.name</div>
-            <div id="app-description-origin" hidden>@app.description</div>
+            <div id="app-id">@app.appId</div>
+            <div id="app-name-origin">@app.name</div>
+            <div id="app-description-origin">@app.description</div>
             <div class="column-icon">
                 <div class="row app-icon">
                     <img id="app-icon" src="@iconPath" />
@@ -63,7 +63,7 @@
             <button id="btn-select-qr" class="btn btn-primary">ＱＲコード画像選択</button>
             <input id="select-qr" accept="image/*" style="display: none;" onchange="OnJspSelectQR(this);" type="file">
         </div>
-            <div id="admin" class="row">
+        <div id="admin" class="row">
             <button id="btn-cancel" class="btn btn-danger">閉じる</button>
             <button id="btn-update" class="btn btn-primary">更新</button>
         </div>

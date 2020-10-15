@@ -1,9 +1,9 @@
 ﻿$(document).ready(onStartUp);
 function onStartUp() {
-    $('#btn-delete').click(function () {
+    $('#btn-cancel').click(function () {
         deleteApp();
     });
-    $('#btn-edit').click(function () {
+    $('#btn-update').click(function () {
         editApp();
     });
 }
@@ -13,6 +13,6 @@ function deleteApp() {
 }
 
 function editApp() {
-    var staffCode = $('#staffCode').text();
-    location.href = "/Staff/Edit/?code=" + staffCode;
+    var staffCodetxt = $('#staffCode').val();
+    location.href = "/Staff/Edit/?code=" + staffCodetxt;
 }

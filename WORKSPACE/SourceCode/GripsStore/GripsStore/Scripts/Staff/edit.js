@@ -1,7 +1,4 @@
-﻿//do not modify START
-
-//do not modify END
-var staffCode;
+﻿var staffCode;
 var kanjiName;
 var kanaName;
 
@@ -36,13 +33,14 @@ function updateStaff() {
     staffcode = $('#staffcode').val();
     if (staffCode != "") {
         $.ajax({
-            url: '/staff/update/',
+            url: '/Staff/Update/',
             type: 'POST',
             contentType: 'application/json;',
             data: JSON.stringify({ staffCode: staffCode, kanjiName: kanjiName, kanaName: kanaName }),
             success: function (data) {
                 if (data.success) {
-                    location.href = "/staff/detail/?code=" + staffCode;
+
+                     location.href = "/staff/detail/?code=" + staffCode;
                 } else {
                     alertError();
                 }
@@ -52,6 +50,10 @@ function updateStaff() {
             }
         });
     }
+}
+function alertError() {
+    alert("loi");
+}
 
 
 

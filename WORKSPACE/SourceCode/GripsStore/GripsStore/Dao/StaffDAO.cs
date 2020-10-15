@@ -55,19 +55,28 @@ namespace GripsStore.Dao
                 StringBuilder sbSQL = new StringBuilder();
                 using (NpgDB npgDB = Connection.DBConnect())
                 {
-                    sbSQL.AppendLine("SELECT * FROM mstaff");
+                    sbSQL.AppendLine("SELECT mstaff.staffcode, mstaff.kanjiname, mstaff.kananame, ward.wardcode, ward.wardname FROM mstaff");
                     //sbSQL.AppendLine("LEFT join m_deptgroup ");
                     //sbSQL.AppendLine("ON m_department.deptgrpcd=m_deptgroup.deptgrpcd");
+
+                    sbSQL.AppendLine("LEFT JOIN mward ward ON ward.wardcode = mstaff.wardcode");
+
                     sbSQL.AppendLine("ORDER by mstaff.staffcode");
 
 
                     npgDB.Command = sbSQL.ToString();
                     Debug.Write(sbSQL.ToString());
+                    //i là biến khóa vòng lặp
+                    bool i = true;
                     using (NpgsqlDataReader rec = npgDB.Query())
                     {
-                        while (rec.Read())
+
+                        while (rec.Read() && i)
                         {
+                            //i = false;
                             staffs.Add(new Staff(rec));
+
+
                         }
                     }
                 }
@@ -89,7 +98,8 @@ namespace GripsStore.Dao
                 StringBuilder sbSQL = new StringBuilder();
                 using (NpgDB npgDB = Connection.DBConnect())
                 {
-                    sbSQL.AppendLine("SELECT * FROM mstaff");
+                    sbSQL.AppendLine("SELECT mstaff.staffcode, mstaff.kanjiname, mstaff.kananame, ward.wardcode, ward.wardname FROM mstaff");
+                    sbSQL.AppendLine("LEFT JOIN mward ward ON ward.wardcode = mstaff.wardcode");
 
                     sbSQL.AppendLine("WhERE mstaff.staffcode= :p_staffcode");
                     sbSQL.AppendLine("ORDER BY mstaff.staffcode");
@@ -129,13 +139,11 @@ namespace GripsStore.Dao
                 StringBuilder sbSQL = new StringBuilder();
                 using (NpgDB npgDB = Connection.DBConnect())
                 {
-                    sbSQL.AppendLine("SELECT * FROM mstaff");
-
+                    sbSQL.AppendLine("SELECT mstaff.staffcode,mstaff.kanjiname,mstaff.kananame , ward.wardcode, ward.wardname FROM mstaff");
+                    sbSQL.AppendLine("LEFT JOIN mward ward ON ward.wardcode = mstaff.wardcode");
                     sbSQL.AppendLine("WhERE mstaff.staffcode= :p_staffcode");
                     sbSQL.AppendLine("ORDER BY mstaff.staffcode");
 
-                    //sbSQL.AppendLine("LEFT join m_deptgroup ");
-                    //sbSQL.AppendLine("ON m_department.deptgrpcd=m_deptgroup.deptgrpcd");
                     //sbSQL.AppendLine("ORDER by mstaff.staffcode");
 
 
@@ -165,7 +173,7 @@ namespace GripsStore.Dao
         public StaffJSON Update(string staffCode, Staff staff)
         {
             StaffJSON result = new StaffJSON();
-            result.success = false;
+
             if (staff != null)
             {
                 StringBuilder sbSQL = new StringBuilder();

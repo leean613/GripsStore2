@@ -25,18 +25,18 @@ namespace GripsStore.Controllers
             StaffDao staffDao = new StaffDao();
 
             List<Staff> list = staffDao.GetListStaff(code);
-            ViewData["Staffs"] = list;
+            ViewData["Staff"] = list;
             return View();
         }
 
 
 
-        // GET: Staff/Edit/5
+        //GET: Staff/Edit/5
         public ActionResult Edit(string code)
         {
             StaffDao staffDao = new StaffDao();
             Staff staff = staffDao.Getstaff(code);
-            ViewData["Staff"] = staff;
+            ViewData["Staffs"] = staff;
 
 
             return View(staff);
