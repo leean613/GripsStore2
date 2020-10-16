@@ -9,16 +9,16 @@ var kanaName;
 $(document).ready(onStartUp);
 function onStartUp() {
 
-    staffCode = $('#staffcode').text();
+    staffCode = $('#staffcode').val();
     if (staffCode != "") {
         $('#btn-cancel').click(function () {
-            cancel();
+            //cancel();
         });
-        $('#btn-update').click(function () {
-            updateStaff();
+        $('#btn-submit').click(function () {
+            createStaff();
         });
     } else {
-        location.href = "/Staff/detail/?code=" + staffCode;
+        location.href = "http://localhost:1035/Home/Index";
     }
 }
 
@@ -26,23 +26,24 @@ function cancel() {
     location.href = "/Staff/detail/?code=" + staffCode;
 }
 
-function updateStaff() {
+function createStaff() {
     //ttGuard.showWait();
     kanjiName = $('#kanjiName').val();
     if (kanjiName == "") {
         alert("。input kanjiName");
     }
-    kanaName = $('#kanjiName').val();
-    staffcode = $('#staffcode').val();
+    kanaName = $('#kanaName').val();
+    staffCode = $('#staffCode').val();
+    generationno = $('#generationno').val();
     if (staffCode != "") {
         $.ajax({
-            url: '/staff/update/',
+            url: '/Staff/CreateStaff/',
             type: 'POST',
             contentType: 'application/json;',
-            data: JSON.stringify({ staffCode: staffCode, kanjiName: kanjiName, kanaName: kanaName }),
+            data: JSON.stringify({ staffCode: staffCode, kanjiName: kanjiName, kanaName: kanaName, generationno: generationno }),
             success: function (data) {
                 if (data.success) {
-                    location.href = "/staff/detail/?code=" + staffCode;
+                    location.href = "/Staff/Details/?code=" + staffCode;
                 } else {
                     alertError();
                 }
@@ -52,6 +53,7 @@ function updateStaff() {
             }
         });
     }
+    else alert("staffCode mising");
 
 
 
@@ -62,4 +64,4 @@ function updateStaff() {
 
 
 
-
+}

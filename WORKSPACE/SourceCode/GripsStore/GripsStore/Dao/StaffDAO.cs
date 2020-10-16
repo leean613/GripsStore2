@@ -68,6 +68,7 @@ namespace GripsStore.Dao
                         while (rec.Read())
                         {
                             staffs.Add(new Staff(rec));
+
                         }
                     }
                 }
@@ -162,10 +163,10 @@ namespace GripsStore.Dao
         }
 
 
-        public StaffJSON Update(string staffCode, Staff staff)
+        public StaffJSON Update(string staffCod, Staff staff)
         {
             StaffJSON result = new StaffJSON();
-            result.success = false;
+            //result.success = false;
             if (staff != null)
             {
                 StringBuilder sbSQL = new StringBuilder();
@@ -177,18 +178,69 @@ namespace GripsStore.Dao
                         sbSQL.AppendLine("SET");
                         sbSQL.AppendLine("staffcode = :p_staffcode,");
                         sbSQL.AppendLine("kananame = :p_kananame,");
-                        sbSQL.AppendLine("kanjiname = :p_kanjiname,");
+                        sbSQL.AppendLine("kanjiname = :p_kanjiname");
+                        sbSQL.AppendLine("generationno = :p_generationno");
+
+                        sbSQL.AppendLine("WHERE staffcode = :p_staffcode");
 
                         npgDB.Command = sbSQL.ToString();
                         npgDB.SetParams(":p_staffcode", staff.staffCode);
                         npgDB.SetParams(":p_kananame", staff.kanaName);
                         npgDB.SetParams(":p_kanjiname", staff.kanjiName);
+                        npgDB.SetParams(":p_generationno", staff.generationno);
+
+
+                        //npgDB.ExecuteNonQuery();
+                        //result.success = true;
+                        using (NpgsqlDataReader rec = npgDB.Query())
+                        {
+                            if (rec.Read())
+                            {
+
+                                result.staff = new Staff(rec);
+                                result.success = true;
+                            }
+                        }
+
+                    }
+                }
+                catch (Exception ex) { }
+            }
+            return result;
+        }
+        public StaffJSON Create(string staffCode, Staff staff)
+        {
+            StaffJSON result = new StaffJSON();
+            if (staff != null)
+            {
+                StringBuilder sbSQL = new StringBuilder();
+                try
+                {
+                    using (NpgDB npgDB = Connection.DBConnect())
+                    {
+                        sbSQL.AppendLine("INSERT INTO mstaff");
+                        sbSQL.AppendLine("(");
+                        sbSQL.AppendLine("staffcode, kananame, kanjiname, generationno");
+                        sbSQL.AppendLine(")");
+                        sbSQL.AppendLine("VALUES");
+                        sbSQL.AppendLine("(");
+                        sbSQL.AppendLine(":p_staffcode, :p_kananame, :p_kanjiname, :p_generationno");
+                        sbSQL.AppendLine(")");
+                        sbSQL.AppendLine("RETURNING staffcode, kananame, kanjiname, generationno");
+
+                        npgDB.Command = sbSQL.ToString();
+                        npgDB.SetParams(":p_staffcode", staff.staffCode);
+                        npgDB.SetParams(":p_kananame", staff.kanaName);
+                        npgDB.SetParams(":p_kanjiname", staff.kanjiName);
+                        npgDB.SetParams(":p_generationno", staff.generationno);
+
 
                         using (NpgsqlDataReader rec = npgDB.Query())
                         {
                             if (rec.Read())
                             {
 
+                                result.staff = new Staff(rec);
                                 result.success = true;
                             }
                         }

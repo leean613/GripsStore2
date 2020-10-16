@@ -42,16 +42,30 @@ namespace GripsStore.Controllers
             return View(staff);
 
         }
-        public JsonResult Update(string staffCode, string kanjiName, string kanaName)
+        public JsonResult Update(string staffCode, string kanjiName, string kanaName, string generationno)
         {
             StaffDao staffDao = new StaffDao();
             Staff staff = new Staff
             {
                 staffCode = staffCode,
                 kanjiName = kanjiName,
-                kanaName = kanaName
+                kanaName = kanaName,
+                generationno = generationno
+
             };
             return Json(staffDao.Update(staffCode, staff));
+        }
+        public JsonResult CreateStaff(string staffCode, string kanjiName, string kanaName, string generationno)
+        {
+            StaffDao staffDao = new StaffDao();
+            Staff staff = new Staff
+            {
+                staffCode = staffCode,
+                kanjiName = kanjiName,
+                kanaName = kanaName,
+                generationno = generationno,
+            };
+            return Json(staffDao.Create(staffCode, staff));
         }
 
 
@@ -73,6 +87,11 @@ namespace GripsStore.Controllers
             {
                 return View();
             }
+        }
+        public ActionResult Register()
+        {
+
+            return View();
         }
     }
 }
