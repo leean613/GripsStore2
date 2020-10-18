@@ -20,7 +20,7 @@ namespace GripsStore.Dao
             {
                 using (NpgDB npgDB = Connection.DBConnect())
                 {
-                    sbSQL.AppendLine("SELECT staff.staffcode, staff.kanjiname, staff.kananame, ward.wardcode, ward.wardname");
+                    sbSQL.AppendLine("SELECT staff.staffcode, staff.kanjiname, staff.kananame, ward.wardcode, ward.wardname,staff.generationno  ");
                     sbSQL.AppendLine("FROM mstaff staff");
                     sbSQL.AppendLine("LEFT JOIN mward ward ON ward.wardcode = ward.wardname");
                     sbSQL.AppendLine("WHERE staff.staffcode = :p_staffCode");
@@ -178,7 +178,7 @@ namespace GripsStore.Dao
                         sbSQL.AppendLine("SET");
                         sbSQL.AppendLine("staffcode = :p_staffcode,");
                         sbSQL.AppendLine("kananame = :p_kananame,");
-                        sbSQL.AppendLine("kanjiname = :p_kanjiname");
+                        sbSQL.AppendLine("kanjiname = :p_kanjiname,");
                         sbSQL.AppendLine("generationno = :p_generationno");
 
                         sbSQL.AppendLine("WHERE staffcode = :p_staffcode");
@@ -188,7 +188,7 @@ namespace GripsStore.Dao
                         npgDB.SetParams(":p_kananame", staff.kanaName);
                         npgDB.SetParams(":p_kanjiname", staff.kanjiName);
                         npgDB.SetParams(":p_generationno", staff.generationno);
-
+                        sbSQL.AppendLine("RETURNING staffcode, kananame, kanjiname, generationno");
 
                         //npgDB.ExecuteNonQuery();
                         //result.success = true;
@@ -248,6 +248,30 @@ namespace GripsStore.Dao
                 }
                 catch (Exception ex) { }
             }
+            return result;
+        }
+        public StaffJSON Delete(string staffCode)
+        {
+            StaffJSON result = new StaffJSON();
+            //StringBuilder sbSQL = new StringBuilder();
+            try
+            {
+                StringBuilder sbSQL = new StringBuilder();
+                using (NpgDB npgDB = Connection.DBConnect())
+                {
+                    sbSQL.AppendLine("DELETE FROM mstaff");
+                    sbSQL.AppendLine("WHERE staffcode = :p_staffcode");
+
+                    npgDB.Command = sbSQL.ToString();
+                    npgDB.SetParams("p_staffcode", staffCode);
+
+                    npgDB.ExecuteNonQuery();
+
+                    result.success = true;
+                }
+
+            }
+            catch (Exception ex) { }
             return result;
         }
 

@@ -7,29 +7,35 @@
 }
 
 
-<form>
-    <div class="form-group">
-        <label for="staffCode">staffCode</label>
-        <input type="text" class="form-control" id="staffCode">
+    <form>
+        <div class="form-group">
+            <label for="staffCode">Staff Code</label>
+            <input type="text" class="form-control" id="staffCode"  maxlength="10">
 
-    </div>
-    <div class="form-group">
-        <label for="kanaName">kanaName</label>
-        <input type="text" class="form-control" id="kanaName">
-    </div>
-    <div class="form-group">
-        <label for="kanjiName">kanjiName</label>
-        <input type="text" class="form-control" id="kanjiName">
+        </div>
+        <div class="form-group">
+            <label for="kanaName">Kana Name</label>
+            <input type="text" class="form-control" id="kanaName" maxlength="20">
+        </div>
+        <div class="form-group">
+            <label for="kanjiName">Kanji Name</label>
+            <input type="text" class="form-control" id="kanjiName" maxlength="20">
 
-    </div>
+        </div>
 
-    <div class="form-group">
-        <label for="generationno">generationno</label>
-        <input type="text" class="form-control" id="generationno">
+        <div class="form-group">
+            <label for="generationno">Generation number</label>
+            <select class="form-control" id="generationno">
+                <option value="0">0</option>
+                <option value="1">1</option>
+               
+            </select>
+            @*<input type="" class="form-control" id="generationno">*@
 
-    </div>
-    <button class="btn btn-primary" id="btn-submit">Submit</button> @*type="submit"*@
-</form>
+        </div>
+        <button class="btn btn-primary" id="btn-submit">Submit</button> @*type="submit"*@
+        <button class="btn btn-danger" id="btn-cancel">Cancel</button>
+    </form>
 
 
 

@@ -13,18 +13,25 @@ namespace GripsStore.Controllers
         // GET: Staff
         public ActionResult Index()
         {
+            
             StaffDao staffDao = new StaffDao();
             List<Staff> list = staffDao.GetListStaff();
             ViewData["Staffs"] = list;
             return View();
         }
+        public JsonResult Delete(string staffCode)
+        {
+            StaffDao staffDao = new StaffDao();
+            return Json(staffDao.Delete(staffCode));
+        }
+
 
 
         public ActionResult Details(string code)
         {
             StaffDao staffDao = new StaffDao();
 
-            List<Staff> list = staffDao.GetListStaff(code);
+            Staff list = staffDao.Getstaff(code);
             ViewData["Staffs"] = list;
             return View();
         }

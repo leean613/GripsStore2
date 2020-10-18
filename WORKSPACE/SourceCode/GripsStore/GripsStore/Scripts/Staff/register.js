@@ -4,26 +4,24 @@
 var staffCode;
 var kanjiName;
 var kanaName;
-
+var generationno;
 
 $(document).ready(onStartUp);
 function onStartUp() {
 
-    staffCode = $('#staffcode').val();
-    if (staffCode != "") {
+    //staffCode = $('#staffcode').val();
+    
         $('#btn-cancel').click(function () {
-            //cancel();
+            cancel();
         });
         $('#btn-submit').click(function () {
             createStaff();
         });
-    } else {
-        location.href = "http://localhost:1035/Home/Index";
-    }
+ 
 }
 
-function cancel() {
-    location.href = "/Staff/detail/?code=" + staffCode;
+function cancel() {       
+    location.href = "https://www.google.com/";
 }
 
 function createStaff() {

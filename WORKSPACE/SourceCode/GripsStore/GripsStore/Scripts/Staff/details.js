@@ -1,32 +1,33 @@
 ﻿var kanjiName;
 var kanaName;
 var generationno;
-var staffCode;
+//var staffCode;
+
+var staffCode = $('#staffCode').val();
 
 $(document).ready(onStartUp);
 function onStartUp() {
-    $('#btn-delete').click(function () {
-        //delete ();
+    $('#btn-cancel').click(function () {
+        cancel();
     })
     $('#btn-submit').click(function () {
         editStaff();
     });
 }
 
-//function delete () {
-//    var an = "1";
-//}
 
+function cancel() {
+
+    staffCode = $('#staffCode').val();
+    location.href = "/Staff/Details/?code=" + staffCode;
+}
 function editStaff() {
     //ttGuard.showWait();
-    kanjiName = $('#kanjiName').val();
-    if (kanjiName == "") {
-        alert("please input kanjiName。");
-    }
-    kanaName = $('#kanaName').val();
-    staffCode = $('#staffCode').val();
-    generationno = $('#generationno').val();
-    if (staffCode != "") {
+        kanjiName = $('#kanjiName').val();       
+        kanaName = $('#kanaName').val();
+        generationno = $('#generationno').val();
+
+    if (staffCode != "" && kanjiName != "" && kanaName != "") {
         $.ajax({
             url: '/Staff/Update/',
             type: 'POST',
@@ -44,5 +45,9 @@ function editStaff() {
             }
         });
     }
-    else alert("staffCode mising");
-}
+    else {
+        alert("mising info");
+        location.href = "/Staff/Details/?code=" + staffCode;
+    }
+    }
+    
