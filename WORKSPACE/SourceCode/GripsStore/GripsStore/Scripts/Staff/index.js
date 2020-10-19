@@ -13,6 +13,23 @@ function onStartUp() {
 }
 
 function deleteApp() {
+    var result = confirm("アプリが削除されます。よろしいでしょうか？");
+    if (result) {
+        
+        var appId = $('#app-id').text();
+        $.ajax({
+            url: '/app/delete/',
+            type: 'POST',
+            contentType: 'application/json;',
+            data: JSON.stringify({ staffCode: staffCode}),
+            success: function (data) {
+                if (data.success) {
+                    alert("アプリが削除されました。");
+                    location.href = "/";
+                }
+            }
+        });
+    }
 
 }
 

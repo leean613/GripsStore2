@@ -10,6 +10,10 @@ function onStartUp() {
     $('#btn-cancel').click(function () {
         cancel();
     })
+    $('#btn-default').click(function () {
+        deleteApp();
+    })
+
     $('#btn-submit').click(function () {
         editStaff();
     });
@@ -21,6 +25,28 @@ function cancel() {
     staffCode = $('#staffCode').val();
     location.href = "/Staff/Details/?code=" + staffCode;
 }
+function deleteApp() {
+    var result = confirm("アプリが削除されます。よろしいでしょうか？");
+    if (result) {
+        
+
+        staffCode = $('#staffCode').val();
+        $.ajax({
+            url: '/Staff/Delete/',
+            type: 'POST',
+            contentType: 'application/json;',
+            data: JSON.stringify({ staffCode: staffCode}),
+            success: function (data) {
+                if (data.success) {
+                    alert("アプリが削除されました。");
+                    location.href = "/";
+                }
+            }
+        });
+    }
+}
+
+
 function editStaff() {
     //ttGuard.showWait();
         kanjiName = $('#kanjiName').val();       
