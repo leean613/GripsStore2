@@ -286,6 +286,41 @@ namespace GripsStore.Dao
             catch (Exception ex) { }
             return result;
         }
+        public long PageCount(int PageSize)
+        {
+            long RowCount = 0;
+            try
+            {
+                StringBuilder sbSQL = new StringBuilder();
+                using (NpgDB npgDB = Connection.DBConnect())
+                {
+                    sbSQL.AppendLine("SELECT count(staffcode) FROM mstaff");
+                    // sbSQL.AppendLine("ORDER by mstaff.staffcode");
+
+
+                    npgDB.Command = sbSQL.ToString();
+                    Debug.Write(sbSQL.ToString());
+                    using (NpgsqlDataReader rec = npgDB.Query())
+                    {
+                        if (rec.Read())
+                        {
+                            string strPageCount = NpgDB.getLongString(rec, "count");
+                            RowCount = long.Parse(strPageCount);
+                        }
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            long count = (long)Math.Ceiling((1.0 * (PageSize / RowCount)));
+            return count;
+
+
+        }
 
 
 

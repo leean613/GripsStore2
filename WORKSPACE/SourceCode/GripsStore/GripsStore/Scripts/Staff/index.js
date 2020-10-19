@@ -1,4 +1,5 @@
-﻿$(document).ready(onStartUp);
+﻿var nearStaffCode;
+$(document).ready(onStartUp);
 function onStartUp() {
     Auth = getCookie("STAFFCODE");
     if (Auth != "") {
@@ -8,6 +9,10 @@ function onStartUp() {
         $('#btn-edit').click(function () {
             editApp();
         });
+        $('#btn-demo').click(function () {
+            demo();
+        });
+
     }
     //$('#btn-add').click(function () {
     //    AddStaff();
@@ -35,8 +40,16 @@ function deleteApp() {
     }
 
 }
-
 function editApp() {
     var staffCode = $('#staffCode').val();
     location.href = "/Staff/Details/?code=" + staffCode;
 }
+
+function demo() {
+
+    nearStaffCode = $(this).closest('td').find('#staffCode').val();
+    //console.log(nearStaffCode);
+    alert(nearStaffCode);
+}
+
+

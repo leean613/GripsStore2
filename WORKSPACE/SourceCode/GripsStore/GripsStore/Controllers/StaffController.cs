@@ -5,11 +5,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace GripsStore.Controllers
 {
     public class StaffController : Controller
     {
+        //[HttpGet]
+        //public ActionResult Pagination(int? page)
+        //{
+        //    var dummyItems = Enumerable.Range(1, 150).Select(x => "Items" + x);
+        //    var pager = new Page(dummyItems.Count(), page);
+
+        //    var viewModel = new UserModel()
+        //    {
+        //        Items = dummyItems.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+        //        Pager = pager
+        //    };
+
+        //    return View(viewModel);
+        //}
+
+
+
         // GET: Staff
         public ActionResult Index()
         {
@@ -100,5 +118,22 @@ namespace GripsStore.Controllers
             ViewBag.Title = "新しいスタッフを作成する";
             return View();
         }
+        public long pageCount()
+        {
+            StaffDao staffDao = new StaffDao();
+            long result = 0;
+            int PageSize = 10;
+            result = staffDao.PageCount(PageSize);
+            return result;
+        }
+        ///// 
+        ///phân trang
+
+
+
+
+
+
+
     }
 }

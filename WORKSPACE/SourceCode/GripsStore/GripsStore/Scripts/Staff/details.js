@@ -37,7 +37,7 @@ function deleteStaff() {
 
         $.ajax({
             url: '/Staff/Delete/',
-            type: 'POST',
+            type: 'Post',
             contentType: 'application/json;',
             data: JSON.stringify({ staffCode: staffCode }),
             success: function (data) {
