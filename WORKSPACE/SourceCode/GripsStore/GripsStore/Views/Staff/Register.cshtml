@@ -3,42 +3,55 @@
     <link href="~/content/app/site.css?update=202002071636" rel="stylesheet" />
     <link href="../../content/ttguard_1.0.0.css?update=202002051338" rel="stylesheet" />
     <link href="~/content/staffview/details.css" rel="stylesheet" />
-
 }
+@if (true)
+{
+    var cookie = "";
+    if (Request.Cookies["GRIPS_STORE_STAFFCODE"] != null)
+    {
+        cookie = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
+    }
+    if (cookie == "9999")
+    {
+        <form>
 
 
-    <form>
-        <div class="form-group">
-            <label for="staffCode">Staff Code</label>
-            <input type="text" class="form-control" id="staffCode"  maxlength="10">
+            <div class="form-group">
+                <label for="staffCode">Staff Code</label>
+                <input type="text" class="form-control" id="staffCode" maxlength="10">
 
-        </div>
-        <div class="form-group">
-            <label for="kanaName">Kana Name</label>
-            <input type="text" class="form-control" id="kanaName" maxlength="20">
-        </div>
-        <div class="form-group">
-            <label for="kanjiName">Kanji Name</label>
-            <input type="text" class="form-control" id="kanjiName" maxlength="20">
+            </div>
+            <div class="form-group">
+                <label for="kanaName">Kana Name</label>
+                <input type="text" class="form-control" id="kanaName" maxlength="20">
+            </div>
+            <div class="form-group">
+                <label for="kanjiName">Kanji Name</label>
+                <input type="text" class="form-control" id="kanjiName" maxlength="20">
 
-        </div>
+            </div>
 
-        <div class="form-group">
-            <label for="generationno">Generation number</label>
-            <select class="form-control" id="generationno">
-                <option value="0">0</option>
-                <option value="1">1</option>
-               
-            </select>
-            @*<input type="" class="form-control" id="generationno">*@
+            <div class="form-group">
+                <label for="generationno">Generation number</label>
+                <select class="form-control" id="generationno">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
 
-        </div>
-        <button class="btn btn-primary" id="btn-submit">Submit</button> @*type="submit"*@
-        <button class="btn btn-danger" id="btn-cancel">Cancel</button>
-    </form>
+                </select>
+                @*<input type="" class="form-control" id="generationno">*@
 
-
-
+            </div>
+            <button class="btn btn-primary" id="btn-submit">Submit</button> @*type="submit"*@
+            <button class="btn btn-danger" id="btn-cancel">Cancel</button>
+        </form>
+    }
+    else
+    { <h1 style="margin-left : 20px; margin-top: 40px ">
+            管理者の役割のみ戻る
+            <a href="/" style="margin-left:20px">戻る</a>
+        </h1>
+    }
+}
 
 
 

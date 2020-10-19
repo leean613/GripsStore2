@@ -3,24 +3,32 @@
     <link href="~/Content/App/site.css?UpDate=202002071636" rel="stylesheet" />
     <link href="../../Content/ttGuard_1.0.0.css?UpDate=202002051338" rel="stylesheet" />
     <link href="~/Content/staffView/details.css" rel="stylesheet" />
-
 }
 
+
 @if (ViewData["Staffs"] != null)
+{
+    //// var an = "lytruongan";
+
+
+    var cookie = "";
+    if (Request.Cookies["GRIPS_STORE_STAFFCODE"] != null)
     {
-        //// var an = "lytruongan";
-        //var staffCode1 = "";
-        //if (Request.Cookies["GRIPS_STORE_STAFFCODE"] != null)
-        //{
-        //    staffCode1 = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
-        //}
+        cookie = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
+    }
+
+
+
+    if (cookie == "9999")
+    {
         var staff = ViewData["Staffs"] as GripsStore.Models.Staff;
 
         <div class="detail-staff">
-        @*@foreach (var staff in ViewData["Staffs"] as List<GripsStore.Models.Staff>)*@
+            @*@foreach (var staff in ViewData["Staffs"] as List<GripsStore.Models.Staff>)*@
 
-        
+
             <form>
+
                 <div class="form-group">
                     <label for="staffCode">staffCode</label>
                     <input type="text" class="form-control" id="staffCode" value="@staff.staffCode" readonly>
@@ -37,11 +45,12 @@
                 </div>
 
 
-                @*<div class="form-group">
-        <label for="exampleCheck1"></label>
-        <input type="hidden" class="form-control" id="generationno" value="@staff.generationno" readonly>
 
-            </div>*@
+                @*<div class="form-group">
+                    <label for="exampleCheck1"></label>
+                    <input type="hidden" class="form-control" id="generationno" value="@staff.generationno" readonly>
+
+                        </div>*@
                 <div class="form-group">
                     <label for="generationno">Generation number</label>
                     <select class="form-control" id="generationno">
@@ -58,20 +67,27 @@
 
 
                 <button class="btn btn-primary" id="btn-submit">Submit</button>
-                <button class="btn btn-danger" id="btn-cancel">Cancel</button>
-
-                <button class="btn btn-default" id="btn-default">Delete</button>
+                <button class="btn btn-default" id="btn-cancel">Cancel</button>
+                <button class="btn btn-danger" id="btn-default">Delete</button>
             </form>
-        
-    </div>
+
+        </div>
 
 
+    }
+    else
+    { <h1 style="margin-left : 20px; margin-top: 40px ">
+            管理者の役割のみ戻る
+            <a href="/" style="margin-left:20px">戻る</a>
+        </h1>
 
+    }
 
 
 
 
 }
+
 @section scripts {
     <script src="~/Scripts/Staff/details.js"></script>
     <script src="../../Scripts/ttCookie_1.0.0.js"></script>

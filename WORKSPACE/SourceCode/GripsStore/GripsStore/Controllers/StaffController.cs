@@ -13,7 +13,7 @@ namespace GripsStore.Controllers
         // GET: Staff
         public ActionResult Index()
         {
-            
+
             StaffDao staffDao = new StaffDao();
             List<Staff> list = staffDao.GetListStaff();
             ViewData["Staffs"] = list;
@@ -88,7 +88,7 @@ namespace GripsStore.Controllers
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index/staff");
             }
             catch
             {
@@ -97,7 +97,7 @@ namespace GripsStore.Controllers
         }
         public ActionResult Register()
         {
-
+            ViewBag.Title = "新しいスタッフを作成する";
             return View();
         }
     }

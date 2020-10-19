@@ -7,16 +7,19 @@ var staffCode = $('#staffCode').val();
 
 $(document).ready(onStartUp);
 function onStartUp() {
-    $('#btn-cancel').click(function () {
-        cancel();
-    })
-    $('#btn-default').click(function () {
-        deleteApp();
-    })
+    Auth = getCookie("STAFFCODE");
+    if (Auth != 0) {
+        $('#btn-cancel').click(function () {
+            cancel();
+        })
+        $('#btn-default').click(function () {
+            deleteStaff();
+        })
 
-    $('#btn-submit').click(function () {
-        editStaff();
-    });
+        $('#btn-submit').click(function () {
+            editStaff();
+        });
+    }
 }
 
 
@@ -25,33 +28,35 @@ function cancel() {
     staffCode = $('#staffCode').val();
     location.href = "/Staff/Details/?code=" + staffCode;
 }
-function deleteApp() {
+function deleteStaff() {
     var result = confirm("アプリが削除されます。よろしいでしょうか？");
+    staffCode = $('#staffCode').val();
     if (result) {
-        
 
-        staffCode = $('#staffCode').val();
+
+
         $.ajax({
             url: '/Staff/Delete/',
             type: 'POST',
             contentType: 'application/json;',
-            data: JSON.stringify({ staffCode: staffCode}),
+            data: JSON.stringify({ staffCode: staffCode }),
             success: function (data) {
                 if (data.success) {
                     alert("アプリが削除されました。");
-                    location.href = "/";
+                    location.href = "/Staff/Index/";
                 }
             }
         });
     }
+    else location.href = "/Staff/Details/?code=" + staffCode;
 }
 
 
 function editStaff() {
     //ttGuard.showWait();
-        kanjiName = $('#kanjiName').val();       
-        kanaName = $('#kanaName').val();
-        generationno = $('#generationno').val();
+    kanjiName = $('#kanjiName').val();
+    kanaName = $('#kanaName').val();
+    generationno = $('#generationno').val();
 
     if (staffCode != "" && kanjiName != "" && kanaName != "") {
         $.ajax({
@@ -75,5 +80,5 @@ function editStaff() {
         alert("mising info");
         location.href = "/Staff/Details/?code=" + staffCode;
     }
-    }
-    
+}
+

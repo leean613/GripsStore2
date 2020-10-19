@@ -182,13 +182,14 @@ namespace GripsStore.Dao
                         sbSQL.AppendLine("generationno = :p_generationno");
 
                         sbSQL.AppendLine("WHERE staffcode = :p_staffcode");
+                        sbSQL.AppendLine("RETURNING staffcode, kananame, kanjiname, generationno");
 
                         npgDB.Command = sbSQL.ToString();
                         npgDB.SetParams(":p_staffcode", staff.staffCode);
                         npgDB.SetParams(":p_kananame", staff.kanaName);
                         npgDB.SetParams(":p_kanjiname", staff.kanjiName);
                         npgDB.SetParams(":p_generationno", staff.generationno);
-                        sbSQL.AppendLine("RETURNING staffcode, kananame, kanjiname, generationno");
+
 
                         //npgDB.ExecuteNonQuery();
                         //result.success = true;
@@ -264,10 +265,21 @@ namespace GripsStore.Dao
 
                     npgDB.Command = sbSQL.ToString();
                     npgDB.SetParams("p_staffcode", staffCode);
-
+                    Debug.Write(staffCode);
                     npgDB.ExecuteNonQuery();
-
                     result.success = true;
+                    //using (NpgsqlDataReader rec = npgDB.Query())
+                    //{
+                    //    if (rec.Read())
+                    //    {
+                    //        string deletedStaff = NpgDB.getString(rec, "staffCode");
+                    //        result.staff = new Staff
+                    //        {
+                    //            staffCode = deletedStaff
+                    //        };
+                    //        result.success = true;
+                    //    }
+                    //}
                 }
 
             }

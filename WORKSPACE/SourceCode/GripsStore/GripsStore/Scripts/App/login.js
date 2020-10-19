@@ -1,5 +1,6 @@
 ﻿var COOKIE_STAFF_CODE = "STAFFCODE"
 var COOKIE_STAFF_NAME = "STAFFNAME"
+
 $(document).ready(onStartUp);
 function onStartUp() {
     staffCode = getCookie(COOKIE_STAFF_CODE);
@@ -48,6 +49,7 @@ function login() {
                 setCookie(COOKIE_STAFF_CODE, data.staff.staffCode);
                 setCookie(COOKIE_STAFF_NAME, data.staff.kanjiName);
                 location.href = "/";
+
             } else {
                 $('#warring').text("ユーザー名／パスワードをご確認してください");
                 $('#warring').removeClass("invisible").addClass("visible");

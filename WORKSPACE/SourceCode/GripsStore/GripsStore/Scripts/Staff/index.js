@@ -1,11 +1,14 @@
 ﻿$(document).ready(onStartUp);
 function onStartUp() {
-    $('#btn-delete').click(function () {
-        deleteApp();
-    });
-    $('#btn-edit').click(function () {
-        editApp();
-    });
+    Auth = getCookie("STAFFCODE");
+    if (Auth != "") {
+        $('#btn-delete').click(function () {
+            deleteApp();
+        });
+        $('#btn-edit').click(function () {
+            editApp();
+        });
+    }
     //$('#btn-add').click(function () {
     //    AddStaff();
     //});
@@ -15,13 +18,13 @@ function onStartUp() {
 function deleteApp() {
     var result = confirm("アプリが削除されます。よろしいでしょうか？");
     if (result) {
-        
+
         var appId = $('#app-id').text();
         $.ajax({
             url: '/app/delete/',
             type: 'POST',
             contentType: 'application/json;',
-            data: JSON.stringify({ staffCode: staffCode}),
+            data: JSON.stringify({ staffCode: staffCode }),
             success: function (data) {
                 if (data.success) {
                     alert("アプリが削除されました。");

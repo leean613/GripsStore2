@@ -7,74 +7,60 @@
 @if (ViewData["Staffs"] != null)
 {
     // var an = "lytruongan";
-    var staffCode = "";
+    var cookie = "";
     if (Request.Cookies["GRIPS_STORE_STAFFCODE"] != null)
     {
-        staffCode = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
+        cookie = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
     }
-    @*<div></div>*@
-    @*<table style="width:100%">
-        <tr>
-            <th>Staff Code</th>
-            <th>Kana Name</th>
-            <th>Kanji Name</th>
-        </tr>
-        @foreach (var staff in ViewData["Staffs"] as List<GripsStore.Models.Staff>)
-        {
-            <tr>
-                @*<td>@staff.staffCode</td>*@
-    @*<td><a href="/"> @staff.staffCode</a></td>*@
-
-    //<td><a href="/Staff/Details?code=@staff.staffCode"> @staff.staffCode</a></td>
-
-    //<td>@staff.kanaName</td>
-    //<td>@staff.kanjiName</td>
-    //<td></td>
-    //</tr>
-
-    //}
-
-    //</table>
 
 
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Staff Code</th>
-                <th>Kana Name</th>
-                <th>Kanji Name</th>
-
-                <th id="123"><a href="/Staff/Register/">NEW</a></th>
-
-            </tr>
-
-        </thead>
-        <tbody>
-            @foreach (var staff in ViewData["Staffs"] as List<GripsStore.Models.Staff>)
-            {
+    if (cookie == "9999")
+    {
+        <table class="table table-hover">
+            <thead>
                 <tr>
+                    <th>Staff Code</th>
+                    <th>Kana Name</th>
+                    <th>Kanji Name</th>
 
-                    <td id="staffCode"><a href="/Staff/Details?code=@staff.staffCode"> @staff.staffCode</a></td>
-                    <td>@staff.kanaName</td>
-                    <td>@staff.kanjiName</td>
+                    <th id="123"><a href="/Staff/Register/">NEW</a></th>
 
-                    <td>
-                        <div id="admin" class="row admin-button">
-                            <a href="/Staff/Details?code=@staff.staffCode" class="btn btn-sm btn-info">Edit </a>
-
-                            <a href="/Staff/delete?code=@staff.staffCode" class="btn btn-sm btn-danger">Delete </a>
-                            @*<button id="btn-delete" class="btn btn-danger">Delete</button>
-                                <button id="btn-edit" class="btn btn-primary">Edit</button>*@
-
-
-                        </div>
-                    </td>
                 </tr>
-            }
+
+            </thead>
+            <tbody>
+                @foreach (var staff in ViewData["Staffs"] as List<GripsStore.Models.Staff>)
+                {
+                    <tr>
+
+                        <td id="staffCode"><a href="/Staff/Details?code=@staff.staffCode"> @staff.staffCode</a></td>
+                        <td>@staff.kanaName</td>
+                        <td>@staff.kanjiName</td>
+
+                        <td>
+                            <div id="admin" class="row admin-button">
+                                <a href="/Staff/Details?code=@staff.staffCode" class="btn btn-sm btn-info">Edit </a>
+
+                                <a href="/Staff/delete?code=@staff.staffCode" class="btn btn-sm btn-danger">Delete </a>
+                                @*<button id="btn-delete" class="btn btn-danger">Delete</button>
+                                    <button id="btn-edit" class="btn btn-primary">Edit</button>*@
 
 
-        </tbody>
-    </table>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    }
+    else
+    { <h1 style="margin-left : 20px; margin-top: 40px ">
+            管理者の役割のみ戻る
+            <a href="/" style="margin-left:20px">戻る</a>
+        </h1>
+    }
 
 
 
