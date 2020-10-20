@@ -3,6 +3,7 @@ var kanaName;
 var generationno;
 //var staffCode;
 
+
 var staffCode = $('#staffCode').val();
 
 $(document).ready(onStartUp);
@@ -19,6 +20,8 @@ function onStartUp() {
         $('#btn-submit').click(function () {
             editStaff();
         });
+
+
     }
 }
 
@@ -28,6 +31,13 @@ function cancel() {
     staffCode = $('#staffCode').val();
     location.href = "/Staff/Details/?code=" + staffCode;
 }
+
+
+    
+}
+
+
+
 function deleteStaff() {
     var result = confirm("アプリが削除されます。よろしいでしょうか？");
     staffCode = $('#staffCode').val();

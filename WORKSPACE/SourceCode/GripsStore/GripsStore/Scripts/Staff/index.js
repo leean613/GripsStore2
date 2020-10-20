@@ -1,4 +1,5 @@
 ﻿var nearStaffCode;
+
 $(document).ready(onStartUp);
 function onStartUp() {
     Auth = getCookie("STAFFCODE");
@@ -12,6 +13,9 @@ function onStartUp() {
         $('#btn-demo').click(function () {
             demo();
         });
+        $('#btn-search').click(function () {
+            search();
+        });
 
     }
     //$('#btn-add').click(function () {
@@ -19,6 +23,44 @@ function onStartUp() {
     //});
 
 }
+
+function search() {
+
+    staffCode = $('#btn-search').val();
+    var s = `<div id="admin" class="row admin-button">
+              <button id="btn-delete" class="btn btn-danger">Delete</button>
+              <button id="btn-edit" class="btn btn-primary">Edit</button>
+         </div>`;
+
+    $.ajax({
+        url: '/Staff/SearchStaff/',
+        type: 'Post',
+        contentType: 'application/json;',
+        data: JSON.stringify({ staffCode: staffCode }),
+        success: fnSuccess
+
+    });
+
+    function fnSuccess(response) {
+        $("#tbody").html("");
+        $(response).each(function (index, staff) {
+            //console.log(index, staff);
+
+            var tr = $("<tr/>");
+            $("<td/>").html(staff.staffCode).appendTo(tr);
+            $("<td/>").html(staff.kanaName).appendTo(tr);
+            $("<td/>").html(staff.kanjiName).appendTo(tr);
+
+            $("<td/>").html(s).appendTo(tr);
+            tr.appendTo("#tbody");
+            $("#info").html((pageCount + 1));
+
+        })
+
+    }
+}
+
+
 
 function deleteApp() {
     var result = confirm("アプリが削除されます。よろしいでしょうか？");

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using PagedList.Mvc;
+using PagedList;
 
 namespace GripsStore.Controllers
 {
@@ -29,14 +31,55 @@ namespace GripsStore.Controllers
 
 
         // GET: Staff
+        //[HttpGet]
         public ActionResult Index()
         {
 
             StaffDao staffDao = new StaffDao();
-            List<Staff> list = staffDao.GetListStaff();
+            List<Staff> list = staffDao.GetListStaff(0);
             ViewData["Staffs"] = list;
             return View();
         }
+        [HttpPost]
+        public JsonResult GetIndex(string pageCount)
+        {
+            StaffDao staffDao = new StaffDao();
+            List<Staff> list = staffDao.GetListStaff(int.Parse(pageCount));
+            return Json(list);
+        }
+
+        [HttpPost]
+        public JsonResult SearchStaff(string staffCode)
+        {
+            StaffDao staffDao = new StaffDao();
+            List<Staff> list = staffDao.GetListStaff(staffCode);
+            return Json(list);
+        }
+
+        [HttpPost]
+        public JsonResult GetPageCount(string axx)
+        {
+            axx = axx + " a";
+            StaffDao staffDao = new StaffDao();
+            return Json(staffDao.PageCount());
+
+        }
+
+
+
+        //public ActionResult Index()
+        //{
+
+        //    StaffDao staffDao = new StaffDao();
+        //    List<Staff> list = staffDao.GetListStaff(0);
+        //    ViewData["Staffs"] = list;
+        //    return View();
+        //}
+
+
+
+
+
         public JsonResult Delete(string staffCode)
         {
             StaffDao staffDao = new StaffDao();
@@ -118,14 +161,16 @@ namespace GripsStore.Controllers
             ViewBag.Title = "新しいスタッフを作成する";
             return View();
         }
-        public long pageCount()
-        {
-            StaffDao staffDao = new StaffDao();
-            long result = 0;
-            int PageSize = 10;
-            result = staffDao.PageCount(PageSize);
-            return result;
-        }
+        //[HttpGet]
+        //public long pageCount()
+        //{
+        //    StaffDao staffDao = new StaffDao();
+        //    long result = 0;
+        //    int PageSize = 10;
+        //    result = staffDao.PageCount();
+        //    return result;
+        //}
+
         ///// 
         ///phân trang
 

@@ -23,12 +23,19 @@
                     <th>Kana Name</th>
                     <th>Kanji Name</th>
 
-                    <th id="123"><a href="/Staff/Register/">NEW</a></th>
+                    <th id="123">
+                        <form>
+                            <div>
+                                <input id="#btn-search" type="text" placeholder="Search" aria-label="Search">
+                            </div>
+                        </form>
+                    </th>
+                    <th><a href="/Staff/Register/">NEW</a></th>
 
                 </tr>
 
             </thead>
-            <tbody>
+            <tbody id="tbody">
                 @foreach (var staff in ViewData["Staffs"] as List<GripsStore.Models.Staff>)
                 {
                     <tr>
@@ -38,14 +45,14 @@
                         <td>@staff.kanjiName</td>
 
                         <td>
-                            <div id="admin" class="row admin-button">
+                            <div id="adbutton">
                                 @*<a href="/Staff/Details?code=@staff.staffCode" class="btn btn-sm btn-info">Edit </a>
 
                                     <button class="btn btn-sm btn-danger" style=" float: none; text-align: center;width: 50px;">Delete </button>*@
 
                                 <button id="btn-delete" class="btn btn-danger">Delete</button>
                                 <button id="btn-edit" class="btn btn-primary">Edit</button>
-                                <button id="btn-demo" class="btn btn-default">demo</button>
+                                @*<button id="btn-demo" class="btn btn-default">demo</button>*@
 
 
                             </div>
@@ -60,8 +67,9 @@
             <li><a href="#">First page</a></li>
             <li><a href="#">Page Before</a></li>
             <li><a href="#">Page After</a></li>
-            <li><a href="#"><span>5/15</span></a></li>
+            <li><a href="#"><span id="info">1</span></a></li>
             <li><a href="#">Last page</a></li>
+            <li><a href="#">ajax</a></li>
         </ul>
     }
     else
@@ -81,5 +89,6 @@
     <script src="~/Scripts/Staff/paging.js"></script>
     <script src="../../Scripts/ttCookie_1.0.0.js"></script>
     <script src="../../Scripts/ttGuard_1.0.0.js?UpDate=202002101014"></script>
+    <script src="~/Scripts/Staff/index.js"></script>
 
 }

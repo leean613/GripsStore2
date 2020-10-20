@@ -47,7 +47,7 @@ namespace GripsStore.Dao
             }
             return result;
         }
-        public List<Staff> GetListStaff()
+        public List<Staff> GetListStaff(int pageCount)
         {
             List<Staff> staffs = new List<Staff>();
             try
@@ -56,12 +56,18 @@ namespace GripsStore.Dao
                 using (NpgDB npgDB = Connection.DBConnect())
                 {
                     sbSQL.AppendLine("SELECT * FROM mstaff");
+
+
                     //sbSQL.AppendLine("LEFT join m_deptgroup ");
                     //sbSQL.AppendLine("ON m_department.deptgrpcd=m_deptgroup.deptgrpcd");
                     sbSQL.AppendLine("ORDER by mstaff.staffcode");
+                    sbSQL.AppendLine("LIMIT 10");
+                    sbSQL.AppendLine(" offset :p_pageCount");
+                    pageCount = pageCount * 10;
 
 
                     npgDB.Command = sbSQL.ToString();
+                    npgDB.SetParams(":p_pageCount", pageCount);
                     Debug.Write(sbSQL.ToString());
                     using (NpgsqlDataReader rec = npgDB.Query())
                     {
@@ -286,7 +292,7 @@ namespace GripsStore.Dao
             catch (Exception ex) { }
             return result;
         }
-        public long PageCount(int PageSize)
+        public long PageCount()
         {
             long RowCount = 0;
             try
@@ -316,7 +322,7 @@ namespace GripsStore.Dao
             {
                 throw (ex);
             }
-            long count = (long)Math.Ceiling((1.0 * (PageSize / RowCount)));
+            long count = (long)Math.Ceiling((1.0 * (RowCount / 10)));
             return count;
 
 
