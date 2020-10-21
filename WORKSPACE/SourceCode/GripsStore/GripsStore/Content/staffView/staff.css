@@ -22,13 +22,21 @@ tr:nth-child(even) {
 }
 
 #staffCode {
+    width: 20%;
 }
 
 #kanaName {
+    width: 20%;
 }
 
 #kanjiName {
+    width: 20%;
 }
 
-#td-adbutton {
+#search {
+    width: 20%;
+}
+
+#register {
+    width: 20%;
 }

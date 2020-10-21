@@ -2,38 +2,46 @@
 
 $(document).ready(onStartUp);
 function onStartUp() {
-    Auth = getCookie("STAFFCODE");
-    if (Auth != "") {
-        $('#btn-delete').click(function () {
-            deleteApp();
-        });
-        $('#btn-edit').click(function () {
-            editApp();
-        });
-        $('#btn-demo').click(function () {
-            demo();
-        });
-        $('#btn-search').click(function () {
-            search();
-        });
+
+
+    try {
+        //$('.site-title').hide();
+        $('.btn-primary').on('click', editApp);
+
+
 
     }
-    //$('#btn-add').click(function () {
-    //    AddStaff();
-    //});
+    catch (ex) {
+        ttDebug.Exception(SCRIPT_FILE, 'onStartUp', ex);
+    }
+
+}
+function checkPressButton() {
+    try {
+        //$('.site-title').hide();
+        $('.btn-primary').on('click', editApp);
+
+
+    }
+    catch (ex) {
+        ttDebug.Exception(SCRIPT_FILE, 'onStartUp', ex);
+    }
 
 }
 
+
+
+
 function search() {
 
-    staffCode = $('#btn-search').val();
+    staffCode = $('#search-input').val();
     var s = `<div id="admin" class="row admin-button">
               <button id="btn-delete" class="btn btn-danger">Delete</button>
               <button id="btn-edit" class="btn btn-primary">Edit</button>
          </div>`;
 
     $.ajax({
-        url: '/Staff/SearchStaff/',
+        url: '/Staff/SearchStaffById/',
         type: 'Post',
         contentType: 'application/json;',
         data: JSON.stringify({ staffCode: staffCode }),
@@ -83,8 +91,15 @@ function deleteApp() {
 
 }
 function editApp() {
-    var staffCode = $('#staffCode').val();
-    location.href = "/Staff/Details/?code=" + staffCode;
+
+
+    location.href = "/Staff/Details/?code=" + $(this).closest('tr').find('.staffCodeQuery').text().trim();
+
+
+    //console.log($(this).closest('tr').find('.staffCodeQuery').text());
+    //console.log("/Staff/Details/?code=" + $(this).closest('tr').find('.staffCodeQuery').text().trim());
+
+
 }
 
 function demo() {

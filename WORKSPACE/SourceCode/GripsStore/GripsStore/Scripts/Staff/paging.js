@@ -1,11 +1,12 @@
 ﻿var pageCount = 0;
-var s = `<div id="admin" class="row admin-button">
-              <button id="btn-delete" class="btn btn-danger">Delete</button>
-              <button id="btn-edit" class="btn btn-primary">Edit</button>
+var s = `<div >
+              <button class="btn btn-danger">Delete</button>
+              <button class="btn btn-primary">Edit</button>
          </div>`;
 
+
 $(function () {
-    var totalPage;
+    //var totalPage;
 
     //ajax({
     //    url: '/staff/GetPageCount',
@@ -28,6 +29,7 @@ $(function () {
             data: JSON.stringify({ dcm: dcm }),
             success: function (response) {
                 console.log(response);
+
             }
         })
     });
@@ -42,17 +44,22 @@ $(function () {
             data: JSON.stringify({ pageCount: pageCount }),
             success: fnSuccess
         })
+
     });
 
     $(".pager a:eq(1)").click(function () {
-        pageCount--;
-        $.ajax({
-            url: '/staff/GetIndex',
-            type: 'POST',
-            contentType: 'application/json;',
-            data: JSON.stringify({ pageCount: pageCount }),
-            success: fnSuccess
-        })
+
+
+        if (pageCount > 0) {
+            pageCount--;
+            $.ajax({
+                url: '/staff/GetIndex',
+                type: 'POST',
+                contentType: 'application/json;',
+                data: JSON.stringify({ pageCount: pageCount }),
+                success: fnSuccess
+            })
+        }
 
 
 
@@ -78,20 +85,29 @@ $(function () {
 
     function fnSuccess(response) {
         $("#tbody").html("");
+
         $(response).each(function (index, staff) {
             //console.log(index, staff);
-
+            //`</a> `
             var tr = $("<tr/>");
-            $("<td/>").html(staff.staffCode).appendTo(tr);
+            var UnderLine = `<a href="/Staff/Details?code=` + staff.staffCode + `">` + staff.staffCode + `</a>`;
+            //console.log(UnderLine);
+            $("<td/>").addClass("staffCodeQuery").html(UnderLine).appendTo(tr);
             $("<td/>").html(staff.kanaName).appendTo(tr);
             $("<td/>").html(staff.kanjiName).appendTo(tr);
-
+            //var s = `<div >
+            //  <button class="btn btn-danger">Delete</button>
+            //  <button class="btn btn-primary">Edit</button>
+            //        </div>`;
             $("<td/>").html(s).appendTo(tr);
             tr.appendTo("#tbody");
             $("#info").html((pageCount + 1));
+            //console.log(staff);
+
 
         })
-
+        checkPressButton();
+        search();
     }
 
 

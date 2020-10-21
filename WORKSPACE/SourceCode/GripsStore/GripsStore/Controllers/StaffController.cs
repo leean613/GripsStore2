@@ -13,28 +13,10 @@ namespace GripsStore.Controllers
 {
     public class StaffController : Controller
     {
-        //[HttpGet]
-        //public ActionResult Pagination(int? page)
-        //{
-        //    var dummyItems = Enumerable.Range(1, 150).Select(x => "Items" + x);
-        //    var pager = new Page(dummyItems.Count(), page);
-
-        //    var viewModel = new UserModel()
-        //    {
-        //        Items = dummyItems.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
-        //        Pager = pager
-        //    };
-
-        //    return View(viewModel);
-        //}
-
-
-
         // GET: Staff
         //[HttpGet]
         public ActionResult Index()
         {
-
             StaffDao staffDao = new StaffDao();
             List<Staff> list = staffDao.GetListStaff(0);
             ViewData["Staffs"] = list;
@@ -49,7 +31,7 @@ namespace GripsStore.Controllers
         }
 
         [HttpPost]
-        public JsonResult SearchStaff(string staffCode)
+        public JsonResult SearchStaffById(string staffCode)
         {
             StaffDao staffDao = new StaffDao();
             List<Staff> list = staffDao.GetListStaff(staffCode);
@@ -64,21 +46,6 @@ namespace GripsStore.Controllers
             return Json(staffDao.PageCount());
 
         }
-
-
-
-        //public ActionResult Index()
-        //{
-
-        //    StaffDao staffDao = new StaffDao();
-        //    List<Staff> list = staffDao.GetListStaff(0);
-        //    ViewData["Staffs"] = list;
-        //    return View();
-        //}
-
-
-
-
 
         public JsonResult Delete(string staffCode)
         {
