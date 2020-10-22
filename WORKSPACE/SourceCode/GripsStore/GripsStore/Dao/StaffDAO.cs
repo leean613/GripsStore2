@@ -98,7 +98,11 @@ namespace GripsStore.Dao
                 {
                     sbSQL.AppendLine("SELECT * FROM mstaff");
 
-                    sbSQL.AppendLine("WhERE mstaff.staffcode= :p_staffcode");
+                    sbSQL.AppendLine("WhERE mstaff.staffcode LIKE :p_staffcode ");
+
+                    sbSQL.AppendLine("OR mstaff.kananame LIKE :p_staffcode ");
+
+                    sbSQL.AppendLine("OR mstaff.kanjiname LIKE :p_staffcode ");
                     sbSQL.AppendLine("ORDER BY mstaff.staffcode");
 
                     //sbSQL.AppendLine("LEFT join m_deptgroup ");
@@ -107,7 +111,7 @@ namespace GripsStore.Dao
 
 
                     npgDB.Command = sbSQL.ToString();
-                    npgDB.SetParams("p_staffcode", code);
+                    npgDB.SetParams("p_staffcode", "%" + code + "%");
                     Debug.Write(sbSQL.ToString());
                     using (NpgsqlDataReader rec = npgDB.Query())
                     {
@@ -300,7 +304,7 @@ namespace GripsStore.Dao
                 StringBuilder sbSQL = new StringBuilder();
                 using (NpgDB npgDB = Connection.DBConnect())
                 {
-                    sbSQL.AppendLine("SELECT count(staffcode) FROM mstaff");
+                    sbSQL.AppendLine("SELECT count(staffcode)::varchar AS count FROM mstaff");
                     // sbSQL.AppendLine("ORDER by mstaff.staffcode");
 
 
@@ -310,7 +314,7 @@ namespace GripsStore.Dao
                     {
                         if (rec.Read())
                         {
-                            string strPageCount = NpgDB.getLongString(rec, "count");
+                            string strPageCount = NpgDB.getString(rec, "count");
                             RowCount = long.Parse(strPageCount);
                         }
                     }
