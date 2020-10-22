@@ -1,26 +1,21 @@
-﻿var nearStaffCode;
+﻿
 
 $(document).ready(onStartUp);
 function onStartUp() {
 
-
-    try {
-        //$('.site-title').hide();
-        $('.btn-primary').on('click', editApp);
-
-
-
-    }
-    catch (ex) {
-        ttDebug.Exception(SCRIPT_FILE, 'onStartUp', ex);
-    }
+    checkPressButton();
 
 }
 function checkPressButton() {
     try {
         //$('.site-title').hide();
         $('.btn-primary').on('click', editApp);
-
+        $('#search-input').keyup(function (e) {
+            if (e.keyCode == 13) {
+                search();
+            }
+        });
+        $('#home').on('click', goHome);
 
     }
     catch (ex) {
@@ -29,15 +24,17 @@ function checkPressButton() {
 
 }
 
-
+function goHome() {
+    location.href = "/";
+}
 
 
 function search() {
 
     staffCode = $('#search-input').val();
-    var s = `<div id="admin" class="row admin-button">
-              <button id="btn-delete" class="btn btn-danger">Delete</button>
-              <button id="btn-edit" class="btn btn-primary">Edit</button>
+    var s = `<div>
+              <button class="btn btn-danger">Delete</button>
+              <button class="btn btn-primary">Edit</button>
          </div>`;
 
     $.ajax({
@@ -67,9 +64,6 @@ function search() {
 
     }
 }
-
-
-
 function deleteApp() {
     var result = confirm("アプリが削除されます。よろしいでしょうか？");
     if (result) {
@@ -91,22 +85,14 @@ function deleteApp() {
 
 }
 function editApp() {
-
-
     location.href = "/Staff/Details/?code=" + $(this).closest('tr').find('.staffCodeQuery').text().trim();
-
-
     //console.log($(this).closest('tr').find('.staffCodeQuery').text());
     //console.log("/Staff/Details/?code=" + $(this).closest('tr').find('.staffCodeQuery').text().trim());
-
-
 }
 
 function demo() {
 
-    nearStaffCode = $(this).closest('td').find('#staffCode').val();
-    //console.log(nearStaffCode);
-    alert(nearStaffCode);
+
 }
 
 

@@ -107,7 +107,7 @@ $(function () {
 
         })
         checkPressButton();
-        search();
+        //search();
     }
 
 
