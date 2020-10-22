@@ -14,12 +14,13 @@ function onStartUp() {
     if (Auth != "") {
         //staffCode = $('#staffcode').val();
 
-        $('#btn-cancel').click(function () {
+        $('#btndcm').click(function () {
             cancel();
         });
         $('#btn-submit').click(function () {
             createStaff();
         });
+        $('#home').on('click', goHome);
     }
     else {
         //location.href("/");
@@ -28,7 +29,10 @@ function onStartUp() {
 }
 
 function cancel() {
-    //location.href = "/";
+    location.href = "/";
+}
+function goHome() {
+    location.href = "/";
 }
 
 function createStaff() {
@@ -37,7 +41,7 @@ function createStaff() {
     kanaName = $('#kanaName').val();
     staffCode = $('#staffCode').val();
     generationno = $('#generationno').val();
-    if (staffCode != "") {
+    if (staffCode != "" && kanjiName != "" && staffCode != "" && generationno != "") {
         $.ajax({
             url: '/Staff/CreateStaff/',
             type: 'POST',
@@ -56,14 +60,5 @@ function createStaff() {
         });
     }
     else alert("staffCode mising");
-
-
-
-
-
-
-
-
-
 
 }

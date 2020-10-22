@@ -13,7 +13,7 @@ function onStartUp() {
         //$('#btn-cancel').click(function () {
         //    cancel();
         //});
-        $('.btn-default').on('click', goHome);
+        $('#btn-huy').on('click', cancel);
 
 
         $('#btn-default').click(function () {
@@ -44,10 +44,12 @@ function cancel() {
 
 }
 
+//FINISHED 
 function goHome() {
     location.href = "/";
 }
 
+//FINISHED 
 function deleteStaff() {
     var result = confirm("アプリが削除されます。よろしいでしょうか？");
     staffCode = $('#staffCode').val();
