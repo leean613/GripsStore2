@@ -9,45 +9,49 @@ var staffCode = $('#staffCode').val();
 $(document).ready(onStartUp);
 function onStartUp() {
     Auth = getCookie("STAFFCODE");
-    if (Auth != 0) {
-        $('#btn-cancel').click(function () {
-            cancel();
-        })
+    if (Auth != "") {
+        //$('#btn-cancel').click(function () {
+        //    cancel();
+        //});
+        $('.btn-default').on('click', goHome);
+
+
         $('#btn-default').click(function () {
             deleteStaff();
-        })
+        });
 
         $('#btn-submit').click(function () {
             editStaff();
         });
-
-
+        $('#home').on('click', goHome);
     }
 }
-
-
-
-
-
+//function cancel() {
+//    staffCode = $('#staffCode').val().trim();
+//    console.log(`"/Staff/Details/?code=${staffCode}"`);
+//    value = confirm("cancel");
+//    if (value) {
+//        //location.href = "/";
+//        location.href = "/Staff/Index/";
+//    }
+//}
 function cancel() {
+    value = confirm("cancel");
+    if (value) {
+        //location.href = "/";
+        location.href = "/Staff/Index/";
+    }
 
-    staffCode = $('#staffCode').val();
-    location.href = "/Staff/Details/?code=" + staffCode;
 }
 
-
-
-
-
-
+function goHome() {
+    location.href = "/";
+}
 
 function deleteStaff() {
     var result = confirm("アプリが削除されます。よろしいでしょうか？");
     staffCode = $('#staffCode').val();
     if (result) {
-
-
-
         $.ajax({
             url: '/Staff/Delete/',
             type: 'Post',
@@ -63,8 +67,7 @@ function deleteStaff() {
     }
     else location.href = "/Staff/Details/?code=" + staffCode;
 }
-
-
+//FINISHED 
 function editStaff() {
     //ttGuard.showWait();
     kanjiName = $('#kanjiName').val();

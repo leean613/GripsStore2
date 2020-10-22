@@ -73,8 +73,23 @@ $(function () {
     });
 
     $(".pager a:eq(2)").click(function () {
-        pageCount++;
+
         //alert("before");
+        if (pageCount < totalPage - 1) {
+            pageCount++;
+            $.ajax({
+                url: '/staff/GetIndex',
+                type: 'POST',
+                contentType: 'application/json;',
+                data: JSON.stringify({ pageCount: pageCount }),
+                success: fnSuccess
+            })
+        }
+
+    });
+
+    $(".pager a:eq(4)").click(function () {
+        pageCount = totalPage - 1;
         $.ajax({
             url: '/staff/GetIndex',
             type: 'POST',
@@ -83,11 +98,7 @@ $(function () {
             success: fnSuccess
         })
 
-    });
 
-    $(".pager a:eq(4)").click(function () {
-        pageNo = pageCount - 1;
-        alert("last");
     });
 
     function fnSuccess(response) {

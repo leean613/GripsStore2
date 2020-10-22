@@ -326,7 +326,9 @@ namespace GripsStore.Dao
             {
                 throw (ex);
             }
-            long count = (long)Math.Ceiling((1.0 * (RowCount / 10)));
+            long count = (long)Math.Ceiling((float)RowCount / 10);
+
+
             return count;
 
 

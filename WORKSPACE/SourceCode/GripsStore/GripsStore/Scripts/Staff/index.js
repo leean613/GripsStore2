@@ -14,6 +14,8 @@ function checkPressButton() {
     try {
         //$('.site-title').hide();
         $('.btn-primary').on('click', editApp);
+
+        $('.btn-danger').on('click', deleteApp);
         $('#search-input').keyup(function (e) {
             if (e.keyCode == 13) {
                 search();
@@ -24,6 +26,7 @@ function checkPressButton() {
                 search();
             }
         });
+
 
         $('#home').on('click', goHome);
 
@@ -78,23 +81,26 @@ function search() {
     }
 }
 function deleteApp() {
+    var staffCode = $(this).closest('tr').find('.staffCodeQuery').text().trim();
     var result = confirm("アプリが削除されます。よろしいでしょうか？");
     if (result) {
-
-        var appId = $('#app-id').text();
         $.ajax({
-            url: '/app/delete/',
+            url: '/staff/delete/',
             type: 'POST',
             contentType: 'application/json;',
             data: JSON.stringify({ staffCode: staffCode }),
             success: function (data) {
                 if (data.success) {
                     alert("アプリが削除されました。");
-                    location.href = "/";
+                    location.href = "/staff/index";
                 }
-            }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log(xhr.responseText);
+            },
         });
     }
+
 
 }
 function editApp() {
@@ -104,8 +110,6 @@ function editApp() {
 }
 
 function demo() {
-
-
 }
 
 

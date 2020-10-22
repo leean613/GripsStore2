@@ -45,7 +45,7 @@ namespace GripsStore.Controllers
             return Json(staffDao.PageCount());
 
         }
-
+        [HttpPost]
         public JsonResult Delete(string staffCode)
         {
             StaffDao staffDao = new StaffDao();
@@ -109,20 +109,7 @@ namespace GripsStore.Controllers
 
 
         // POST: Staff/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index/staff");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
         public ActionResult Register()
         {
             ViewBag.Title = "新しいスタッフを作成する";
