@@ -39,9 +39,8 @@ namespace GripsStore.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetPageCount(string axx)
+        public JsonResult GetPageCount()
         {
-            axx = axx + " a";
             StaffDao staffDao = new StaffDao();
             return Json(staffDao.PageCount());
 
@@ -50,7 +49,8 @@ namespace GripsStore.Controllers
         public JsonResult Delete(string staffCode)
         {
             StaffDao staffDao = new StaffDao();
-            return Json(staffDao.Delete(staffCode));
+            var result = Json(staffDao.Delete(staffCode));
+            return result;
         }
 
 

@@ -1,4 +1,5 @@
 ﻿var pageCount = 0;
+var totalPage;
 var s = `<div >
               <button class="btn btn-danger">Delete</button>
               <button class="btn btn-primary">Edit</button>
@@ -10,7 +11,7 @@ $(function () {
 
     //ajax({
     //    url: '/staff/GetPageCount',
-    //    type: 'POST',
+    //    type: 'GET',
     //    contentType: 'application/json;',
     //    data: JSON.stringify({ pageCount: pageCount }),
     //    success: function (response) {
@@ -21,16 +22,22 @@ $(function () {
 
 
     $(".pager a:eq(5)").click(function () {
-        var dcm = 'a';
+
         $.ajax({
             url: '/staff/GetPageCount',
             type: 'POST',
             contentType: 'application/json;',
-            data: JSON.stringify({ dcm: dcm }),
+            data: JSON.stringify({}),
             success: function (response) {
                 console.log(response);
 
-            }
+                totalPage = response;
+                $("#info").html((pageCount + 1) + `/` + totalPage);
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log(xhr.responseText);
+            },
         })
     });
 
@@ -85,7 +92,7 @@ $(function () {
 
     function fnSuccess(response) {
         $("#tbody").html("");
-
+        //console.log(response);
         $(response).each(function (index, staff) {
             //console.log(index, staff);
             //`</a> `
@@ -101,7 +108,8 @@ $(function () {
             //        </div>`;
             $("<td/>").html(s).appendTo(tr);
             tr.appendTo("#tbody");
-            $("#info").html((pageCount + 1));
+            $("#info").html((pageCount + 1) + `/` + totalPage);
+
             //console.log(staff);
 
 

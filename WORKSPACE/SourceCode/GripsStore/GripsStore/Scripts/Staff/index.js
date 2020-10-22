@@ -4,6 +4,10 @@ $(document).ready(onStartUp);
 function onStartUp() {
 
     checkPressButton();
+    $(".pager a:eq(5)").click();
+
+
+
 
 }
 function checkPressButton() {
@@ -15,6 +19,12 @@ function checkPressButton() {
                 search();
             }
         });
+        $('#input-search').keyup(function (e) {
+            if (e.keyCode == 13) {
+                search();
+            }
+        });
+
         $('#home').on('click', goHome);
 
     }
@@ -31,7 +41,10 @@ function goHome() {
 
 function search() {
 
-    staffCode = $('#search-input').val();
+    staffCode = $('#search-input').val().trim();
+
+    staffCode = $('#input-search').val().trim();
+    console.log(staffCode);
     var s = `<div>
               <button class="btn btn-danger">Delete</button>
               <button class="btn btn-primary">Edit</button>

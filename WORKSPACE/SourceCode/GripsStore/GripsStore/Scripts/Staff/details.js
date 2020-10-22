@@ -26,6 +26,9 @@ function onStartUp() {
 }
 
 
+
+
+
 function cancel() {
 
     staffCode = $('#staffCode').val();
