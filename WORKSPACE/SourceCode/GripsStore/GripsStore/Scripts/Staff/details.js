@@ -4,7 +4,7 @@ var generationno;
 //var staffCode;
 
 
-var staffCode = $('#staffCode').val();
+var staffCode = $('#staffCode').val().trim();
 
 $(document).ready(onStartUp);
 function onStartUp() {
@@ -13,7 +13,7 @@ function onStartUp() {
         //$('#btn-cancel').click(function () {
         //    cancel();
         //});
-        $('#btn-huy').on('click', cancel);
+        $('#btn-huy').on('click', goHome);
 
 
         $('#btn-default').click(function () {
@@ -38,21 +38,23 @@ function onStartUp() {
 function cancel() {
     value = confirm("cancel");
     if (value) {
-        //location.href = "/";
-        location.href = "/Staff/Index/";
+        location.href = "/";
+        //location.href = "/Staff";
     }
 
 }
 
 //FINISHED 
 function goHome() {
-    location.href = "/";
+    staffCode = $('#staffCode').val().trim();
+    location.href = "/staff/index";
+    //location.href = "/Staff/Details?code=" + staffCode;
 }
 
 //FINISHED 
 function deleteStaff() {
     var result = confirm("アプリが削除されます。よろしいでしょうか？");
-    staffCode = $('#staffCode').val();
+    staffCode = $('#staffCode').val().trim();
     if (result) {
         $.ajax({
             url: '/Staff/Delete/',

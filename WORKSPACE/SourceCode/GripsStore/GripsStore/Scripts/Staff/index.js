@@ -1,13 +1,9 @@
-﻿
-
+﻿var pageCountSearch = 0;
 $(document).ready(onStartUp);
 function onStartUp() {
 
     checkPressButton();
     $(".pager a:eq(5)").click();
-
-
-
 
 }
 function checkPressButton() {
@@ -16,17 +12,16 @@ function checkPressButton() {
         $('.btn-primary').on('click', editApp);
 
         $('.btn-danger').on('click', deleteApp);
-        $('#search-input').keyup(function (e) {
-            if (e.keyCode == 13) {
-                search();
-            }
-        });
+        //$('#search-input').keyup(function (e) {
+        //    if (e.keyCode == 13) {
+        //        search();
+        //    }
+        //});
         $('#input-search').keyup(function (e) {
             if (e.keyCode == 13) {
                 search();
             }
         });
-
 
         $('#home').on('click', goHome);
 
@@ -42,9 +37,12 @@ function goHome() {
 }
 
 
+
 function search() {
 
-    staffCode = $('#search-input').val().trim();
+    //staffCode = $('#search-input').val().trim();
+    pageCountSearch = 0;
+    status = true;
 
     staffCode = $('#input-search').val().trim();
     console.log(staffCode);
@@ -57,10 +55,12 @@ function search() {
         url: '/Staff/SearchStaffById/',
         type: 'Post',
         contentType: 'application/json;',
-        data: JSON.stringify({ staffCode: staffCode }),
-        success: fnSuccess
+        data: JSON.stringify({ staffCode: staffCode, pageCountSearch: pageCountSearch }),
+        success: fnSuccess,
+
 
     });
+
 
     function fnSuccess(response) {
         $("#tbody").html("");
@@ -76,9 +76,12 @@ function search() {
             tr.appendTo("#tbody");
             $("#info").html((pageCount + 1));
 
-        })
-
+        });
+        checkPressButton();
+        console.log("finish search");
+        console.log("roi");
     }
+
 }
 function deleteApp() {
     var staffCode = $(this).closest('tr').find('.staffCodeQuery').text().trim();
@@ -108,6 +111,70 @@ function editApp() {
     //console.log($(this).closest('tr').find('.staffCodeQuery').text());
     //console.log("/Staff/Details/?code=" + $(this).closest('tr').find('.staffCodeQuery').text().trim());
 }
+
+
+function LiveSearch() {
+    // Declare variables
+    var staffCodeInput, kanaNameInput, kanjiNameInput, staffCodeFilter, kanaNameFilter, kanjiNameFilter, table, trs, tdCode, i, txtValue, tdKana, tdKanji;
+
+    //Set input by getElementById
+    staffCodeInput = document.getElementById("searchStaffCode");
+
+    kanaNameInput = document.getElementById("searchKanaName");
+
+    kanjiNameInput = document.getElementById("searchKanjiName");
+
+    input = document.getElementById("input-search");
+
+    //Set filter
+
+    staffCodeFilter = staffCodeInput.value.toUpperCase();
+    kanaNameFilter = kanaNameInput.value.toUpperCase();
+    kanjiNameFilter = kanjiNameInput.value.toUpperCase();
+
+    filter = input.value.toUpperCase();
+    //Set the table and tr
+    table = document.getElementById("tbody");
+    trs = table.getElementsByTagName("tr");
+
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < trs.length; i++) {
+        tdCode = trs[i].getElementsByTagName("td")[0];
+
+        tdKana = trs[i].getElementsByTagName("td")[1];
+
+        tdKanji = trs[i].getElementsByTagName("td")[2];
+        if (
+            tdCode.innerHTML.toUpperCase().indexOf(staffCodeFilter) > -1 ||
+            tdKana.innerHTML.toUpperCase().indexOf(staffCodeFilter) > -1 ||
+            tdKanji.innerHTML.toUpperCase().indexOf(staffCodeFilter) > -1 ||
+            tdKana.innerHTML.toUpperCase().indexOf(filter) > -1
+
+
+        ) {
+            trs[i].style.display = "";
+        } else {
+            trs[i].style.display = "none";
+        }
+
+
+        //ExampleW3School
+        //if (td1) {
+        //    txtValue = td1.textContent || td1.innerText;
+        //    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        //        trs[i].style.display = "";
+        //    } else {
+        //        trs[i].style.display = "none";
+        //    }
+        //}
+
+
+    }
+}
+checkPressButton();
+
+
 
 function demo() {
 }

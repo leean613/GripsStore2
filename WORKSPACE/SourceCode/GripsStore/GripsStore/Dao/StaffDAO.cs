@@ -88,7 +88,7 @@ namespace GripsStore.Dao
             return staffs;
 
         }
-        public List<Staff> GetListStaff(string code)
+        public List<Staff> GetListStaff(string code, int pageCount)
         {
             List<Staff> staffs = new List<Staff>();
             try
@@ -103,7 +103,14 @@ namespace GripsStore.Dao
                     sbSQL.AppendLine("OR mstaff.kananame LIKE :p_staffcode ");
 
                     sbSQL.AppendLine("OR mstaff.kanjiname LIKE :p_staffcode ");
+
+                    //sbSQL.AppendLine(" offset :p_pageCount");
                     sbSQL.AppendLine("ORDER BY mstaff.staffcode");
+                    sbSQL.AppendLine("LIMIT 1");
+                    sbSQL.AppendLine(" offset :p_pageCount");
+                    pageCount = pageCount * 1;
+
+
 
                     //sbSQL.AppendLine("LEFT join m_deptgroup ");
                     //sbSQL.AppendLine("ON m_department.deptgrpcd=m_deptgroup.deptgrpcd");
@@ -112,6 +119,7 @@ namespace GripsStore.Dao
 
                     npgDB.Command = sbSQL.ToString();
                     npgDB.SetParams("p_staffcode", "%" + code + "%");
+                    npgDB.SetParams(":p_pageCount", pageCount);
                     Debug.Write(sbSQL.ToString());
                     using (NpgsqlDataReader rec = npgDB.Query())
                     {
@@ -219,7 +227,7 @@ namespace GripsStore.Dao
             }
             return result;
         }
-        public StaffJSON Create(string staffCode, Staff staff)
+        public StaffJSON Create(Staff staff)
         {
             StaffJSON result = new StaffJSON();
             if (staff != null)
@@ -235,12 +243,12 @@ namespace GripsStore.Dao
                         sbSQL.AppendLine(")");
                         sbSQL.AppendLine("VALUES");
                         sbSQL.AppendLine("(");
-                        sbSQL.AppendLine(":p_staffcode, :p_kananame, :p_kanjiname, :p_generationno");
+                        sbSQL.AppendLine("nextval('staffcode_sequence'), :p_kananame, :p_kanjiname, :p_generationno");
                         sbSQL.AppendLine(")");
                         sbSQL.AppendLine("RETURNING staffcode, kananame, kanjiname, generationno");
 
                         npgDB.Command = sbSQL.ToString();
-                        npgDB.SetParams(":p_staffcode", staff.staffCode);
+                        //npgDB.SetParams(":p_staffcode", staff.staffCode);
                         npgDB.SetParams(":p_kananame", staff.kanaName);
                         npgDB.SetParams(":p_kanjiname", staff.kanjiName);
                         npgDB.SetParams(":p_generationno", staff.generationno);

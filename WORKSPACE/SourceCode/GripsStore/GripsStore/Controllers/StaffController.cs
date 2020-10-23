@@ -31,10 +31,10 @@ namespace GripsStore.Controllers
         }
 
         [HttpPost]
-        public JsonResult SearchStaffById(string staffCode)
+        public JsonResult SearchStaffById(string staffCode, int pageCountSearch)
         {
             StaffDao staffDao = new StaffDao();
-            List<Staff> list = staffDao.GetListStaff(staffCode);
+            List<Staff> list = staffDao.GetListStaff(staffCode, pageCountSearch);
             return Json(list);
         }
 
@@ -90,17 +90,17 @@ namespace GripsStore.Controllers
             };
             return Json(staffDao.Update(staffCode, staff));
         }
-        public JsonResult CreateStaff(string staffCode, string kanjiName, string kanaName, string generationno)
+        public JsonResult CreateStaff(string kanjiName, string kanaName, string generationno)
         {
             StaffDao staffDao = new StaffDao();
             Staff staff = new Staff
             {
-                staffCode = staffCode,
+
                 kanjiName = kanjiName,
                 kanaName = kanaName,
                 generationno = generationno,
             };
-            return Json(staffDao.Create(staffCode, staff));
+            return Json(staffDao.Create(staff));
         }
 
 
@@ -109,7 +109,7 @@ namespace GripsStore.Controllers
 
 
         // POST: Staff/Delete/5
-       
+
         public ActionResult Register()
         {
             ViewBag.Title = "新しいスタッフを作成する";

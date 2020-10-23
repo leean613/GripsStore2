@@ -9,10 +9,9 @@ var generationno;
 $(document).ready(onStartUp);
 function onStartUp() {
     Auth = getCookie("STAFFCODE");
-    //var AuthAdmin = getCookie("GRIPS_STORE_STAFFCODE").value();
-    //console.log(AuthAdmin);
+
     if (Auth != "") {
-        //staffCode = $('#staffcode').val();
+
 
         $('#btndcm').click(function () {
             cancel();
@@ -39,17 +38,17 @@ function createStaff() {
     ttGuard.showWait();
     kanjiName = $('#kanjiName').val();
     kanaName = $('#kanaName').val();
-    staffCode = $('#staffCode').val();
+    //staffCode = $('#staffCode').val();
     generationno = $('#generationno').val();
-    if (staffCode != "" && kanjiName != "" && staffCode != "" && generationno != "") {
+    if (kanjiName != "" && generationno != "") {
         $.ajax({
             url: '/Staff/CreateStaff/',
             type: 'POST',
             contentType: 'application/json;',
-            data: JSON.stringify({ staffCode: staffCode, kanjiName: kanjiName, kanaName: kanaName, generationno: generationno }),
+            data: JSON.stringify({ kanjiName: kanjiName, kanaName: kanaName, generationno: generationno }),
             success: function (data) {
                 if (data.success) {
-                    location.href = "/Staff/Details/?code=" + staffCode;
+                    console.log(data);
                 } else {
                     alertError();
                 }
@@ -59,6 +58,6 @@ function createStaff() {
             }
         });
     }
-    else alert("staffCode mising");
+    else alert("staff info mising");
 
 }

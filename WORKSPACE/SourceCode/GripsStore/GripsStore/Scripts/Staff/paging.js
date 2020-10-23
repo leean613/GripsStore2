@@ -1,5 +1,6 @@
 ﻿var pageCount = 0;
 var totalPage;
+var status = false;
 var s = `<div >
               <button class="btn btn-danger">Delete</button>
               <button class="btn btn-primary">Edit</button>
@@ -20,7 +21,7 @@ $(function () {
     //    }
     //});
 
-
+    //get page count index
     $(".pager a:eq(5)").click(function () {
 
         $.ajax({
@@ -29,7 +30,7 @@ $(function () {
             contentType: 'application/json;',
             data: JSON.stringify({}),
             success: function (response) {
-                console.log(response);
+                //console.log(response);
 
                 totalPage = response;
                 $("#info").html((pageCount + 1) + `/` + totalPage);
@@ -40,6 +41,8 @@ $(function () {
             },
         })
     });
+
+
 
     $(".pager a:eq(0)").click(function () {
         pageCount = 0;
@@ -74,17 +77,33 @@ $(function () {
 
     $(".pager a:eq(2)").click(function () {
 
-        //alert("before");
-        if (pageCount < totalPage - 1) {
-            pageCount++;
+        if ($('#input-search').val().trim() = "") {
+            if (pageCount < totalPage - 1) {
+                pageCount++;
+                $.ajax({
+                    url: '/staff/GetIndex',
+                    type: 'POST',
+                    contentType: 'application/json;',
+                    data: JSON.stringify({ pageCount: pageCount }),
+                    success: fnSuccess
+                })
+            }
+        }
+
+        if ($('#input-search').val().trim() != "") {
+
+            pageCountSearch++;
             $.ajax({
-                url: '/staff/GetIndex',
+                url: '/staff/SearchStaffById',
                 type: 'POST',
                 contentType: 'application/json;',
-                data: JSON.stringify({ pageCount: pageCount }),
+                data: JSON.stringify({ pageCount: pageCount, pageCountSearch: pageCountSearch }),
                 success: fnSuccess
-            })
+            });
+
+
         }
+
 
     });
 

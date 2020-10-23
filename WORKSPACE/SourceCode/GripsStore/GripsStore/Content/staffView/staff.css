@@ -12,6 +12,10 @@ td, th {
     padding: 8px;
 }
 
+tr.change_on_over:hover td {
+    background: #5f73ee;
+}
+
 .table-head {
 }
 
