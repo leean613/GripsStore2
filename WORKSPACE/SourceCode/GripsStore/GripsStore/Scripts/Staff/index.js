@@ -77,9 +77,7 @@ function search() {
             $("#info").html((pageCount + 1));
 
         });
-        checkPressButton();
-        console.log("finish search");
-        console.log("roi");
+
     }
 
 }

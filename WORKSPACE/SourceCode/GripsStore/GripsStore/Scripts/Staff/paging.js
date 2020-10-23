@@ -77,7 +77,7 @@ $(function () {
 
     $(".pager a:eq(2)").click(function () {
 
-        if ($('#input-search').val().trim() = "") {
+        if ($('#input-search').val().trim() == "") {
             if (pageCount < totalPage - 1) {
                 pageCount++;
                 $.ajax({

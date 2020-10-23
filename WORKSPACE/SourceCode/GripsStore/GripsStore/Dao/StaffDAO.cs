@@ -106,9 +106,9 @@ namespace GripsStore.Dao
 
                     //sbSQL.AppendLine(" offset :p_pageCount");
                     sbSQL.AppendLine("ORDER BY mstaff.staffcode");
-                    sbSQL.AppendLine("LIMIT 1");
+                    sbSQL.AppendLine("LIMIT 5");
                     sbSQL.AppendLine(" offset :p_pageCount");
-                    pageCount = pageCount * 1;
+                    pageCount = pageCount * 5;
 
 
 
