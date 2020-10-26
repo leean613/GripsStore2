@@ -48,7 +48,9 @@ function createStaff() {
             data: JSON.stringify({ kanjiName: kanjiName, kanaName: kanaName, generationno: generationno }),
             success: function (data) {
                 if (data.success) {
-                    console.log(data);
+
+                    console.log(data.staff.staffCode);
+                    location.href = "/Staff/Details/?code=" + data.staff.staffCode;
                 } else {
                     alertError();
                 }
