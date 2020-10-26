@@ -1,4 +1,5 @@
 ﻿var pageCountSearch = 0;
+var searchLength;
 $(document).ready(onStartUp);
 function onStartUp() {
 
@@ -33,7 +34,7 @@ function checkPressButton() {
 }
 
 function goHome() {
-    location.href = "/";
+    location.href = "/staff/index";
 }
 
 
@@ -42,10 +43,10 @@ function search() {
 
     //staffCode = $('#search-input').val().trim();
     pageCountSearch = 0;
-    status = true;
+    
 
     staffCode = $('#input-search').val().trim();
-    console.log(staffCode);
+    //console.log(staffCode);
     var s = `<div>
               <button class="btn btn-danger">Delete</button>
               <button class="btn btn-primary">Edit</button>
@@ -64,17 +65,24 @@ function search() {
 
     function fnSuccess(response) {
         $("#tbody").html("");
+        console.log(response.length);
+        searchLength = response.length;
+
+        
         $(response).each(function (index, staff) {
-            //console.log(index, staff);
+            //cconsole.log(index,staff);
 
             var tr = $("<tr/>");
-            $("<td/>").html(staff.staffCode).appendTo(tr);
+            var UnderLine = `<a href="/Staff/Details?code=` + staff.staffCode + `">` + staff.staffCode + `</a>`;
+
+            $("<td/>").addClass("staffCodeQuery").html(UnderLine).appendTo(tr);
             $("<td/>").html(staff.kanaName).appendTo(tr);
             $("<td/>").html(staff.kanjiName).appendTo(tr);
 
             $("<td/>").html(s).appendTo(tr);
             tr.appendTo("#tbody");
-            $("#info").html((pageCount + 1));
+            // số kq search
+            $("#info").html((searchLength));
 
         });
 
@@ -174,7 +182,5 @@ checkPressButton();
 
 
 
-function demo() {
-}
 
 

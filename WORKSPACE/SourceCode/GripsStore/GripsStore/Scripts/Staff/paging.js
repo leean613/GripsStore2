@@ -8,18 +8,6 @@ var s = `<div >
 
 
 $(function () {
-    //var totalPage;
-
-    //ajax({
-    //    url: '/staff/GetPageCount',
-    //    type: 'GET',
-    //    contentType: 'application/json;',
-    //    data: JSON.stringify({ pageCount: pageCount }),
-    //    success: function (response) {
-    //        totalPage = response;
-    //        alert(totalPage);
-    //    }
-    //});
 
     //get page count index
     $(".pager a:eq(5)").click(function () {
@@ -79,6 +67,8 @@ $(function () {
 
         if ($('#input-search').val().trim() == "") {
             if (pageCount < totalPage - 1) {
+                pageCountSearch = 0;
+
                 pageCount++;
                 $.ajax({
                     url: '/staff/GetIndex',
@@ -91,8 +81,11 @@ $(function () {
         }
 
         if ($('#input-search').val().trim() != "") {
-
+            pageCount = 0;
+            if (searchLength == '5')
+            { 
             pageCountSearch++;
+
             $.ajax({
                 url: '/staff/SearchStaffById',
                 type: 'POST',
@@ -101,7 +94,7 @@ $(function () {
                 success: fnSuccess
             });
 
-
+        }
         }
 
 

@@ -3,6 +3,7 @@
     <link href="~/Content/App/site.css?UpDate=202002071636" rel="stylesheet" />
     <link href="../../Content/ttGuard_1.0.0.css?UpDate=202002051338" rel="stylesheet" />
     <link href="~/Content/staffView/staff.css" rel="stylesheet" />
+    <link href="~/Content/staffView/details.css" rel="stylesheet" />
 }
 @if (ViewData["Staffs"] != null)
 {
@@ -23,11 +24,11 @@
                     <th id="kanaName">Kana Name</th>
                     <th id="kanjiName">Kanji Name</th>
                     <th id="register"><a href="/Staff/Register/">NEW</a></th>
-                    <th id="search">
+                    @*<th id="search">
                         <div class="" style="display:none" ;>
                             <input class="form-control" id="search-input" type="text" placeholder="Search" aria-label="Search">
                         </div>
-                    </th>
+                    </th>*@
 
 
                 </tr>
