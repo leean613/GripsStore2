@@ -90,6 +90,7 @@ namespace GripsStore.Dao
         }
         public List<Staff> GetListStaff(string code, int pageCount)
         {
+            int offset = pageCount * 5;
             List<Staff> staffs = new List<Staff>();
             try
             {
@@ -98,17 +99,18 @@ namespace GripsStore.Dao
                 {
                     sbSQL.AppendLine("SELECT * FROM mstaff");
 
-                    sbSQL.AppendLine("WhERE mstaff.staffcode LIKE :p_staffcode ");
+                    sbSQL.AppendLine("WhERE (mstaff.staffcode LIKE :p_staffcode ");
 
                     sbSQL.AppendLine("OR mstaff.kananame LIKE :p_staffcode ");
 
-                    sbSQL.AppendLine("OR mstaff.kanjiname LIKE :p_staffcode ");
+                    sbSQL.AppendLine("OR mstaff.kanjiname LIKE :p_staffcode )");
 
                     //sbSQL.AppendLine(" offset :p_pageCount");
                     sbSQL.AppendLine("ORDER BY mstaff.staffcode");
                     sbSQL.AppendLine("LIMIT 5");
-                    sbSQL.AppendLine(" offset :p_pageCount");
-                    pageCount = pageCount * 5;
+                    //sbSQL.AppendLine("OFFSET 5");
+                    sbSQL.AppendLine("OFFSET :p_pageCount");
+
 
 
 
@@ -119,7 +121,7 @@ namespace GripsStore.Dao
 
                     npgDB.Command = sbSQL.ToString();
                     npgDB.SetParams("p_staffcode", "%" + code + "%");
-                    npgDB.SetParams(":p_pageCount", pageCount);
+                    npgDB.SetParams(":p_pageCount", offset);
                     Debug.Write(sbSQL.ToString());
                     using (NpgsqlDataReader rec = npgDB.Query())
                     {
@@ -335,6 +337,46 @@ namespace GripsStore.Dao
                 throw (ex);
             }
             long count = (long)Math.Ceiling((float)RowCount / 10);
+
+
+            return count;
+
+
+        }
+        public long PageCountSearch(string staffCode)
+        {
+            long RowCount = 0;
+            try
+            {
+                StringBuilder sbSQL = new StringBuilder();
+                using (NpgDB npgDB = Connection.DBConnect())
+                {
+                    sbSQL.AppendLine("SELECT count(staffcode)::varchar AS count FROM mstaff");
+                    sbSQL.AppendLine("WHERE staffcode like :p_staffcode OR kananame like :p_staffcode OR kanjiname like :p_staffcode");
+
+                    // sbSQL.AppendLine("ORDER by mstaff.staffcode");
+
+
+                    npgDB.Command = sbSQL.ToString();
+                    npgDB.SetParams("p_staffcode", "%" + staffCode + "%");
+                    Debug.Write(sbSQL.ToString());
+                    using (NpgsqlDataReader rec = npgDB.Query())
+                    {
+                        if (rec.Read())
+                        {
+                            string strPageCount = NpgDB.getString(rec, "count");
+                            RowCount = long.Parse(strPageCount);
+                        }
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            long count = (long)Math.Ceiling((float)RowCount / 5);
 
 
             return count;

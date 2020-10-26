@@ -22,32 +22,8 @@
                     <th id="staffCode">Staff Code</th>
                     <th id="kanaName">Kana Name</th>
                     <th id="kanjiName">Kanji Name</th>
-                    <th id="register"><a href="/Staff/Register/">NEW</a></th>
-                    <th id="search">
-                        <div class="" style="display:none" ;>
-                            <input class="form-control" id="search-input" type="text" placeholder="Search" aria-label="Search">
-                        </div>
-                    </th>
-
-
+                    @*<th id="register"><a href="/Staff/Register/">NEW</a></th>*@
                 </tr>
-                @*<tr>
-                        <th>
-                            <div class="" ;>
-                                <input class="form-control" id="searchStaffCode" type="text" placeholder="Search Staff Code" aria-label="Search">
-                            </div>
-                        </th>
-                        <th>
-                            <div class="" ;>
-                                <input class="form-control" id="searchKanaName" type="text" placeholder="Search Kana Name" aria-label="Search">
-                            </div>
-                        </th>
-                        <th>
-                            <div class="" ;>
-                                <input class="form-control" id="searchKanjiName" type="text" placeholder="Search Kanji Name" aria-label="Search">
-                            </div>
-                        </th>
-                    </tr>*@
 
             </thead>
             <tbody id="tbody">
@@ -61,14 +37,11 @@
 
                         <td>
                             <div>
-                                @*<a href="/Staff/Details?code=@staff.staffCode" class="btn btn-sm btn-info">Edit </a>
-                                    <button class="btn btn-sm btn-danger" style=" float: none; text-align: center;width: 50px;">Delete </button>*@
                                 <button class="btn btn-danger">Delete</button>
                                 <button class="btn btn-primary">Edit</button>
-                                @*<button id="btn-demo" class="btn btn-default">demo</button>*@
                             </div>
                         </td>
-                        <td></td>
+
                     </tr>
                 }
 
@@ -76,7 +49,7 @@
             </tbody>
         </table>
         <ul class="pager">
-            <li><a href="#">First page</a></li>
+            <li><a>First page</a></li>
             <li><a href="#">Page Before</a></li>
             <li><a href="#">Page After</a></li>
             <li><a href="#"><span id="info">1</span></a></li>

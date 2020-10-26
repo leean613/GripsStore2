@@ -6,8 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
-using PagedList.Mvc;
-using PagedList;
+
 
 namespace GripsStore.Controllers
 {
@@ -43,6 +42,12 @@ namespace GripsStore.Controllers
         {
             StaffDao staffDao = new StaffDao();
             return Json(staffDao.PageCount());
+
+        }
+        public JsonResult GetPageSearchCount(string staffCode)
+        {
+            StaffDao staffDao = new StaffDao();
+            return Json(staffDao.PageCountSearch(staffCode));
 
         }
         [HttpPost]

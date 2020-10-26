@@ -12,6 +12,7 @@ namespace GripsStore.Controllers
     {
         public ActionResult Index(string key)
         {
+            view
             //TODO check login
             AppDao appDao = new AppDao();
             List<App> apps = appDao.GetApps(key);

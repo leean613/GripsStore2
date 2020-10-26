@@ -1,27 +1,29 @@
 ﻿var pageCountSearch = 0;
+var totalSearchPage;
+var searchLength;
 $(document).ready(onStartUp);
 function onStartUp() {
 
     checkPressButton();
     $(".pager a:eq(5)").click();
 
+
 }
 function checkPressButton() {
     try {
-        //$('.site-title').hide();
+        $('#input-search').keyup(function (e) {
+            if (e.keyCode == 13) {
+                search();
+            }
+        });
         $('.btn-primary').on('click', editApp);
-
         $('.btn-danger').on('click', deleteApp);
         //$('#search-input').keyup(function (e) {
         //    if (e.keyCode == 13) {
         //        search();
         //    }
         //});
-        $('#input-search').keyup(function (e) {
-            if (e.keyCode == 13) {
-                search();
-            }
-        });
+
 
         $('#home').on('click', goHome);
 
@@ -33,7 +35,7 @@ function checkPressButton() {
 }
 
 function goHome() {
-    location.href = "/";
+    location.href = "/staff/index";
 }
 
 
@@ -42,7 +44,9 @@ function search() {
 
     //staffCode = $('#search-input').val().trim();
     pageCountSearch = 0;
-    status = true;
+    totalPage = 0;
+    pageCount = 0;
+
 
     staffCode = $('#input-search').val().trim();
     console.log(staffCode);
@@ -52,32 +56,63 @@ function search() {
          </div>`;
 
     $.ajax({
-        url: '/Staff/SearchStaffById/',
-        type: 'Post',
+        url: '/staff/GetPageSearchCount',
+        type: 'POST',
         contentType: 'application/json;',
-        data: JSON.stringify({ staffCode: staffCode, pageCountSearch: pageCountSearch }),
-        success: fnSuccess,
+        data: JSON.stringify({ staffCode: staffCode }),
+        success: function (response) {
+            //console.log(response);
+
+            totalSearchPage = response;
 
 
-    });
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log(xhr.responseText);
+        },
+    }),
 
 
-    function fnSuccess(response) {
+
+
+
+
+        $.ajax({
+            url: '/Staff/SearchStaffById/',
+            type: 'Post',
+            contentType: 'application/json;',
+            data: JSON.stringify({ staffCode: staffCode, pageCountSearch: pageCountSearch }),
+            success: fnSuccessSearch,
+
+
+        });
+
+
+
+    function fnSuccessSearch(response) {
         $("#tbody").html("");
+        console.log(response.length);
+        //searchLength = response.length;
+
         $(response).each(function (index, staff) {
             //console.log(index, staff);
 
+
             var tr = $("<tr/>");
-            $("<td/>").html(staff.staffCode).appendTo(tr);
+            var UnderLine = `<a href="/Staff/Details?code=` + staff.staffCode + `">` + staff.staffCode + `</a>`;
+
+            $("<td/>").addClass("staffCodeQuery").html(UnderLine).appendTo(tr);
             $("<td/>").html(staff.kanaName).appendTo(tr);
             $("<td/>").html(staff.kanjiName).appendTo(tr);
 
             $("<td/>").html(s).appendTo(tr);
             tr.appendTo("#tbody");
-            $("#info").html((pageCount + 1));
+
 
         });
-
+        if (totalSearchPage > 0) { $("#info").html((pageCountSearch + 1) + `/` + totalSearchPage); }
+        else { $("#info").html(pageCountSearch); }
+        checkPressButton();
     }
 
 }
@@ -105,7 +140,9 @@ function deleteApp() {
 
 }
 function editApp() {
-    location.href = "/Staff/Details/?code=" + $(this).closest('tr').find('.staffCodeQuery').text().trim();
+    if ($(this).closest('tr').find('.staffCodeQuery').text().trim()) {
+        location.href = "/Staff/Details/?code=" + $(this).closest('tr').find('.staffCodeQuery').text().trim();
+    }
     //console.log($(this).closest('tr').find('.staffCodeQuery').text());
     //console.log("/Staff/Details/?code=" + $(this).closest('tr').find('.staffCodeQuery').text().trim());
 }
@@ -170,11 +207,10 @@ function LiveSearch() {
 
     }
 }
-checkPressButton();
 
 
 
-function demo() {
-}
+
+
 
 

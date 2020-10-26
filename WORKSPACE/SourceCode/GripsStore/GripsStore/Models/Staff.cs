@@ -39,8 +39,8 @@ namespace GripsStore.Models
             public bool success = false;
             public Staff staff;
         }
-        public int CurrentPageIndex { get; set; }
-        public int Pagecount { get; set; }
+        //public int CurrentPageIndex { get; set; }
+        //public int Pagecount { get; set; }
 
 
     }

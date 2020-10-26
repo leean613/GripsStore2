@@ -13,8 +13,8 @@ function onStartUp() {
     if (Auth != "") {
 
 
-        $('#btndcm').click(function () {
-            cancel();
+        $('#btn-cance').click(function () {
+            huy();
         });
         $('#btn-submit').click(function () {
             createStaff();
@@ -22,16 +22,16 @@ function onStartUp() {
         $('#home').on('click', goHome);
     }
     else {
-        //location.href("/");
+        location.href("/staff/index");
     }
 
 }
 
-function cancel() {
-    location.href = "/";
+function huy() {
+    location.href = "/staff/index";
 }
 function goHome() {
-    location.href = "/";
+    location.href = "/staff/index";
 }
 
 function createStaff() {
@@ -63,3 +63,4 @@ function createStaff() {
     else alert("staff info mising");
 
 }
+
