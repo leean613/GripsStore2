@@ -6,6 +6,10 @@ function onStartUp() {
 
     checkPressButton();
     $(".pager a:eq(5)").click();
+    $('#btn-login').click(function () {
+        $("#myDropDown").toggle();
+        //alert("clicked");
+    });
 
 
 }
@@ -16,9 +20,8 @@ function checkPressButton() {
                 search();
             }
         });
-        $('#btn-login').click(function () {
-            $("#myDropDown").toggle();
-        });
+
+
         $('.btn-primary').on('click', editApp);
         $('.btn-danger').on('click', deleteApp);
 

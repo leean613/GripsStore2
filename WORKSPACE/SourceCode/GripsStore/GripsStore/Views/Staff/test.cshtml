@@ -8,7 +8,27 @@
     <link href="~/Content/staffView/details.css" rel="stylesheet" />
 }
 
-
+<div id="update-version" class="gone">
+    <div class="row">
+        <div class="label">バージョンコード</div>
+        <input id="input-version-code" class="form-control input-version" type="number" value="@newVerCdMin" min="@newVerCdMin" />
+    </div>
+    <div class="row">
+        <div class="label">バージョン名</div>
+        <input id="input-version-name" class="form-control input-version" type="text" maxlength="20" />
+    </div>
+    <div class="row">
+        <div class="label">ファイル</div>
+        <input id="input-file-name" class="form-control" type="text" disabled />
+        <button id="btn-select-file" class="btn btn-success">選択</button>
+        <button id="btn-clear-file" class="btn btn-warning">クリア</button>
+    </div>
+    <div id="update-file" class="row">
+        <input id="select-file" accept="*/*" style="display: none;" onchange="OnJspSelectFile(this);" type="file">
+        <button id="btn-update-file" class="btn btn-success">登録</button>
+        <button id="btn-close-update-version" class="btn btn-danger">閉じる</button>
+    </div>
+</div>
 <a href=""></a>
 
 @section scripts {

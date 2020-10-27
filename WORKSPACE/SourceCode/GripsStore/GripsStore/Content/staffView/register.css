@@ -34,12 +34,12 @@
 }
 
 .NameTag {
-    margin: auto;
+    /*  margin: auto;
     font-size: xx-large;
     width: 100%;
-    text-align: center;
+  */ text-align: center;
 }
 
 form {
-    margin-top: 20px;
+    margin-top: 60px;
 }

@@ -28,9 +28,9 @@
 
         <div class="detail-staff">
             @*@foreach (var staff in ViewData["Staffs"] as List<GripsStore.Models.Staff>)*@
-
-            <h2 class="NameTag ">従業員の詳細</h2>
-
+            <div class=" col-sm-offset-0">
+                <h2 class="NameTag ">従業員の詳細</h2>
+            </div>
             <form class="form-horizontal">
 
                 <div class="form-group">
@@ -65,7 +65,7 @@
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9">
                         <button class="btn btn-primary" id="btn-submit">Submit</button>
-                        <button class="btn btn-info" id="btn-huy" type="reset">Cancel</button>
+                        <button class="btn btn-info" id="btn-huy" type="reset">Go back</button>
                         <button class="btn btn-danger" id="btn-default">Delete</button>
                     </div>
                 </div>
