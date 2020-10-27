@@ -1,0 +1,27 @@
+﻿.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 50px;
+    height: 100%;
+}
+
+#btn-cance {
+    margin-left: 5px;
+}
+
+.NameTag {
+    margin: auto;
+    font-size: xx-large;
+    width: 100%;
+    text-align: center;
+}
+
+.parent {
+    margin-top: 8px;
+}
+/*.parent {
+    left: calc(50% - 175px);
+    position: absolute;
+    height: 100%;
+}
+*/

@@ -4,6 +4,9 @@
     background: #EEEEEE;
 }
 
+#myDropDown {
+    display: none;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;

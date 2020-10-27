@@ -16,17 +16,13 @@ function checkPressButton() {
                 search();
             }
         });
+        $('#btn-login').click(function () {
+            $("#myDropDown").toggle();
+        });
         $('.btn-primary').on('click', editApp);
         $('.btn-danger').on('click', deleteApp);
-        //$('#search-input').keyup(function (e) {
-        //    if (e.keyCode == 13) {
-        //        search();
-        //    }
-        //});
-
 
         $('#home').on('click', goHome);
-
     }
     catch (ex) {
         ttDebug.Exception(SCRIPT_FILE, 'onStartUp', ex);

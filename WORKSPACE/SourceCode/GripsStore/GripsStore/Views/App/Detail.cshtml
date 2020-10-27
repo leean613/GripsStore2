@@ -5,25 +5,18 @@
 }
 @if (ViewData["App"] != null)
 {
-    // var an = "lytruongan";
+
     var app = ViewData["App"] as GripsStore.Models.App;
     var staffCode = "";
     if (Request.Cookies["GRIPS_STORE_STAFFCODE"] != null)
     {
         staffCode = Request.Cookies["GRIPS_STORE_STAFFCODE"].Value;
     }
-    //var iconPath = "/upload/123/Icon/OIP.jpg";
-
-
 
     var iconPath = "/Files/" + app.appId + "/Icon/" + app.icon;
-
     var installFilePath = "/Files/" + app.appId + "/InstallFile/" + app.fileNm;
     System.Diagnostics.Debug.Write(iconPath);
-
-
     var qrPath = "/Files/" + app.appId + "/" + app.appId + ".png";
-    //var qrPath = "/upload/123/123.png";
 
     <div class="app-detail">
         <div class="row">

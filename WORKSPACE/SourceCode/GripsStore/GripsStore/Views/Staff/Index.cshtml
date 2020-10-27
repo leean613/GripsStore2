@@ -3,6 +3,8 @@
     <link href="~/Content/App/site.css?UpDate=202002071636" rel="stylesheet" />
     <link href="../../Content/ttGuard_1.0.0.css?UpDate=202002051338" rel="stylesheet" />
     <link href="~/Content/staffView/staff.css" rel="stylesheet" />
+
+    <link href="~/Content/staffView/register.css" rel="stylesheet" />
 }
 @if (ViewData["Staffs"] != null)
 {
@@ -19,9 +21,9 @@
         <table id="main-table" class="table table-hover">
             <thead>
                 <tr>
-                    <th id="staffCode">Staff Code</th>
-                    <th id="kanaName">Kana Name</th>
-                    <th id="kanjiName">Kanji Name</th>
+                    <th id="staffCode">職員コード</th>
+                    <th id="kanaName">カナ氏名</th>
+                    <th id="kanjiName">漢字氏名</th>
                     @*<th id="register"><a href="/Staff/Register/">NEW</a></th>*@
                 </tr>
 

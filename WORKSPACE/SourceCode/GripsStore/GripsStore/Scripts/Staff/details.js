@@ -24,17 +24,17 @@ function onStartUp() {
             editStaff();
         });
         $('#home').on('click', goHome);
+        $('#btn-login').click(function () {
+            $("#myDropDown").toggle();
+        });
     }
 }
-//function cancel() {
-//    staffCode = $('#staffCode').val().trim();
-//    console.log(`"/Staff/Details/?code=${staffCode}"`);
-//    value = confirm("cancel");
-//    if (value) {
-//        //location.href = "/";
-//        location.href = "/Staff/Index/";
-//    }
-//}
+function showUpdateVersionForm() {
+    $('#btn-update-version').addClass("gone");
+    $('#version').addClass("gone");
+    $('#update-version').removeClass("gone");
+    $('#btn-update').addClass("gone");
+}
 function cancel() {
     value = confirm("cancel");
     if (value) {
