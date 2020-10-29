@@ -1,0 +1,14 @@
+﻿@media (max-width:572px ) {
+    #tbody .btn-primary {
+        margin-top: 3px;
+    }
+}
+
+#tbody .btn-danger {
+    max-width: 67px;
+    margin-right: 4px;
+}
+
+#tbody .btn-primary {
+    min-width: 67px;
+}

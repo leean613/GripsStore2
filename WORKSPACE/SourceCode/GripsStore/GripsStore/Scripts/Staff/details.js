@@ -1,6 +1,7 @@
 ﻿var kanjiName;
 var kanaName;
 var generationno;
+var password;
 //var staffCode;
 
 
@@ -24,17 +25,30 @@ function onStartUp() {
             editStaff();
         });
         $('#home').on('click', goHome);
+
+
         $('#btn-login').click(function () {
             $("#myDropDown").toggle();
+
         });
+
+        $(".body-content").click(function () {
+            if ($("#myDropDown").is(':visible')) { $("#myDropDown").toggle(); }
+        });
+
+        $('#btn-login').mouseenter(function () {
+            $("#myDropDown").toggle();
+
+        });
+        $('#myDropDown').mouseleave(function () {
+            $("#myDropDown").toggle();
+
+        });
+
+
     }
 }
-function showUpdateVersionForm() {
-    $('#btn-update-version').addClass("gone");
-    $('#version').addClass("gone");
-    $('#update-version').removeClass("gone");
-    $('#btn-update').addClass("gone");
-}
+
 function cancel() {
     value = confirm("cancel");
     if (value) {
@@ -77,13 +91,14 @@ function editStaff() {
     kanjiName = $('#kanjiName').val();
     kanaName = $('#kanaName').val();
     generationno = $('#generationno').val();
+    password = $('#password').val();
 
     if (staffCode != "" && kanjiName != "" && kanaName != "") {
         $.ajax({
             url: '/Staff/Update/',
             type: 'POST',
             contentType: 'application/json;',
-            data: JSON.stringify({ staffCode: staffCode, kanjiName: kanjiName, kanaName: kanaName, generationno: generationno }),
+            data: JSON.stringify({ staffCode: staffCode, kanjiName: kanjiName, kanaName: kanaName, password: password, generationno: generationno }),
             success: function (data) {
                 if (data.success) {
                     location.href = "/Staff/Details/?code=" + staffCode;

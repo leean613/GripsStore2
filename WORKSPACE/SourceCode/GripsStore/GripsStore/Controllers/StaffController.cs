@@ -82,7 +82,7 @@ namespace GripsStore.Controllers
             return View(staff);
 
         }
-        public JsonResult Update(string staffCode, string kanjiName, string kanaName, string generationno)
+        public JsonResult Update(string staffCode, string kanjiName, string kanaName, string password, string generationno)
         {
             StaffDao staffDao = new StaffDao();
             Staff staff = new Staff
@@ -90,12 +90,12 @@ namespace GripsStore.Controllers
                 staffCode = staffCode,
                 kanjiName = kanjiName,
                 kanaName = kanaName,
+                password = password,
                 generationno = generationno
-
             };
             return Json(staffDao.Update(staffCode, staff));
         }
-        public JsonResult CreateStaff(string kanjiName, string kanaName, string generationno)
+        public JsonResult CreateStaff(string kanjiName, string kanaName, string password, string generationno)
         {
             StaffDao staffDao = new StaffDao();
             Staff staff = new Staff
@@ -104,6 +104,7 @@ namespace GripsStore.Controllers
                 kanjiName = kanjiName,
                 kanaName = kanaName,
                 generationno = generationno,
+                password = password
             };
             return Json(staffDao.Create(staff));
         }

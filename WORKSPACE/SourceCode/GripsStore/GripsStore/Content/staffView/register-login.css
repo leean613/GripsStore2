@@ -25,3 +25,32 @@
     height: 100%;
 }
 */
+@media (min-width:750px ) {
+    .tieude {
+    }
+
+    .parent {
+        margin-top: 40px;
+    }
+
+    .NameTag {
+        text-align: left;
+        left: calc(30%);
+        position: absolute;
+    }
+}
+
+@media (min-width:1000px ) {
+    .tieude {
+    }
+
+    .parent {
+        margin-top: 40px;
+    }
+
+    .NameTag {
+        text-align: left;
+        left: calc(35%);
+        position: absolute;
+    }
+}

@@ -5,6 +5,7 @@ var staffCode;
 var kanjiName;
 var kanaName;
 var generationno;
+var password;
 
 $(document).ready(onStartUp);
 function onStartUp() {
@@ -38,6 +39,8 @@ function createStaff() {
     ttGuard.showWait();
     kanjiName = $('#kanjiName').val();
     kanaName = $('#kanaName').val();
+    password = $('#password').val();
+
     //staffCode = $('#staffCode').val();
     generationno = $('#generationno').val();
     if (kanjiName != "" && generationno != "") {
@@ -45,7 +48,7 @@ function createStaff() {
             url: '/Staff/CreateStaff/',
             type: 'POST',
             contentType: 'application/json;',
-            data: JSON.stringify({ kanjiName: kanjiName, kanaName: kanaName, generationno: generationno }),
+            data: JSON.stringify({ kanjiName: kanjiName, kanaName: kanaName, password: password, generationno: generationno }),
             success: function (data) {
                 if (data.success) {
 

@@ -5,7 +5,7 @@
     <link href="~/Content/staffView/drop.css" rel="stylesheet" />
     <link href="~/Content/staffView/register.css" rel="stylesheet" />
 
-    <link href="~/Content/staffView/details.css" rel="stylesheet" />
+
 }
 
 
@@ -26,9 +26,10 @@
     {
         var staff = ViewData["Staffs"] as GripsStore.Models.Staff;
 
-        <div class="detail-staff">
+        <div class="container">
             @*@foreach (var staff in ViewData["Staffs"] as List<GripsStore.Models.Staff>)*@
-            <div class=" col-sm-offset-0">
+            @*<div class="NameTag col-sm-offset-0">*@
+            <div class="NameTag-div">
                 <h2 class="NameTag ">従業員の詳細</h2>
             </div>
             <form class="form-horizontal">
@@ -51,6 +52,20 @@
                         <input type="text" class="form-control" id="kanjiName" value="@staff.kanjiName" maxlength="20">
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="password">パスワード</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="password" value="@staff.password" maxlength="20">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="staffWardCode">部署・病棟名称</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="staffWardName" value="@staff.staffWardName" readonly>
+                    </div>
+                </div>
+
 
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="generationno">世代番号</label>

@@ -6,13 +6,38 @@ function onStartUp() {
 
     checkPressButton();
     $(".pager a:eq(5)").click();
+
     $('#btn-login').click(function () {
         $("#myDropDown").toggle();
-        //alert("clicked");
+
+    });
+
+    $(".body-content").click(function () {
+        if ($("#myDropDown").is(':visible')) { $("#myDropDown").toggle(); }
     });
 
 
+    //if ($("#myDropDown").is(':visible')) {
+    //    $('div').not('#myDropDown').mouseover(function () {
+
+    //        $("#myDropDown").toggle();
+
+    //    });
+    //}
+    $('#btn-login').mouseenter(function () {
+        $("#myDropDown").toggle();
+
+    });
+    $('#myDropDown').mouseleave(function () {
+        $("#myDropDown").toggle();
+
+    });
+
+
+
 }
+function controlRegister() { }
+
 function checkPressButton() {
     try {
         $('#input-search').keyup(function (e) {

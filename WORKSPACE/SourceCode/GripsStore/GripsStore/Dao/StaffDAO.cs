@@ -55,17 +55,14 @@ namespace GripsStore.Dao
                 StringBuilder sbSQL = new StringBuilder();
                 using (NpgDB npgDB = Connection.DBConnect())
                 {
-                    sbSQL.AppendLine("SELECT * FROM mstaff");
 
-
-                    //sbSQL.AppendLine("LEFT join m_deptgroup ");
-                    //sbSQL.AppendLine("ON m_department.deptgrpcd=m_deptgroup.deptgrpcd");
-                    sbSQL.AppendLine("ORDER by mstaff.staffcode");
+                    sbSQL.AppendLine("SELECT mstaff.staffcode, mstaff.kananame, mstaff.kanjiname, mstaff.password, mward.wardcode,mward.wardname, mstaff.generationno");
+                    sbSQL.AppendLine("FROM mstaff");
+                    sbSQL.AppendLine("LEFT JOIN mward ON mward.wardcode = mstaff.wardcode");
+                    sbSQL.AppendLine("ORDER BY mstaff.staffcode");
                     sbSQL.AppendLine("LIMIT 10");
                     sbSQL.AppendLine(" offset :p_pageCount");
                     pageCount = pageCount * 10;
-
-
                     npgDB.Command = sbSQL.ToString();
                     npgDB.SetParams(":p_pageCount", pageCount);
                     Debug.Write(sbSQL.ToString());
@@ -149,11 +146,21 @@ namespace GripsStore.Dao
             {
                 StringBuilder sbSQL = new StringBuilder();
                 using (NpgDB npgDB = Connection.DBConnect())
-                {
-                    sbSQL.AppendLine("SELECT * FROM mstaff");
-
-                    sbSQL.AppendLine("WhERE mstaff.staffcode= :p_staffcode");
+                {   // siêu cấp mạnh mẽ
+                    //sbSQL.AppendLine("SELECT * FROM mstaff");
+                    sbSQL.AppendLine("SELECT mstaff.staffcode, mstaff.kananame, mstaff.kanjiname, mstaff.password, mward.wardcode,mward.wardname, mstaff.generationno");
+                    sbSQL.AppendLine("FROM mstaff");
+                    sbSQL.AppendLine("LEFT JOIN mward ON mward.wardcode = mstaff.wardcode");
+                    sbSQL.AppendLine("WHERE mstaff.staffcode = :p_staffCode");
                     sbSQL.AppendLine("ORDER BY mstaff.staffcode");
+
+                    //sbSQL.AppendLine("SELECT staff.staffcode, staff.kanjiname, staff.kananame, ward.wardcode, ward.wardname,staff.generationno  ");
+                    //sbSQL.AppendLine("FROM mstaff staff");
+                    //sbSQL.AppendLine("LEFT JOIN mward ward ON ward.wardcode = ward.wardname");
+                    //sbSQL.AppendLine("WHERE staff.staffcode = :p_staffCode");
+                    //sbSQL.AppendLine("AND staff.password = :p_password");
+                    //sbSQL.AppendLine("AND staff.validstartdate <= CURRENT_DATE");
+                    //sbSQL.AppendLine("AND staff.validenddate >= CURRENT_DATE");
 
                     //sbSQL.AppendLine("LEFT join m_deptgroup ");
                     //sbSQL.AppendLine("ON m_department.deptgrpcd=m_deptgroup.deptgrpcd");
@@ -199,16 +206,17 @@ namespace GripsStore.Dao
                         sbSQL.AppendLine("staffcode = :p_staffcode,");
                         sbSQL.AppendLine("kananame = :p_kananame,");
                         sbSQL.AppendLine("kanjiname = :p_kanjiname,");
-                        sbSQL.AppendLine("generationno = :p_generationno");
-
+                        sbSQL.AppendLine("generationno = :p_generationno,");
+                        sbSQL.AppendLine("password = :p_password");
                         sbSQL.AppendLine("WHERE staffcode = :p_staffcode");
-                        sbSQL.AppendLine("RETURNING staffcode, kananame, kanjiname, generationno");
+                        sbSQL.AppendLine("RETURNING staffcode, kananame, kanjiname, generationno, password");
 
                         npgDB.Command = sbSQL.ToString();
                         npgDB.SetParams(":p_staffcode", staff.staffCode);
                         npgDB.SetParams(":p_kananame", staff.kanaName);
                         npgDB.SetParams(":p_kanjiname", staff.kanjiName);
                         npgDB.SetParams(":p_generationno", staff.generationno);
+                        npgDB.SetParams(":p_password", staff.password);
 
 
                         //npgDB.ExecuteNonQuery();
@@ -241,19 +249,20 @@ namespace GripsStore.Dao
                     {
                         sbSQL.AppendLine("INSERT INTO mstaff");
                         sbSQL.AppendLine("(");
-                        sbSQL.AppendLine("staffcode, kananame, kanjiname, generationno");
+                        sbSQL.AppendLine("staffcode, kananame, kanjiname, password, generationno");
                         sbSQL.AppendLine(")");
                         sbSQL.AppendLine("VALUES");
                         sbSQL.AppendLine("(");
-                        sbSQL.AppendLine("nextval('staffcode_sequence'), :p_kananame, :p_kanjiname, :p_generationno");
+                        sbSQL.AppendLine("nextval('staffcode_sequence'), :p_kananame, :p_kanjiname, :p_password, :p_generationno");
                         sbSQL.AppendLine(")");
-                        sbSQL.AppendLine("RETURNING staffcode, kananame, kanjiname, generationno");
+                        sbSQL.AppendLine("RETURNING staffcode, kananame, kanjiname, password, generationno");
 
                         npgDB.Command = sbSQL.ToString();
                         //npgDB.SetParams(":p_staffcode", staff.staffCode);
                         npgDB.SetParams(":p_kananame", staff.kanaName);
                         npgDB.SetParams(":p_kanjiname", staff.kanjiName);
                         npgDB.SetParams(":p_generationno", staff.generationno);
+                        npgDB.SetParams(":p_password", staff.password);
 
 
                         using (NpgsqlDataReader rec = npgDB.Query())
