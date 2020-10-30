@@ -8,8 +8,10 @@ namespace GripsStore.Models
         public string kanjiName;
         public string kanaName;
         public string generationno;
-        //  public string staffWardCode;
-        //  public string staffWardName;
+        public string password;
+        public string staffWardCode { get; set; } = "";
+        public string staffWardName { get; set; } = "";
+        //public string staffWardName;
 
         //////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
@@ -30,8 +32,12 @@ namespace GripsStore.Models
             this.kanjiName = NpgDB.getString(rec, "kanjiname");
             this.kanaName = NpgDB.getString(rec, "kananame");
             this.generationno = NpgDB.getString(rec, "generationno");
-            //   this.staffWardCode = NpgDB.getString(rec, "wardcode");
-            //   this.staffWardName = NpgDB.getString(rec, "wardname");
+            this.password = NpgDB.getString(rec, "password");
+            this.staffWardCode = NpgDB.getString(rec, "wardcode");
+
+
+            this.staffWardName = NpgDB.getString(rec, "wardname");
+
         }
 
         public class StaffJSON

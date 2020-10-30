@@ -91,6 +91,8 @@ function editStaff() {
     kanjiName = $('#kanjiName').val();
     kanaName = $('#kanaName').val();
     generationno = $('#generationno').val();
+
+    wardcode = $('#staffWardCode').val();
     password = $('#password').val();
 
     if (staffCode != "" && kanjiName != "" && kanaName != "") {
@@ -98,9 +100,10 @@ function editStaff() {
             url: '/Staff/Update/',
             type: 'POST',
             contentType: 'application/json;',
-            data: JSON.stringify({ staffCode: staffCode, kanjiName: kanjiName, kanaName: kanaName, password: password, generationno: generationno }),
+            data: JSON.stringify({ staffCode: staffCode, kanjiName: kanjiName, kanaName: kanaName, password: password, generationno: generationno, wardcode: wardcode }),
             success: function (data) {
                 if (data.success) {
+                    console.log(data);
                     location.href = "/Staff/Details/?code=" + staffCode;
                 } else {
                     alertError("loi");
