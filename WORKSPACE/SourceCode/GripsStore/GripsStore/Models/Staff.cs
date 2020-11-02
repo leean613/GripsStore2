@@ -9,8 +9,8 @@ namespace GripsStore.Models
         public string kanaName;
         public string generationno;
         public string password;
-        public string staffWardCode { get; set; } = "";
-        public string staffWardName { get; set; } = "";
+        public string staffWardCode { get; set; }
+        public string staffWardName { get; set; }
         //public string staffWardName;
 
         //////////////////////////////////////////////////////////////////////////////////////
@@ -35,9 +35,10 @@ namespace GripsStore.Models
             this.password = NpgDB.getString(rec, "password");
             this.staffWardCode = NpgDB.getString(rec, "wardcode");
 
-
-            this.staffWardName = NpgDB.getString(rec, "wardname");
-
+            if (isGetStaffInfo)
+            {
+                this.staffWardName = NpgDB.getString(rec, "wardname");
+            }
         }
 
         public class StaffJSON

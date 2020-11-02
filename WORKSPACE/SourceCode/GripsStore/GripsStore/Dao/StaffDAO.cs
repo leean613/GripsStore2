@@ -94,7 +94,8 @@ namespace GripsStore.Dao
                 StringBuilder sbSQL = new StringBuilder();
                 using (NpgDB npgDB = Connection.DBConnect())
                 {
-                    sbSQL.AppendLine("SELECT * FROM mstaff");
+                    sbSQL.AppendLine("SELECT mstaff.staffcode, mstaff.kananame, mstaff.kanjiname, mstaff.password, mward.wardcode, mward.wardname, mstaff.generationno FROM mstaff");
+                    sbSQL.AppendLine("LEFT JOIN mward ON mward.wardcode = mstaff.wardcode");
 
                     sbSQL.AppendLine("WhERE (mstaff.staffcode LIKE :p_staffcode ");
 
@@ -203,22 +204,21 @@ namespace GripsStore.Dao
                     {
                         sbSQL.AppendLine("UPDATE mstaff");
                         sbSQL.AppendLine("SET");
-                        sbSQL.AppendLine("staffcode = :p_staffcode,");
                         sbSQL.AppendLine("kananame = :p_kananame,");
                         sbSQL.AppendLine("kanjiname = :p_kanjiname,");
                         sbSQL.AppendLine("generationno = :p_generationno,");
-                        sbSQL.AppendLine("password = :p_password");
+                        sbSQL.AppendLine("password = :p_password,");
+                        sbSQL.AppendLine("wardcode = :p_wardcode");
                         sbSQL.AppendLine("WHERE staffcode = :p_staffcode");
-                        sbSQL.AppendLine("RETURNING staffcode, kananame, kanjiname, generationno, password");
-
+                        sbSQL.AppendLine("RETURNING staffcode, kananame, kanjiname, password, generationno, wardcode");
                         npgDB.Command = sbSQL.ToString();
                         npgDB.SetParams(":p_staffcode", staff.staffCode);
                         npgDB.SetParams(":p_kananame", staff.kanaName);
                         npgDB.SetParams(":p_kanjiname", staff.kanjiName);
                         npgDB.SetParams(":p_generationno", staff.generationno);
                         npgDB.SetParams(":p_password", staff.password);
-
-
+                        npgDB.SetParams(":p_wardcode", staff.staffWardCode);
+                        Debug.WriteLine(sbSQL.ToString());
                         //npgDB.ExecuteNonQuery();
                         //result.success = true;
                         using (NpgsqlDataReader rec = npgDB.Query())

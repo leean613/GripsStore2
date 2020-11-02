@@ -21,6 +21,12 @@ function onStartUp() {
             createStaff();
         });
         $('#home').on('click', goHome);
+        $('#input-search').keyup(function (e) {
+            if (e.keyCode == 13) {
+                search();
+            }
+        });
+
     }
     else {
         location.href("/staff/index");

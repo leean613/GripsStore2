@@ -44,9 +44,87 @@ function onStartUp() {
             $("#myDropDown").toggle();
 
         });
+        $('#input-search').keyup(function (e) {
+            if (e.keyCode == 13) {
+                search();
+            }
+        });
 
 
     }
+}
+
+function search() {
+
+    //staffCode = $('#search-input').val().trim();
+    pageCountSearch = 0;
+    totalPage = 0;
+    pageCount = 0;
+
+
+    staffCode = $('#input-search').val().trim();
+    console.log(staffCode);
+    var s = `<div>
+              <button class="btn btn-danger">Delete</button>
+              <button class="btn btn-primary">Edit</button>
+         </div>`;
+
+    $.ajax({
+        url: '/staff/GetPageSearchCount',
+        type: 'POST',
+        contentType: 'application/json;',
+        data: JSON.stringify({ staffCode: staffCode }),
+        success: function (response) {
+            //console.log(response);
+
+            totalSearchPage = response;
+
+
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log(xhr.responseText);
+        },
+    }),
+
+        $.ajax({
+            url: '/Staff/SearchStaffById/',
+            type: 'Post',
+            contentType: 'application/json;',
+            data: JSON.stringify({ staffCode: staffCode, pageCountSearch: pageCountSearch }),
+            success: fnSuccessSearch,
+
+
+        });
+
+
+
+    function fnSuccessSearch(response) {
+        location.href = "/staff/index";
+        $("#tbody").html("");
+        console.log(response.length);
+        //searchLength = response.length;
+
+        $(response).each(function (index, staff) {
+            //console.log(index, staff);
+
+
+            var tr = $("<tr/>");
+            var UnderLine = `<a href="/Staff/Details?code=` + staff.staffCode + `">` + staff.staffCode + `</a>`;
+
+            $("<td/>").addClass("staffCodeQuery").html(UnderLine).appendTo(tr);
+            $("<td/>").html(staff.kanaName).appendTo(tr);
+            $("<td/>").html(staff.kanjiName).appendTo(tr);
+
+            $("<td/>").html(s).appendTo(tr);
+            tr.appendTo("#tbody");
+
+
+        });
+        if (totalSearchPage > 0) { $("#info").html((pageCountSearch + 1) + `/` + totalSearchPage); }
+        else { $("#info").html(pageCountSearch); }
+        checkPressButton();
+    }
+
 }
 
 function cancel() {
