@@ -1,0 +1,56 @@
+﻿.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 50px;
+    height: 100%;
+}
+
+#btn-cance {
+    margin-left: 5px;
+}
+
+.NameTag {
+    margin: auto;
+    font-size: xx-large;
+    width: 100%;
+    text-align: center;
+}
+
+.parent {
+    margin-top: 8px;
+}
+/*.parent {
+    left: calc(50% - 175px);
+    position: absolute;
+    height: 100%;
+}
+*/
+@media (min-width:750px ) {
+    .tieude {
+    }
+
+    .parent {
+        margin-top: 40px;
+    }
+
+    .NameTag {
+        text-align: left;
+        left: calc(30%);
+        position: absolute;
+    }
+}
+
+@media (min-width:1000px ) {
+    .tieude {
+    }
+
+    .parent {
+        margin-top: 40px;
+    }
+
+    .NameTag {
+        text-align: left;
+        left: calc(35%);
+        position: absolute;
+    }
+}

@@ -1,0 +1,80 @@
+﻿
+#myDropDown {
+    display: block;
+    position: absolute;
+    background-color:;
+    background-color: #fff;
+    min-width: 100px;
+    right: 22px;
+    top: 52px;
+    z-index: 1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    Border-radius: 10px;
+}
+
+    #myDropDown a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 50px;
+    height: 100%;
+}
+
+#btn-huy {
+    margin-left: 5px;
+}
+
+#btn-default {
+    margin-left: 5px;
+}
+
+.NameTag {
+    /*  margin: auto;
+    font-size: xx-large;
+    width: 100%;
+  */ text-align: center;
+}
+
+
+
+@media (min-width:750px ) {
+    form {
+        margin-top: 80px;
+    }
+
+    .NameTag {
+        text-align: left;
+        left: calc(30%);
+        position: absolute;
+    }
+}
+
+@media (min-width:850px ) {
+    form {
+        margin-top: 80px;
+    }
+
+    .NameTag {
+        text-align: left;
+        left: calc(35%);
+        position: absolute;
+    }
+}
+
+@media (min-width:1300px ) {
+    form {
+        margin-top: 80px;
+    }
+
+    .NameTag {
+        text-align: left;
+        left: calc(40%);
+        position: absolute;
+    }
+}

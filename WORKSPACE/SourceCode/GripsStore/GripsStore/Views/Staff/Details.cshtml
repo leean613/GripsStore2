@@ -2,10 +2,10 @@
     <link href="~/Content/App/detail.css?UpDate=202002261452" rel="stylesheet" />
     <link href="~/Content/App/site.css?UpDate=202002071636" rel="stylesheet" />
     <link href="../../Content/ttGuard_1.0.0.css?UpDate=202002051338" rel="stylesheet" />
+    <link href="~/Content/staffView/drop.css" rel="stylesheet" />
+    <link href="~/Content/staffView/register.css" rel="stylesheet" />
 
 
-
-    <link href="~/Content/staffView/details.css" rel="stylesheet" />
 }
 
 
@@ -26,46 +26,70 @@
     {
         var staff = ViewData["Staffs"] as GripsStore.Models.Staff;
 
-        <div class="detail-staff">
+        <div class="container">
             @*@foreach (var staff in ViewData["Staffs"] as List<GripsStore.Models.Staff>)*@
-
-
-            <form>
+            @*<div class="NameTag col-sm-offset-0">*@
+            <div class="NameTag-div">
+                <h2 class="NameTag ">従業員の詳細</h2>
+            </div>
+            <form class="form-horizontal">
 
                 <div class="form-group">
-                    <label for="staffCode">staffCode</label>
-                    <input type="text" class="form-control" id="staffCode" value="@staff.staffCode" readonly>
-
+                    <label class="control-label col-sm-3" for="staffCode">職員コード</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="staffCode" value="@staff.staffCode" readonly>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="kanaName">kanaName</label>
-                    <input type="text" class="form-control" id="kanaName" value="@staff.kanaName" maxlength="20">
+                    <label class="control-label col-sm-3" for="kanaName">カナ氏名</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="kanaName" value="@staff.kanaName" maxlength="20">
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="kanjiName">kanjiName</label>
-                    <input type="text" class="form-control" id="kanjiName" value="@staff.kanjiName" maxlength="20">
-
+                    <label class="control-label col-sm-3" for="kanjiName">漢字氏名</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="kanjiName" value="@staff.kanjiName" maxlength="20">
+                    </div>
                 </div>
 
-
-
-                @*<div class="form-group">
-                      <label for="exampleCheck1"></label>
-                      <input type="hidden" class="form-control" id="generationno" value="@staff.generationno" readonly>
-
-                    </div>*@
                 <div class="form-group">
-                    <label for="generationno">Generation number</label>
-                    <select class="form-control" id="generationno">
-                        <option value="@staff.generationno" selected hidden>@staff.generationno</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                    </select>
+                    <label class="control-label col-sm-3" for="password">パスワード</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="password" value="@staff.password" maxlength="20">
+                    </div>
                 </div>
-                <div>
-                    <button class="btn btn-primary" id="btn-submit">Submit</button>
-                    <button class="btn btn-info" id="btn-huy">XYZ</button>
-                    <button class="btn btn-danger" id="btn-default">Delete</button>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="staffWardName">部署・病棟名称</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="staffWardName" value="@staff.staffWardName" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="staffWardCode">病棟コード</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="staffWardCode" value="@staff.staffWardCode">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="generationno">世代番号</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" id="generationno">
+                            <option value="@staff.generationno" selected hidden>@staff.generationno</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button class="btn btn-primary" id="btn-submit">Submit</button>
+                        <button class="btn btn-info" id="btn-huy" type="reset">Go back</button>
+                        <button class="btn btn-danger" id="btn-default">Delete</button>
+                    </div>
                 </div>
             </form>
         </div>

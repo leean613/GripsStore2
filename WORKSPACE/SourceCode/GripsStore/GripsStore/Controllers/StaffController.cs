@@ -6,8 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
-using PagedList.Mvc;
-using PagedList;
+
 
 namespace GripsStore.Controllers
 {
@@ -31,10 +30,10 @@ namespace GripsStore.Controllers
         }
 
         [HttpPost]
-        public JsonResult SearchStaffById(string staffCode)
+        public JsonResult SearchStaffById(string staffCode, int pageCountSearch)
         {
             StaffDao staffDao = new StaffDao();
-            List<Staff> list = staffDao.GetListStaff(staffCode);
+            List<Staff> list = staffDao.GetListStaff(staffCode, pageCountSearch);
             return Json(list);
         }
 
@@ -43,6 +42,12 @@ namespace GripsStore.Controllers
         {
             StaffDao staffDao = new StaffDao();
             return Json(staffDao.PageCount());
+
+        }
+        public JsonResult GetPageSearchCount(string staffCode)
+        {
+            StaffDao staffDao = new StaffDao();
+            return Json(staffDao.PageCountSearch(staffCode));
 
         }
         [HttpPost]
@@ -77,7 +82,7 @@ namespace GripsStore.Controllers
             return View(staff);
 
         }
-        public JsonResult Update(string staffCode, string kanjiName, string kanaName, string generationno)
+        public JsonResult Update(string staffCode, string kanjiName, string kanaName, string password, string generationno, string wardcode)
         {
             StaffDao staffDao = new StaffDao();
             Staff staff = new Staff
@@ -85,22 +90,24 @@ namespace GripsStore.Controllers
                 staffCode = staffCode,
                 kanjiName = kanjiName,
                 kanaName = kanaName,
-                generationno = generationno
-
+                password = password,
+                generationno = generationno,
+                staffWardCode = wardcode
             };
             return Json(staffDao.Update(staffCode, staff));
         }
-        public JsonResult CreateStaff(string staffCode, string kanjiName, string kanaName, string generationno)
+        public JsonResult CreateStaff(string kanjiName, string kanaName, string password, string generationno)
         {
             StaffDao staffDao = new StaffDao();
             Staff staff = new Staff
             {
-                staffCode = staffCode,
+
                 kanjiName = kanjiName,
                 kanaName = kanaName,
                 generationno = generationno,
+                password = password
             };
-            return Json(staffDao.Create(staffCode, staff));
+            return Json(staffDao.Create(staff));
         }
 
 
@@ -109,7 +116,7 @@ namespace GripsStore.Controllers
 
 
         // POST: Staff/Delete/5
-       
+
         public ActionResult Register()
         {
             ViewBag.Title = "新しいスタッフを作成する";

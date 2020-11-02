@@ -1,26 +1,45 @@
-﻿
-
+﻿var pageCountSearch = 0;
+var totalSearchPage;
+var searchLength;
 $(document).ready(onStartUp);
 function onStartUp() {
 
     checkPressButton();
     $(".pager a:eq(5)").click();
 
+    $('#btn-login').click(function () {
+        $("#myDropDown").toggle();
+
+    });
+
+    $(".body-content").click(function () {
+        if ($("#myDropDown").is(':visible')) { $("#myDropDown").toggle(); }
+    });
+
+
+    //if ($("#myDropDown").is(':visible')) {
+    //    $('div').not('#myDropDown').mouseover(function () {
+
+    //        $("#myDropDown").toggle();
+
+    //    });
+    //}
+    $('#btn-login').mouseenter(function () {
+        $("#myDropDown").toggle();
+
+    });
+    $('#myDropDown').mouseleave(function () {
+        $("#myDropDown").toggle();
+
+    });
 
 
 
 }
+function controlRegister() { }
+
 function checkPressButton() {
     try {
-        //$('.site-title').hide();
-        $('.btn-primary').on('click', editApp);
-
-        $('.btn-danger').on('click', deleteApp);
-        $('#search-input').keyup(function (e) {
-            if (e.keyCode == 13) {
-                search();
-            }
-        });
         $('#input-search').keyup(function (e) {
             if (e.keyCode == 13) {
                 search();
@@ -28,8 +47,10 @@ function checkPressButton() {
         });
 
 
-        $('#home').on('click', goHome);
+        $('.btn-primary').on('click', editApp);
+        $('.btn-danger').on('click', deleteApp);
 
+        $('#home').on('click', goHome);
     }
     catch (ex) {
         ttDebug.Exception(SCRIPT_FILE, 'onStartUp', ex);
@@ -38,13 +59,18 @@ function checkPressButton() {
 }
 
 function goHome() {
-    location.href = "/";
+    location.href = "/staff/index";
 }
+
 
 
 function search() {
 
-    staffCode = $('#search-input').val().trim();
+    //staffCode = $('#search-input').val().trim();
+    pageCountSearch = 0;
+    totalPage = 0;
+    pageCount = 0;
+
 
     staffCode = $('#input-search').val().trim();
     console.log(staffCode);
@@ -54,31 +80,65 @@ function search() {
          </div>`;
 
     $.ajax({
-        url: '/Staff/SearchStaffById/',
-        type: 'Post',
+        url: '/staff/GetPageSearchCount',
+        type: 'POST',
         contentType: 'application/json;',
         data: JSON.stringify({ staffCode: staffCode }),
-        success: fnSuccess
+        success: function (response) {
+            //console.log(response);
 
-    });
+            totalSearchPage = response;
 
-    function fnSuccess(response) {
+
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log(xhr.responseText);
+        },
+    }),
+
+
+
+
+
+
+        $.ajax({
+            url: '/Staff/SearchStaffById/',
+            type: 'Post',
+            contentType: 'application/json;',
+            data: JSON.stringify({ staffCode: staffCode, pageCountSearch: pageCountSearch }),
+            success: fnSuccessSearch,
+
+
+        });
+
+
+
+    function fnSuccessSearch(response) {
         $("#tbody").html("");
+        console.log(response.length);
+        //searchLength = response.length;
+
         $(response).each(function (index, staff) {
             //console.log(index, staff);
 
+
             var tr = $("<tr/>");
-            $("<td/>").html(staff.staffCode).appendTo(tr);
+            var UnderLine = `<a href="/Staff/Details?code=` + staff.staffCode + `">` + staff.staffCode + `</a>`;
+
+            $("<td/>").addClass("staffCodeQuery").html(UnderLine).appendTo(tr);
             $("<td/>").html(staff.kanaName).appendTo(tr);
             $("<td/>").html(staff.kanjiName).appendTo(tr);
 
             $("<td/>").html(s).appendTo(tr);
             tr.appendTo("#tbody");
-            $("#info").html((pageCount + 1));
 
-        })
 
+        });
+        if (totalSearchPage > 0) { $("#info").html((pageCountSearch + 1) + `/` + totalSearchPage); }
+        else { $("#info").html(pageCountSearch); }
+        checkPressButton();
     }
+
 }
 function deleteApp() {
     var staffCode = $(this).closest('tr').find('.staffCodeQuery').text().trim();
@@ -104,12 +164,77 @@ function deleteApp() {
 
 }
 function editApp() {
-    location.href = "/Staff/Details/?code=" + $(this).closest('tr').find('.staffCodeQuery').text().trim();
+    if ($(this).closest('tr').find('.staffCodeQuery').text().trim()) {
+        location.href = "/Staff/Details/?code=" + $(this).closest('tr').find('.staffCodeQuery').text().trim();
+    }
     //console.log($(this).closest('tr').find('.staffCodeQuery').text());
     //console.log("/Staff/Details/?code=" + $(this).closest('tr').find('.staffCodeQuery').text().trim());
 }
 
-function demo() {
+
+function LiveSearch() {
+    // Declare variables
+    var staffCodeInput, kanaNameInput, kanjiNameInput, staffCodeFilter, kanaNameFilter, kanjiNameFilter, table, trs, tdCode, i, txtValue, tdKana, tdKanji;
+
+    //Set input by getElementById
+    staffCodeInput = document.getElementById("searchStaffCode");
+
+    kanaNameInput = document.getElementById("searchKanaName");
+
+    kanjiNameInput = document.getElementById("searchKanjiName");
+
+    input = document.getElementById("input-search");
+
+    //Set filter
+
+    staffCodeFilter = staffCodeInput.value.toUpperCase();
+    kanaNameFilter = kanaNameInput.value.toUpperCase();
+    kanjiNameFilter = kanjiNameInput.value.toUpperCase();
+
+    filter = input.value.toUpperCase();
+    //Set the table and tr
+    table = document.getElementById("tbody");
+    trs = table.getElementsByTagName("tr");
+
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < trs.length; i++) {
+        tdCode = trs[i].getElementsByTagName("td")[0];
+
+        tdKana = trs[i].getElementsByTagName("td")[1];
+
+        tdKanji = trs[i].getElementsByTagName("td")[2];
+        if (
+            tdCode.innerHTML.toUpperCase().indexOf(staffCodeFilter) > -1 ||
+            tdKana.innerHTML.toUpperCase().indexOf(staffCodeFilter) > -1 ||
+            tdKanji.innerHTML.toUpperCase().indexOf(staffCodeFilter) > -1 ||
+            tdKana.innerHTML.toUpperCase().indexOf(filter) > -1
+
+
+        ) {
+            trs[i].style.display = "";
+        } else {
+            trs[i].style.display = "none";
+        }
+
+
+        //ExampleW3School
+        //if (td1) {
+        //    txtValue = td1.textContent || td1.innerText;
+        //    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        //        trs[i].style.display = "";
+        //    } else {
+        //        trs[i].style.display = "none";
+        //    }
+        //}
+
+
+    }
 }
+
+
+
+
+
 
 

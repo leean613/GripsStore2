@@ -4,6 +4,9 @@
     background: #EEEEEE;
 }
 
+#myDropDown {
+    display: none;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -28,6 +31,8 @@ textarea {
     width: 60px;
     height: 100%;
 }
+
+
 
 #btn-login {
     width: 60px;

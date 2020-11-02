@@ -3,6 +3,8 @@
     <link href="~/Content/App/site.css?UpDate=202002071636" rel="stylesheet" />
     <link href="../../Content/ttGuard_1.0.0.css?UpDate=202002051338" rel="stylesheet" />
     <link href="~/Content/staffView/staff.css" rel="stylesheet" />
+    <link href="~/Content/staffView/index.css" rel="stylesheet" />
+    <link href="~/Content/staffView/register.css" rel="stylesheet" />
 }
 @if (ViewData["Staffs"] != null)
 {
@@ -19,17 +21,10 @@
         <table id="main-table" class="table table-hover">
             <thead>
                 <tr>
-                    <th id="staffCode">Staff Code</th>
-                    <th id="kanaName">Kana Name</th>
-                    <th id="kanjiName">Kanji Name</th>
-                    <th id="register"><a href="/Staff/Register/">NEW</a></th>
-                    <th id="search">
-                        <div class="" style="display:none" ;>
-                            <input class="form-control" id="search-input" type="text" placeholder="Search" aria-label="Search">
-                        </div>
-                    </th>
-
-
+                    <th id="staffCode">職員コード</th>
+                    <th id="kanaName">カナ氏名</th>
+                    <th id="kanjiName">漢字氏名</th>
+                    @*<th id="register"><a href="/Staff/Register/">NEW</a></th>*@
                 </tr>
 
             </thead>
@@ -44,14 +39,11 @@
 
                         <td>
                             <div>
-                                @*<a href="/Staff/Details?code=@staff.staffCode" class="btn btn-sm btn-info">Edit </a>
-                                    <button class="btn btn-sm btn-danger" style=" float: none; text-align: center;width: 50px;">Delete </button>*@
                                 <button class="btn btn-danger">Delete</button>
                                 <button class="btn btn-primary">Edit</button>
-                                @*<button id="btn-demo" class="btn btn-default">demo</button>*@
                             </div>
                         </td>
-                        <td></td>
+
                     </tr>
                 }
 
@@ -59,7 +51,7 @@
             </tbody>
         </table>
         <ul class="pager">
-            <li><a href="#">First page</a></li>
+            <li><a>First page</a></li>
             <li><a href="#">Page Before</a></li>
             <li><a href="#">Page After</a></li>
             <li><a href="#"><span id="info">1</span></a></li>
