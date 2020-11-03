@@ -20,7 +20,7 @@ namespace GripsStore.Dao
             {
                 using (NpgDB npgDB = Connection.DBConnect())
                 {
-                    sbSQL.AppendLine("SELECT staff.staffcode, staff.kanjiname, staff.kananame, ward.wardcode, ward.wardname,staff.generationno  ");
+                    sbSQL.AppendLine("SELECT staff.staffcode, staff.kanjiname, staff.password, staff.kananame, ward.wardcode, ward.wardname,staff.generationno  ");
                     sbSQL.AppendLine("FROM mstaff staff");
                     sbSQL.AppendLine("LEFT JOIN mward ward ON ward.wardcode = ward.wardname");
                     sbSQL.AppendLine("WHERE staff.staffcode = :p_staffCode");
@@ -149,7 +149,7 @@ namespace GripsStore.Dao
                 using (NpgDB npgDB = Connection.DBConnect())
                 {   // siêu cấp mạnh mẽ
                     //sbSQL.AppendLine("SELECT * FROM mstaff");
-                    sbSQL.AppendLine("SELECT mstaff.staffcode, mstaff.kananame, mstaff.kanjiname, mstaff.password, mward.wardcode,mward.wardname, mstaff.generationno");
+                    sbSQL.AppendLine("SELECT mstaff.staffcode, mstaff.kananame, mstaff.kanjiname, mstaff.password,mward.wardname, mward.wardcode, mstaff.generationno");
                     sbSQL.AppendLine("FROM mstaff");
                     sbSQL.AppendLine("LEFT JOIN mward ON mward.wardcode = mstaff.wardcode");
                     sbSQL.AppendLine("WHERE mstaff.staffcode = :p_staffCode");
