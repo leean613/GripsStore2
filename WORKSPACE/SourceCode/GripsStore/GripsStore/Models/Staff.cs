@@ -19,8 +19,6 @@ namespace GripsStore.Models
         /// </summary>
         public Staff()
         {
-
-
         }
 
         //////////////////////////////////////////////////////////////////////////////////////
@@ -28,36 +26,24 @@ namespace GripsStore.Models
         /// ｺﾝｽﾄﾗｸﾀ
         /// </summary>
         /// <param name="rec"></param>
-        public Staff(NpgsqlDataReader rec, bool isGetStaffInfo = false)
+        public Staff(NpgsqlDataReader rec, bool editStatus = false, bool registerStatus = false)
         {
             this.staffCode = NpgDB.getString(rec, "staffcode");
             this.kanjiName = NpgDB.getString(rec, "kanjiname");
             this.kanaName = NpgDB.getString(rec, "kananame");
             this.generationno = NpgDB.getString(rec, "generationno");
             this.password = NpgDB.getString(rec, "password");
-            this.staffWardCode = NpgDB.getString(rec, "wardcode");
-
-            if (isGetStaffInfo)
+            if (!registerStatus)
+            {
+                this.staffWardCode = NpgDB.getString(rec, "wardcode");
+                registerStatus = false;
+            }
+            if (editStatus)
             {
                 this.staffWardName = NpgDB.getString(rec, "wardname");
             }
         }
-        public class RegisterForm
-        {
-            public RegisterForm(string staffCode, string kanjiName, string kanaName, string generationno, string password)
-            {
-                staffCode = staffCode;
-                kanjiName = kanjiName;
-                kanaName = kanaName;
-                generationno = generationno;
-                password = password;
-            }
-            public string staffCode { get; set; }
-            public string kanjiName { get; set; }
-            public string kanaName { get; set; }
-            public string generationno { get; set; }
-            public string password { get; set; }
-        }
+
 
 
 

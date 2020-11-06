@@ -54,10 +54,10 @@ function createStaff() {
             url: '/Staff/CreateStaff/',
             type: 'POST',
             contentType: 'application/json;',
-            data: JSON.stringify({ kanjiName: kanjiName, kanaName: kanaName, password: password, generationno: generationno }),
+            data: JSON.stringify({ kanjiName: kanjiName, kanaName: kanaName, password: password, generationno: generationno, registerStatus: true }),
             success: function (data) {
                 if (data.success) {
-
+                    console.log(data)
                     console.log(data.staff.staffCode);
                     location.href = "/Staff/Details/?code=" + data.staff.staffCode;
                 } else {

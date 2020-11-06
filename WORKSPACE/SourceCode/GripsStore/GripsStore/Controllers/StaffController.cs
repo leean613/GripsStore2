@@ -96,18 +96,20 @@ namespace GripsStore.Controllers
             };
             return Json(staffDao.Update(staffCode, staff));
         }
-        public JsonResult CreateStaff(string kanjiName, string kanaName, string password, string generationno)
+        public JsonResult CreateStaff(string kanjiName, string kanaName, string password, string generationno, bool registerStatus)
         {
             StaffDao staffDao = new StaffDao();
+
             Staff staff = new Staff
             {
-
                 kanjiName = kanjiName,
                 kanaName = kanaName,
                 generationno = generationno,
-                password = password
+                password = password,
+
+
             };
-            return Json(staffDao.Create(staff));
+            return Json(staffDao.Create(staff, registerStatus));
         }
 
 

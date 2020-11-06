@@ -237,7 +237,7 @@ namespace GripsStore.Dao
             }
             return result;
         }
-        public StaffJSON Create(Staff staff)
+        public StaffJSON Create(Staff staff, bool registerStatus)
         {
             StaffJSON result = new StaffJSON();
             if (staff != null)
@@ -255,7 +255,7 @@ namespace GripsStore.Dao
                         sbSQL.AppendLine("(");
                         sbSQL.AppendLine("nextval('staffcode_sequence'), :p_kananame, :p_kanjiname, :p_password, :p_generationno");
                         sbSQL.AppendLine(")");
-                        sbSQL.AppendLine("RETURNING staffcode");
+                        sbSQL.AppendLine("RETURNING staffcode, kananame, kanjiname, password, generationno");
 
                         npgDB.Command = sbSQL.ToString();
                         //npgDB.SetParams(":p_staffcode", staff.staffCode);
@@ -270,7 +270,7 @@ namespace GripsStore.Dao
                             if (rec.Read())
                             {
 
-                                result.staff = new Staff(rec);
+                                result.staff = new Staff(rec, false, registerStatus);
                                 result.success = true;
                             }
                         }
