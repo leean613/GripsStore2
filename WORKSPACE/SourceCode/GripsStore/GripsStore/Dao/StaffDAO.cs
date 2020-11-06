@@ -255,7 +255,7 @@ namespace GripsStore.Dao
                         sbSQL.AppendLine("(");
                         sbSQL.AppendLine("nextval('staffcode_sequence'), :p_kananame, :p_kanjiname, :p_password, :p_generationno");
                         sbSQL.AppendLine(")");
-                        sbSQL.AppendLine("RETURNING staffcode, kananame, kanjiname, password, generationno");
+                        sbSQL.AppendLine("RETURNING staffcode");
 
                         npgDB.Command = sbSQL.ToString();
                         //npgDB.SetParams(":p_staffcode", staff.staffCode);

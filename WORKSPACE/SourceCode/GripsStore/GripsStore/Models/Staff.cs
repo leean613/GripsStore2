@@ -19,6 +19,8 @@ namespace GripsStore.Models
         /// </summary>
         public Staff()
         {
+
+
         }
 
         //////////////////////////////////////////////////////////////////////////////////////
@@ -40,6 +42,25 @@ namespace GripsStore.Models
                 this.staffWardName = NpgDB.getString(rec, "wardname");
             }
         }
+        public class RegisterForm
+        {
+            public RegisterForm(string staffCode, string kanjiName, string kanaName, string generationno, string password)
+            {
+                staffCode = staffCode;
+                kanjiName = kanjiName;
+                kanaName = kanaName;
+                generationno = generationno;
+                password = password;
+            }
+            public string staffCode { get; set; }
+            public string kanjiName { get; set; }
+            public string kanaName { get; set; }
+            public string generationno { get; set; }
+            public string password { get; set; }
+        }
+
+
+
 
         public class StaffJSON
         {
